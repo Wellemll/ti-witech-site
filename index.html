@@ -1,269 +1,392 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TI-WiTech | Global IT Solutions</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TI-WiTech | Global IT Solutions</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-font-family:'Poppins',sans-serif;
-background:#050816;
-color:white;
-overflow-x:hidden;
-}
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
 
-/* VIDEO BACKGROUND */
-.video-bg{
-position:fixed;
-top:0;left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-2;
-opacity:0.15;
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #050816;
+      color: white;
+      overflow-x: hidden;
+    }
 
-/* OVERLAY */
-.overlay{
-position:fixed;
-width:100%;
-height:100%;
-background:radial-gradient(circle,#0b0f2a 20%,#050816 80%);
-z-index:-1;
-}
+    /* VIDEO BACKGROUND */
+    .video-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 0.15;
+    }
 
-/* HEADER */
-header{
-position:fixed;
-width:100%;
-padding:20px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(5,8,22,0.7);
-backdrop-filter:blur(10px);
-z-index:1000;
-}
+    .overlay {
+      position: fixed;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, #0b0f2a 20%, #050816 80%);
+      z-index: -1;
+    }
 
-.logo{
-font-family:'Orbitron';
-font-size:22px;
-color:#00f0ff;
-letter-spacing:2px;
-}
+    /* HEADER & LOGO */
+    header {
+      position: fixed;
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(5, 8, 22, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
 
-nav a{
-margin-left:25px;
-text-decoration:none;
-color:white;
-}
+    .logo img {
+      height: 40px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
 
-.lang-btn{
-margin-left:20px;
-padding:6px 12px;
-border:1px solid #00f0ff;
-background:none;
-color:#00f0ff;
-cursor:pointer;
-border-radius:20px;
-}
+    .logo img:hover {
+      transform: scale(1.05);
+    }
 
-/* HERO */
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:0 10%;
-}
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover { color: #00f0ff; }
 
-.hero h1{
-font-size:60px;
-font-family:'Orbitron';
-margin-bottom:20px;
-}
+    .lang-btn {
+      margin-left: 20px;
+      padding: 6px 12px;
+      border: 1px solid #00f0ff;
+      background: none;
+      color: #00f0ff;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
 
-.hero span{color:#00f0ff;}
+    .lang-btn:hover {
+      background: #00f0ff;
+      color: #050816;
+    }
 
-.btn{
-padding:15px 40px;
-background:#00f0ff;
-border:none;
-border-radius:50px;
-font-weight:600;
-cursor:pointer;
-color:#050816;
-transition:0.4s;
-box-shadow:0 0 25px #00f0ff80;
-}
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 10%;
+    }
 
-.btn:hover{
-transform:scale(1.1);
-box-shadow:0 0 60px #00f0ff;
-}
+    .hero h1 {
+      font-size: 60px;
+      font-family: 'Orbitron';
+      margin-bottom: 20px;
+    }
 
-.section{
-padding:120px 8%;
-text-align:center;
-}
+    .hero span { color: #00f0ff; }
 
-.section h2{
-font-size:42px;
-margin-bottom:50px;
-font-family:'Orbitron';
-color:#00f0ff;
-}
+    .btn {
+      padding: 15px 40px;
+      background: #00f0ff;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #050816;
+      transition: 0.4s;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+      font-size: 16px;
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+    }
 
-/* ABOUT */
-.about{
-max-width:900px;
-margin:auto;
-color:#cbd5e1;
-line-height:1.7;
-}
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px #00f0ff;
+    }
 
-/* TESTIMONIALS */
-.testimonials{
-display:flex;
-justify-content:center;
-gap:40px;
-flex-wrap:wrap;
-}
+    /* SECTIONS & ANIMATIONS */
+    .section {
+      padding: 120px 8%;
+      text-align: center;
+    }
 
-.testimonial{
-background:rgba(255,255,255,0.05);
-padding:30px;
-border-radius:15px;
-max-width:300px;
-transition:0.4s;
-}
+    .section h2 {
+      font-size: 42px;
+      margin-bottom: 50px;
+      font-family: 'Orbitron';
+      color: #00f0ff;
+    }
 
-.testimonial:hover{
-transform:translateY(-10px);
-background:rgba(0,240,255,0.1);
-}
+    /* Classe pour l'animation au défilement */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
 
-/* CONTACT */
-.contact{
-background:#0b0f2a;
-padding:100px 8%;
-}
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.contact input,
-.contact textarea{
-width:100%;
-padding:15px;
-margin-bottom:15px;
-border:none;
-border-radius:10px;
-background:#1e293b;
-color:white;
-}
+    /* ABOUT */
+    .about {
+      max-width: 900px;
+      margin: auto;
+      color: #cbd5e1;
+      line-height: 1.7;
+      font-size: 18px;
+    }
 
-footer{
-text-align:center;
-padding:25px;
-background:#050816;
-color:#94a3b8;
-}
+    /* TESTIMONIALS */
+    .testimonials {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
 
-@media(max-width:768px){
-.hero h1{font-size:38px;}
-}
-</style>
+    .testimonial {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 300px;
+      transition: 0.4s;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-10px);
+      background: rgba(0, 240, 255, 0.1);
+    }
+
+    .testimonial p { margin-bottom: 15px; font-style: italic; color: #cbd5e1; }
+    .testimonial h4 { color: #00f0ff; }
+
+    /* CONTACT */
+    .contact {
+      background: #0b0f2a;
+      padding: 100px 8%;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 42px;
+      margin-bottom: 50px;
+      font-family: 'Orbitron';
+      color: #00f0ff;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact input, .contact textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      background: #1e293b;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      transition: border 0.3s;
+    }
+
+    .contact input:focus, .contact textarea:focus {
+      outline: none;
+      border-color: #00f0ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #050816;
+      color: #94a3b8;
+    }
+
+    @media(max-width: 768px) {
+      .hero h1 { font-size: 38px; }
+      nav a { display: none; /* Cache les liens sur mobile pour l'instant */ }
+    }
+  </style>
 </head>
 
 <body>
 
-<video autoplay muted loop class="video-bg">
-<source src="https://cdn.coverr.co/videos/coverr-working-on-a-laptop-5176/1080p.mp4" type="video/mp4">
-</video>
+  <video autoplay muted loop playsinline class="video-bg">
+    <source src="https://cdn.coverr.co/videos/coverr-working-on-a-laptop-5176/1080p.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
 
-<div class="overlay"></div>
+  <header>
+    <a href="#" class="logo">
+      <img src="https://placehold.co/180x50/0b0f2a/00f0ff?text=TI-WiTech" alt="TI-WiTech Logo">
+    </a>
+    <nav>
+      <a href="#about" id="nav-about">À propos</a>
+      <a href="#testimonials" id="nav-testi">Témoignages</a>
+      <a href="#contact" id="nav-contact">Contact</a>
+      <button class="lang-btn" onclick="toggleLang()">EN</button>
+    </nav>
+  </header>
 
-<header>
-<div class="logo">TI-WiTech</div>
-<nav>
-<a href="#about">À propos</a>
-<a href="#testimonials">Témoignages</a>
-<a href="#contact">Contact</a>
-<button class="lang-btn" onclick="toggleLang()">EN</button>
-</nav>
-</header>
+  <section class="hero">
+    <div class="reveal active"> <h1 id="hero-title">Solutions <span>Informatiques</span> Globales</h1>
+      <a href="#contact" class="btn" id="cta">Demander une assistance</a>
+    </div>
+  </section>
 
-<section class="hero">
-<div>
-<h1 id="hero-title">Solutions <span>Informatiques</span> Globales</h1>
-<a href="#contact" class="btn" id="cta">Demander une assistance</a>
-</div>
-</section>
+  <section class="section" id="about">
+    <h2 id="about-title" class="reveal">À propos</h2>
+    <p class="about reveal" id="about-text">
+      TI-WiTech fournit des solutions informatiques professionnelles aux entreprises et particuliers.
+      Notre mission est d'offrir sécurité, performance et innovation technologique à chaque client.
+    </p>
+  </section>
 
-<section class="section" id="about">
-<h2 id="about-title">À propos</h2>
-<p class="about" id="about-text">
-TI-WiTech fournit des solutions informatiques professionnelles aux entreprises et particuliers.
-Notre mission est d'offrir sécurité, performance et innovation technologique à chaque client.
-</p>
-</section>
+  <section class="section" id="testimonials">
+    <h2 id="testi-title" class="reveal">Témoignages</h2>
+    <div class="testimonials">
+      <div class="testimonial reveal">
+        <p id="t1-text">"Service rapide et professionnel. Problème réglé en moins d'une heure."</p>
+        <h4 id="t1-author">- Client Entreprise</h4>
+      </div>
+      <div class="testimonial reveal">
+        <p id="t2-text">"Support exceptionnel et sécurité renforcée pour notre réseau."</p>
+        <h4 id="t2-author">- PME Locale</h4>
+      </div>
+      <div class="testimonial reveal">
+        <p id="t3-text">"Très fiable, équipe compétente et disponible."</p>
+        <h4 id="t3-author">- Client Résidentiel</h4>
+      </div>
+    </div>
+  </section>
 
-<section class="section" id="testimonials">
-<h2>Témoignages</h2>
-<div class="testimonials">
-<div class="testimonial">
-<p>"Service rapide et professionnel. Problème réglé en moins d'une heure."</p>
-<h4>- Client Entreprise</h4>
-</div>
-<div class="testimonial">
-<p>"Support exceptionnel et sécurité renforcée pour notre réseau."</p>
-<h4>- PME Locale</h4>
-</div>
-<div class="testimonial">
-<p>"Très fiable, équipe compétente et disponible."</p>
-<h4>- Client Résidentiel</h4>
-</div>
-</div>
-</section>
+  <section class="contact" id="contact">
+    <h2 id="contact-title" class="reveal">Contact</h2>
+    
+    <form action="https://formspree.io/f/TON_ID_FORMSPREE_ICI" method="POST" class="reveal">
+      <input type="text" name="nom" id="form-name" placeholder="Nom complet" required>
+      <input type="email" name="email" id="form-email" placeholder="Adresse email" required>
+      <textarea name="message" id="form-message" rows="5" placeholder="Décrivez votre besoin..." required></textarea>
+      <button type="submit" class="btn" id="form-btn">Envoyer</button>
+    </form>
+  </section>
 
-<section class="contact" id="contact">
-<h2>Contact</h2>
-<form>
-<input type="text" placeholder="Nom complet" required>
-<input type="email" placeholder="Adresse email" required>
-<textarea rows="5" placeholder="Décrivez votre besoin..." required></textarea>
-<button class="btn">Envoyer</button>
-</form>
-</section>
+  <footer id="footer-text">
+    © 2026 TI-WiTech | Global IT Solutions
+  </footer>
 
-<footer>
-© 2026 TI-WiTech | Global IT Solutions
-</footer>
+  <script>
+    // 1. ANIMATIONS AU DÉFILEMENT (Scroll Reveal)
+    function reveal() {
+      var reveals = document.querySelectorAll(".reveal");
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100; // Déclenche l'animation 100px avant d'atteindre l'élément
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal(); // Déclenche une fois au chargement
 
-<script>
-let french=true;
+    // 2. GESTION DU BILINGUISME (FR / EN)
+    const translations = {
+      fr: {
+        navAbout: "À propos", navTesti: "Témoignages", navContact: "Contact",
+        hero: "Solutions <span>Informatiques</span> Globales", cta: "Demander une assistance",
+        aboutT: "À propos",
+        aboutP: "TI-WiTech fournit des solutions informatiques professionnelles aux entreprises et particuliers. Notre mission est d'offrir sécurité, performance et innovation technologique à chaque client.",
+        testiT: "Témoignages",
+        t1Text: "\"Service rapide et professionnel. Problème réglé en moins d'une heure.\"", t1Author: "- Client Entreprise",
+        t2Text: "\"Support exceptionnel et sécurité renforcée pour notre réseau.\"", t2Author: "- PME Locale",
+        t3Text: "\"Très fiable, équipe compétente et disponible.\"", t3Author: "- Client Résidentiel",
+        contactT: "Contact",
+        formName: "Nom complet", formEmail: "Adresse email", formMsg: "Décrivez votre besoin...", formBtn: "Envoyer",
+        footer: "© 2026 TI-WiTech | Global IT Solutions",
+        langBtn: "EN"
+      },
+      en: {
+        navAbout: "About Us", navTesti: "Testimonials", navContact: "Contact",
+        hero: "Global <span>IT</span> Solutions", cta: "Request Support",
+        aboutT: "About Us",
+        aboutP: "TI-WiTech delivers professional IT solutions for businesses and individuals. Our mission is to provide security, performance, and innovation to every client.",
+        testiT: "Testimonials",
+        t1Text: "\"Fast and professional service. Issue resolved in under an hour.\"", t1Author: "- Corporate Client",
+        t2Text: "\"Outstanding support and enhanced security for our network.\"", t2Author: "- Local SMB",
+        t3Text: "\"Highly reliable, competent and available team.\"", t3Author: "- Residential Client",
+        contactT: "Get in Touch",
+        formName: "Full Name", formEmail: "Email Address", formMsg: "Describe your needs...", formBtn: "Send Message",
+        footer: "© 2026 TI-WiTech | Global IT Solutions",
+        langBtn: "FR"
+      }
+    };
 
-function toggleLang(){
-french=!french;
+    let currentLang = 'fr';
 
-if(!french){
-document.getElementById("hero-title").innerHTML="Global <span>IT</span> Solutions";
-document.getElementById("cta").innerText="Request Support";
-document.getElementById("about-title").innerText="About Us";
-document.getElementById("about-text").innerText="TI-WiTech delivers professional IT solutions for businesses and individuals. Our mission is to provide security, performance, and innovation.";
-document.querySelector(".lang-btn").innerText="FR";
-}else{
-document.getElementById("hero-title").innerHTML="Solutions <span>Informatiques</span> Globales";
-document.getElementById("cta").innerText="Demander une assistance";
-document.getElementById("about-title").innerText="À propos";
-document.getElementById("about-text").innerText="TI-WiTech fournit des solutions informatiques professionnelles aux entreprises et particuliers. Notre mission est d'offrir sécurité, performance et innovation technologique à chaque client.";
-document.querySelector(".lang-btn").innerText="EN";
-}
-}
-</script>
+    function toggleLang() {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      const t = translations[currentLang];
 
+      // Mise à jour de la navigation
+      document.getElementById("nav-about").innerText = t.navAbout;
+      document.getElementById("nav-testi").innerText = t.navTesti;
+      document.getElementById("nav-contact").innerText = t.navContact;
+      
+      // Mise à jour du contenu principal
+      document.getElementById("hero-title").innerHTML = t.hero;
+      document.getElementById("cta").innerText = t.cta;
+      document.getElementById("about-title").innerText = t.aboutT;
+      document.getElementById("about-text").innerText = t.aboutP;
+      document.getElementById("testi-title").innerText = t.testiT;
+      
+      // Mise à jour des témoignages
+      document.getElementById("t1-text").innerText = t.t1Text;
+      document.getElementById("t1-author").innerText = t.t1Author;
+      document.getElementById("t2-text").innerText = t.t2Text;
+      document.getElementById("t2-author").innerText = t.t2Author;
+      document.getElementById("t3-text").innerText = t.t3Text;
+      document.getElementById("t3-author").innerText = t.t3Author;
+      
+      // Mise à jour du formulaire
+      document.getElementById("contact-title").innerText = t.contactT;
+      document.getElementById("form-name").placeholder = t.formName;
+      document.getElementById("form-email").placeholder = t.formEmail;
+      document.getElementById("form-message").placeholder = t.formMsg;
+      document.getElementById("form-btn").innerText = t.formBtn;
+      
+      // Mise à jour du footer et bouton de langue
+      document.getElementById("footer-text").innerText = t.footer;
+      document.querySelector(".lang-btn").innerText = t.langBtn;
+      
+      // Mise à jour de l'attribut HTML pour le SEO
+      document.documentElement.lang = currentLang;
+    }
+  </script>
 </body>
 </html>
