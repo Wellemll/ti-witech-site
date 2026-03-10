@@ -12,27 +12,9 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #334155; overflow-x: hidden; }
 
-        /* --- HEADER (Ajusté pour le logo plus gros et transparent) --- */
-        header { 
-            position: fixed; 
-            top: 0; left: 0; width: 100%; 
-            padding: 10px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            background: rgba(255, 255, 255, 0.98); 
-            backdrop-filter: blur(10px); 
-            z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            height: 150px; /* Hauteur augmentée pour le gros logo */
-        }
-        
-        .logo img { 
-            height: 220px; /* Ton logo est maintenant bien gros et visible */
-            width: auto; 
-            display: block;
-        }
-
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .logo img { height: 50px; width: auto; }
         nav { display: flex; align-items: center; gap: 30px; }
         nav a { text-decoration: none; color: #0f172a; font-weight: 600; font-size: 15px; transition: color 0.3s; }
         nav a:hover { color: #00f0ff; }
@@ -40,15 +22,16 @@
         .lang-btn:hover { border-color: #00f0ff; color: #00f0ff; }
 
         /* --- HERO SECTION --- */
-        .hero { position: relative; padding: 180px 5% 100px 5%; text-align: center; background-image: url('fond-lignes.png'); background-size: cover; background-position: center; min-height: 65vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .hero { position: relative; padding: 180px 5% 100px 5%; text-align: center; background-image: url('fond-lignes.png'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 42px; font-weight: 900; color: #0a192f; text-transform: uppercase; line-height: 1.2; letter-spacing: 1px; margin-bottom: 15px; }
         .hero h2 { font-size: 18px; color: #00f0ff; font-family: 'Orbitron', sans-serif; margin-bottom: 20px; background: #0a192f; display: inline-block; padding: 5px 15px; border-radius: 4px; }
         .hero p { font-size: 18px; color: #475569; margin-bottom: 40px; font-weight: 600; }
         
-        .btn-glowing { padding: 16px 36px; background: #0a192f; border: 2px solid #00f0ff; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: white; text-decoration: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); display: inline-block; }
-        .btn-glowing:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0, 240, 255, 0.8); background: #0d2342; }
+        .btn-glowing { padding: 16px 36px; background: #0a192f; border: 2px solid #00f0ff; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: white; text-decoration: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.2); display: inline-block; text-align: center;}
+        .btn-glowing:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0, 240, 255, 0.8), inset 0 0 15px rgba(0, 240, 255, 0.4); background: #0d2342; }
+        .btn-facebook { background: transparent; color: #0a192f; border-color: #0a192f; box-shadow: none; margin-left: 15px; }
 
-        /* --- CONTENEUR --- */
+        /* --- CONTAINER & SECTIONS --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
         .section { padding: 60px 0; }
         .section h3 { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; color: #0a192f; text-transform: uppercase; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
@@ -56,33 +39,41 @@
 
         /* --- SERVICES --- */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .service-card { background: linear-gradient(145deg, #ffffff, #f8fafc); padding: 25px; border-radius: 8px; border-left: 4px solid #00f0ff; box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: 0.3s; cursor: pointer; }
-        .service-card:hover { transform: translateX(5px); }
-        .service-card p { font-weight: 600; color: #0a192f; }
+        .service-card { background: linear-gradient(145deg, #ffffff, #f8fafc); padding: 25px; border-radius: 8px; border-left: 4px solid #00f0ff; box-shadow: 0 5px 20px rgba(0,0,0,0.03); transition: transform 0.3s; cursor: pointer; }
+        .service-card:hover { transform: translateX(5px); border-color: #0a192f; }
+        .service-card p { font-weight: 600; color: #0a192f; font-size: 16px; }
 
-        /* --- À PROPOS --- */
+        /* --- À PROPOS AVEC IMAGE --- */
         .about-wrapper { display: flex; align-items: center; gap: 40px; }
-        .about-text { font-size: 16px; line-height: 1.8; color: #475569; flex: 1; }
-        .territory-box { background: #f1f5f9; padding: 20px; border-radius: 8px; border: 1px dashed #cbd5e1; margin-top: 15px; }
+        .about-content { flex: 1; }
+        .about-image { flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .about-image img { width: 100%; height: auto; display: block; }
+        .territory-box { background: #f1f5f9; padding: 20px; border-radius: 8px; border: 1px dashed #cbd5e1; margin-top: 20px; display: inline-block;}
 
-        /* --- CONTACT & FORMULAIRE --- */
+        /* --- GALERIE --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; cursor: pointer; }
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* --- CONTACT INFO CARDS --- */
         .contact-info-cards { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
-        .contact-card { flex: 1; background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; text-decoration: none; color: #0a192f; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: 0.3s; }
+        .contact-card { flex: 1; background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; text-decoration: none; color: #0a192f; font-weight: 600; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 10px; }
         .contact-card:hover { border-color: #00f0ff; transform: translateY(-3px); }
 
-        .contact-form { background: #f8fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 800px; margin: 0 auto; }
+        /* --- FORMULAIRE --- */
+        .contact-form { background: #f8fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 800px; margin-bottom: 40px; }
         .form-row { display: flex; gap: 20px; margin-bottom: 20px; }
-        .form-group { flex: 1; }
-        input, textarea, select { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 15px; margin-bottom: 10px; }
-        .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .form-group { flex: 1; display: flex; flex-direction: column; }
+        input[type="text"], input[type="email"], textarea, select { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 15px; }
+        .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0 25px 0; }
+        .checkbox-label { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
 
         /* --- FOOTER --- */
         footer { text-align: center; padding: 40px 20px; background: #0a192f; color: #94a3b8; font-size: 14px; }
-        footer a { color: #00f0ff; text-decoration: none; }
+        footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 
         @media(max-width: 900px) {
-            header { height: auto; padding: 15px 5%; }
-            .logo img { height: 60px; }
             .hero h1 { font-size: 32px; }
             .about-wrapper { flex-direction: column; }
             .form-row { flex-direction: column; gap: 0; }
@@ -94,12 +85,11 @@
 <body>
 
     <header>
-        <a href="#" class="logo">
-            <img src="logo.png" alt="TI-WiTech Logo">
-        </a>
+        <a href="#" class="logo"><img src="logo.jpg" alt="TI-WiTech Logo"></a>
         <nav>
             <a href="#services" id="nav-services">Services</a>
             <a href="#about" id="nav-about">À propos</a>
+            <a href="#galerie" id="nav-galerie">En action</a>
             <a href="#contact" id="nav-contact">Contact</a>
             <button class="lang-btn" onclick="toggleLang()">EN</button>
         </nav>
@@ -109,7 +99,10 @@
         <h1 id="hero-title">SOUTIEN INFORMATIQUE<br>À DOMICILE</h1>
         <h2 id="hero-subtitle">PARTICULIERS & PME</h2>
         <p id="hero-desc">Spécialisé en systèmes et réseaux informatiques</p>
-        <a href="#contact" class="btn-glowing" id="cta">DEMANDER UNE ASSISTANCE</a>
+        <div>
+            <a href="#contact" class="btn-glowing" id="cta">DEMANDER UNE ASSISTANCE</a>
+            <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank" class="btn-glowing btn-facebook" id="cta-fb">SUIVRE SUR FACEBOOK</a>
+        </div>
     </section>
 
     <div class="container">
@@ -127,13 +120,23 @@
         <section class="section" id="about">
             <h3 id="about-title">NOTRE MISSION</h3>
             <div class="about-wrapper">
-                <div class="about-text">
-                    <p id="about-text">Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.</p>
+                <div class="about-content">
+                    <p class="about-text" id="about-text">Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.</p>
                     <div class="territory-box">
                         <strong id="territory-title">📍 Secteurs desservis :</strong><br>
                         <span id="territory-text">Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière (Lavaltrie, L’Assomption et environs).</span>
                     </div>
                 </div>
+                <div class="about-image"><img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80" alt="Support TI"></div>
+            </div>
+        </section>
+
+        <section class="section" id="galerie">
+            <h3 id="galerie-title">EN ACTION</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80" alt="Réseau"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=600&q=80" alt="Mobilité"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=600&q=80" alt="Audio"></div>
             </div>
         </section>
 
@@ -147,16 +150,16 @@
             <div class="contact-form">
                 <form action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="9b122fe1-fe35-4f35-b4c1-753a0288d0e2">
-                    <input type="hidden" name="subject" value="Nouvelle demande TI-WiTech">
+                    <input type="hidden" name="subject" value="Nouvelle Demande TI-WiTech">
                     <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
                     <div class="form-row">
-                        <div class="form-group"><input type="text" name="nom" placeholder="Nom complet" required></div>
-                        <div class="form-group"><input type="email" name="email" placeholder="Adresse courriel" required></div>
+                        <div class="form-group"><input type="text" name="nom" id="form-name" placeholder="Nom complet" required></div>
+                        <div class="form-group"><input type="email" name="email" id="form-email" placeholder="Adresse courriel" required></div>
                     </div>
 
                     <select name="appareil" id="form-service" required>
-                        <option value="" disabled selected>-- Sélectionnez l'appareil --</option>
+                        <option value="" disabled selected id="opt-default">-- Sélectionnez l'appareil concerné --</option>
                         <option value="Ordinateur / Mac">Ordinateur, portable ou Mac</option>
                         <option value="Tablette / Téléphone">Tablette ou Téléphone intelligent</option>
                         <option value="Télévision / Diffusion">Télévision ou service de diffusion</option>
@@ -164,27 +167,36 @@
                         <option value="Audio">Équipement audio domestique</option>
                     </select>
 
+                    <div class="form-row">
+                        <div class="form-group"><input type="text" name="modele" id="form-model" placeholder="Modèle"></div>
+                        <div class="form-group"><input type="text" name="annee" id="form-year" placeholder="Année"></div>
+                    </div>
+
                     <div class="checkbox-section">
-                        <p style="margin-bottom:10px; font-weight:600;">Problème principal :</p>
+                        <p id="checkbox-title">Quel est le problème principal ?</p>
                         <div class="checkbox-grid">
-                            <label><input type="checkbox" name="probleme[]" value="Lenteur"> Lenteur / Gel</label>
-                            <label><input type="checkbox" name="probleme[]" value="Virus"> Virus / Pop-ups</label>
-                            <label><input type="checkbox" name="probleme[]" value="WiFi"> Problème Wi-Fi</label>
-                            <label><input type="checkbox" name="probleme[]" value="Installation"> Installation</label>
-                            <label><input type="checkbox" name="probleme[]" value="Bris"> Bris matériel</label>
-                            <label><input type="checkbox" name="probleme[]" value="Autre"> Autre</label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Lenteur"> <span id="chk-1">Lenteur ou Gel</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Virus"> <span id="chk-2">Virus ou Pop-ups</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="WiFi"> <span id="chk-3">Problème Wi-Fi</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Installation"> <span id="chk-4">Installation / Config</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Bris"> <span id="chk-5">Bris matériel</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Autre"> <span id="chk-6">Autre</span></label>
                         </div>
                     </div>
 
-                    <textarea name="message" rows="4" placeholder="Détails supplémentaires..."></textarea>
-                    <button type="submit" class="btn-glowing" style="width: 100%;">ENVOYER LA DEMANDE</button>
+                    <textarea name="message" id="form-message" rows="4" placeholder="Détails supplémentaires..."></textarea>
+                    <button type="submit" class="btn-glowing" id="form-btn" style="width: 100%;">ENVOYER LA DEMANDE</button>
                 </form>
             </div>
         </section>
     </div>
 
     <footer>
-        © 2026 TI-WiTech | <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">Facebook</a>
+        <div class="footer-links">
+            <a href="tel:+14385272242">📞 +1 (438) 527-2242</a>
+            <a href="mailto:support@ti-witech.com">✉️ support@ti-witech.com</a>
+        </div>
+        © 2026 TI-WiTech | <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">Suivez-nous sur Facebook</a>
     </footer>
 
     <script>
@@ -192,18 +204,22 @@
             const s = document.getElementById('form-service');
             s.value = val;
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            s.style.boxShadow = "0 0 0 4px rgba(0, 240, 255, 0.4)";
+            setTimeout(() => { s.style.boxShadow = "none"; }, 1500);
         }
 
         const translations = {
             fr: {
-                navServices: "Services", navAbout: "À propos", navContact: "Contact",
+                navServices: "Services", navAbout: "À propos", navGalerie: "En action", navContact: "Contact",
                 hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Spécialisé en systèmes et réseaux informatiques", 
-                cta: "DEMANDER UNE ASSISTANCE", langBtn: "EN"
+                cta: "DEMANDER UNE ASSISTANCE", ctaFb: "SUIVRE SUR FACEBOOK",
+                srvTitle: "NOS SERVICES", aboutT: "NOTRE MISSION", galerieT: "EN ACTION", contactT: "CONTACTEZ-NOUS", formBtn: "ENVOYER LA DEMANDE", langBtn: "EN"
             },
             en: {
-                navServices: "Services", navAbout: "About Us", navContact: "Contact",
+                navServices: "Services", navAbout: "About Us", navGalerie: "In Action", navContact: "Contact",
                 hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Specialized in IT systems and networks", 
-                cta: "REQUEST ASSISTANCE", langBtn: "FR"
+                cta: "REQUEST ASSISTANCE", ctaFb: "FOLLOW ON FACEBOOK",
+                srvTitle: "OUR SERVICES", aboutT: "OUR MISSION", galerieT: "IN ACTION", contactT: "GET IN TOUCH", formBtn: "SEND REQUEST", langBtn: "FR"
             }
         };
 
@@ -213,15 +229,24 @@
             const t = translations[currentLang];
             document.getElementById("nav-services").innerText = t.navServices;
             document.getElementById("nav-about").innerText = t.navAbout;
+            document.getElementById("nav-galerie").innerText = t.navGalerie;
             document.getElementById("nav-contact").innerText = t.navContact;
             document.getElementById("hero-title").innerHTML = t.hero;
+            document.getElementById("hero-subtitle").innerText = t.heroSub;
             document.getElementById("hero-desc").innerText = t.heroDesc;
             document.getElementById("cta").innerText = t.cta;
+            document.getElementById("cta-fb").innerText = t.ctaFb;
+            document.getElementById("services-title").innerText = t.srvTitle;
+            document.getElementById("about-title").innerText = t.aboutT;
+            document.getElementById("galerie-title").innerText = t.galerieT;
+            document.getElementById("contact-title").innerText = t.contactT;
+            document.getElementById("form-btn").innerText = t.formBtn;
             document.querySelector(".lang-btn").innerText = t.langBtn;
             document.documentElement.lang = currentLang;
         }
     </script>
 </body>
 </html>
+
 
 
