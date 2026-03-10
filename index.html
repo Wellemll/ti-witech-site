@@ -17,10 +17,10 @@
             position: fixed; top: 0; left: 0; width: 100%; padding: 10px 5%; 
             display: flex; justify-content: space-between; align-items: center; 
             background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); 
-            z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); height: 120px; 
+            z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.03); height: 150px; 
         }
         
-        .logo img { height: 100px; width: auto; display: block; }
+        .logo img { height: 220px; width: auto; display: block; }
 
         nav { display: flex; align-items: center; gap: 30px; }
         nav a { text-decoration: none; color: #0f172a; font-weight: 600; font-size: 15px; transition: 0.3s; }
@@ -47,12 +47,11 @@
         .section h3 { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; color: #0a192f; text-transform: uppercase; margin-bottom: 40px; display: flex; align-items: center; gap: 15px; }
         .section h3::after { content: ""; height: 2px; flex: 1; background: linear-gradient(to right, #00f0ff, transparent); }
 
-        /* --- SERVICES DÉTAILLÉS --- */
+        /* --- SERVICES --- */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .service-card { background: #f8fafc; padding: 30px; border-radius: 12px; border-left: 5px solid #00f0ff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; }
         .service-card:hover { transform: translateY(-5px); border-left-color: #0a192f; }
         .service-card h4 { color: #0a192f; margin-bottom: 10px; font-size: 18px; text-transform: uppercase; }
-        .service-card p { font-size: 15px; line-height: 1.5; }
 
         /* --- ABOUT --- */
         .about-wrapper { display: flex; gap: 50px; align-items: center; }
@@ -64,10 +63,9 @@
         /* --- GALERIE --- */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .gallery-item { border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; cursor: pointer; }
-        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
 
-        /* --- FORMULAIRE ET ALIGNEMENT --- */
+        /* --- CONTACT --- */
         .contact-info-cards { display: flex; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
         .contact-card { flex: 1; background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; text-decoration: none; color: #0a192f; font-weight: 700; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: 0.3s; }
         .contact-card:hover { border-color: #00f0ff; transform: translateY(-5px); }
@@ -77,17 +75,15 @@
         input, select, textarea { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; margin-bottom: 15px; }
         
         .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 10px 0 25px 0; }
-        /* L'ALIGNEMENT PARFAIT ICI */
         .checkbox-item { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 5px 0; }
         .checkbox-item input { width: 20px; height: 20px; margin: 0; accent-color: #00f0ff; cursor: pointer; flex-shrink: 0; }
-        .checkbox-item span { font-size: 15px; color: #475569; }
 
         footer { text-align: center; padding: 50px 20px; background: #0a192f; color: #94a3b8; }
         footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 
         @media(max-width: 900px) {
             header { height: auto; padding: 15px 5%; }
-            .logo img { height: 70px; }
+            .logo img { height: 120px; }
             .about-wrapper { flex-direction: column; }
             .form-row { flex-direction: column; gap: 0; }
             .checkbox-grid { grid-template-columns: 1fr; }
@@ -98,9 +94,7 @@
 <body>
 
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="TI-WiTech Logo">
-        </div>
+        <div class="logo"><img src="logo.png" alt="TI-WiTech Logo"></div>
         <nav>
             <a href="#services" id="nav-srv">Services</a>
             <a href="#about" id="nav-abt">À propos</a>
@@ -118,29 +112,20 @@
     </section>
 
     <div class="container">
-        
         <section class="section" id="services">
             <h3 id="srv-title">NOS SERVICES</h3>
             <div class="services-grid">
                 <div class="service-card" onclick="setService('Ordinateur')">
                     <h4 id="s1-t">Ordinateurs & Mac</h4>
-                    <p id="s1-p">Réparation, optimisation, nettoyage de virus et mise à jour de matériel (SSD, RAM).</p>
+                    <p id="s1-p">Réparation, optimisation, nettoyage de virus et mise à jour de matériel.</p>
                 </div>
                 <div class="service-card" onclick="setService('Réseau')">
                     <h4 id="s2-t">Wi-Fi & Réseautique</h4>
-                    <p id="s2-p">Configuration Internet, extension de couverture Wi-Fi et sécurisation de réseau.</p>
+                    <p id="s2-p">Configuration Internet, extension de couverture Wi-Fi et sécurisation.</p>
                 </div>
                 <div class="service-card" onclick="setService('Mobile')">
                     <h4 id="s3-t">Tablettes & Mobiles</h4>
-                    <p id="s3-p">Configuration initiale, transfert de données et synchronisation de courriels.</p>
-                </div>
-                <div class="service-card" onclick="setService('TV')">
-                    <h4 id="s4-t">TV & Diffusion</h4>
-                    <p id="s4-p">Installation de téléviseurs intelligents et configuration de services de streaming.</p>
-                </div>
-                <div class="service-card" onclick="setService('Audio')">
-                    <h4 id="s5-t">Équipements Audio</h4>
-                    <p id="s5-p">Installation de systèmes de son et haut-parleurs intelligents (Sonos, etc.).</p>
+                    <p id="s3-p">Configuration initiale, transfert de données et synchronisation.</p>
                 </div>
             </div>
         </section>
@@ -148,66 +133,40 @@
         <section class="section" id="about">
             <h3 id="abt-title">NOTRE MISSION</h3>
             <div class="about-wrapper">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80" alt="Support TI">
-                </div>
+                <div class="about-img"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80" alt="Support TI"></div>
                 <div class="about-text">
-                    <p id="abt-p">Chez TI-WiTech, notre mission est de démystifier la technologie. Nous vous accompagnons pour assurer l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins réels.</p>
+                    <p id="abt-p">Chez TI-WiTech, notre mission est de démystifier la technologie. Nous vous accompagnons pour assurer l’installation et la résolution de problèmes à l’aide d’explications claires.</p>
                     <div class="territory">
                         <strong id="terr-t">📍 Secteurs desservis :</strong><br>
-                        <span id="terr-p">Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière (Lavaltrie, L’Assomption et environs).</span>
+                        <span id="terr-p">Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière.</span>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="section" id="galerie">
-            <h3 id="gal-title">EN ACTION</h3>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80" alt="Réseau"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=600&q=80" alt="Tablette"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=600&q=80" alt="Installation"></div>
             </div>
         </section>
 
         <section class="section" id="contact">
             <h3 id="cnt-title">CONTACTEZ-NOUS</h3>
-            
-            <div class="contact-info-cards">
-                <a href="tel:+14385272242" class="contact-card"><span>📞</span>+1 (438) 527-2242</a>
-                <a href="mailto:support@ti-witech.com" class="contact-card"><span>✉️</span>support@ti-witech.com</a>
-            </div>
-
             <div class="contact-form">
                 <form action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="9b122fe1-fe35-4f35-b4c1-753a0288d0e2">
-                    <input type="hidden" name="subject" value="Nouveau Client TI-WiTech">
-
                     <div class="form-row">
-                        <input type="text" name="nom" placeholder="Nom complet" required>
-                        <input type="email" name="email" placeholder="Courriel" required>
+                        <input type="text" name="nom" id="ph-name" placeholder="Nom complet" required>
+                        <input type="email" name="email" id="ph-email" placeholder="Courriel" required>
                     </div>
-
                     <select name="service" id="form-service" required>
                         <option value="" disabled selected id="opt-d">-- Quel appareil est concerné ? --</option>
-                        <option value="Ordinateur">Ordinateur / Mac</option>
-                        <option value="Réseau">Wi-Fi / Réseau</option>
-                        <option value="Mobile">Mobile / Tablette</option>
-                        <option value="TV">TV / Streaming</option>
-                        <option value="Audio">Système Audio</option>
+                        <option value="Ordinateur" id="opt-1">Ordinateur / Mac</option>
+                        <option value="Réseau" id="opt-2">Wi-Fi / Réseau</option>
+                        <option value="Mobile" id="opt-3">Mobile / Tablette</option>
                     </select>
-
                     <p style="margin-bottom:10px; font-weight:700;" id="chk-q">Nature du problème :</p>
                     <div class="checkbox-grid">
-                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Lenteur"><span>Lenteur / Gel</span></label>
-                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Virus"><span>Virus / Pop-ups</span></label>
-                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Internet"><span>Panne Internet</span></label>
-                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Config"><span>Configuration / Aide</span></label>
-                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Bris"><span>Bris matériel</span></label>
-                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Autre"><span>Autre</span></label>
+                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Lenteur"><span id="chk-1">Lenteur / Gel</span></label>
+                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Virus"><span id="chk-2">Virus / Pop-ups</span></label>
+                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Internet"><span id="chk-3">Panne Internet</span></label>
+                        <label class="checkbox-item"><input type="checkbox" name="bug[]" value="Config"><span id="chk-4">Installation</span></label>
                     </div>
-
-                    <textarea name="message" rows="4" placeholder="Détails supplémentaires (modèle de l'appareil, année...)"></textarea>
+                    <textarea name="message" id="ph-msg" rows="4" placeholder="Détails supplémentaires..."></textarea>
                     <button type="submit" class="btn-glowing" style="width:100%;" id="btn-send">ENVOYER LA DEMANDE</button>
                 </form>
             </div>
@@ -215,7 +174,7 @@
     </div>
 
     <footer>
-        <p>© 2026 TI-WiTech | <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">Suivez-nous sur Facebook</a></p>
+        <p>© 2026 TI-WiTech | <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">Facebook</a></p>
     </footer>
 
     <script>
@@ -228,14 +187,30 @@
             fr: {
                 navS: "Services", navA: "À propos", navG: "En action", navC: "Contact",
                 h1: "SOUTIEN INFORMATIQUE<br>À DOMICILE", h2: "PARTICULIERS & PME", hDesc: "Spécialisé en systèmes et réseaux informatiques",
-                cta: "DEMANDER UNE ASSISTANCE", sTitle: "NOS SERVICES", aTitle: "NOTRE MISSION", gTitle: "EN ACTION", cTitle: "CONTACTEZ-NOUS",
-                btn: "ENVOYER LA DEMANDE", lang: "EN"
+                cta: "DEMANDER UNE ASSISTANCE", sTitle: "NOS SERVICES", 
+                s1t: "Ordinateurs & Mac", s1p: "Réparation, optimisation, nettoyage de virus et mise à jour de matériel.",
+                s2t: "Wi-Fi & Réseautique", s2p: "Configuration Internet, extension de couverture Wi-Fi et sécurisation.",
+                s3t: "Tablettes & Mobiles", s3p: "Configuration initiale, transfert de données et synchronisation.",
+                aTitle: "NOTRE MISSION", abtP: "Chez TI-WiTech, notre mission est de démystifier la technologie. Nous vous accompagnons pour assurer l’installation et la résolution de problèmes à l’aide d’explications claires.",
+                terT: "📍 Secteurs desservis :", terP: "Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière.",
+                gTitle: "EN ACTION", cTitle: "CONTACTEZ-NOUS",
+                phN: "Nom complet", phE: "Courriel", optD: "-- Quel appareil est concerné ? --", opt1: "Ordinateur / Mac", opt2: "Wi-Fi / Réseau", opt3: "Mobile / Tablette",
+                chkQ: "Nature du problème :", chk1: "Lenteur / Gel", chk2: "Virus / Pop-ups", chk3: "Panne Internet", chk4: "Installation",
+                phM: "Détails supplémentaires...", btn: "ENVOYER LA DEMANDE", lang: "EN"
             },
             en: {
                 navS: "Services", navA: "About Us", navG: "In Action", navC: "Contact",
                 h1: "AT-HOME IT<br>SUPPORT", h2: "INDIVIDUALS & SMBs", hDesc: "Specialized in IT systems and networks",
-                cta: "REQUEST ASSISTANCE", sTitle: "OUR SERVICES", aTitle: "OUR MISSION", gTitle: "IN ACTION", cTitle: "GET IN TOUCH",
-                btn: "SEND REQUEST", lang: "FR"
+                cta: "REQUEST ASSISTANCE", sTitle: "OUR SERVICES",
+                s1t: "Computers & Mac", s1p: "Repair, optimization, virus removal, and hardware upgrades.",
+                s2t: "Wi-Fi & Networking", s2p: "Internet setup, Wi-Fi coverage extension, and security.",
+                s3t: "Tablets & Mobile", s3p: "Initial setup, data transfer, and synchronization.",
+                aTitle: "OUR MISSION", abtP: "At TI-WiTech, our mission is to demystify technology. We support you by ensuring seamless installation and troubleshooting with clear explanations.",
+                terT: "📍 Areas Served:", terP: "North Shore of Montreal (Laval, Terrebonne, Repentigny) and Lanaudière.",
+                gTitle: "IN ACTION", cTitle: "GET IN TOUCH",
+                phN: "Full Name", phE: "Email Address", optD: "-- Which device is concerned? --", opt1: "Computer / Mac", opt2: "Wi-Fi / Network", opt3: "Mobile / Tablet",
+                chkQ: "Nature of the issue:", chk1: "Slow / Freezing", chk2: "Virus / Pop-ups", chk3: "Internet Outage", chk4: "Installation",
+                phM: "Additional details...", btn: "SEND REQUEST", lang: "FR"
             }
         };
 
@@ -243,19 +218,44 @@
         function toggleLang() {
             cur = cur === 'fr' ? 'en' : 'fr';
             const t = translations[cur];
+            // Navigation
             document.getElementById("nav-srv").innerText = t.navS;
             document.getElementById("nav-abt").innerText = t.navA;
             document.getElementById("nav-gal").innerText = t.navG;
             document.getElementById("nav-cnt").innerText = t.navC;
+            // Hero
             document.getElementById("hero-title").innerHTML = t.h1;
             document.getElementById("hero-subtitle").innerText = t.h2;
             document.getElementById("hero-desc").innerText = t.hDesc;
             document.getElementById("cta").innerText = t.cta;
+            // Services
             document.getElementById("srv-title").innerText = t.sTitle;
+            document.getElementById("s1-t").innerText = t.s1t; document.getElementById("s1-p").innerText = t.s1p;
+            document.getElementById("s2-t").innerText = t.s2t; document.getElementById("s2-p").innerText = t.s2p;
+            document.getElementById("s3-t").innerText = t.s3t; document.getElementById("s3-p").innerText = t.s3p;
+            // About
             document.getElementById("abt-title").innerText = t.aTitle;
+            document.getElementById("abt-p").innerText = t.abtP;
+            document.getElementById("terr-t").innerText = t.terT;
+            document.getElementById("terr-p").innerText = t.terP;
+            // Galerie & Contact
             document.getElementById("gal-title").innerText = t.gTitle;
             document.getElementById("cnt-title").innerText = t.cTitle;
+            // Formulaire
+            document.getElementById("ph-name").placeholder = t.phN;
+            document.getElementById("ph-email").placeholder = t.phE;
+            document.getElementById("opt-d").innerText = t.optD;
+            document.getElementById("opt-1").innerText = t.opt1;
+            document.getElementById("opt-2").innerText = t.opt2;
+            document.getElementById("opt-3").innerText = t.opt3;
+            document.getElementById("chk-q").innerText = t.chkQ;
+            document.getElementById("chk-1").innerText = t.chk1;
+            document.getElementById("chk-2").innerText = t.chk2;
+            document.getElementById("chk-3").innerText = t.chk3;
+            document.getElementById("chk-4").innerText = t.chk4;
+            document.getElementById("ph-msg").placeholder = t.phM;
             document.getElementById("btn-send").innerText = t.btn;
+            
             document.querySelector(".lang-btn").innerText = t.lang;
         }
     </script>
