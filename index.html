@@ -3,267 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TI-WiTech | Global IT Solutions</title>
+    <title>TI-WiTech | Soutien Informatique à Domicile & PME</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #050816;
-            color: white;
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #334155;
             overflow-x: hidden;
         }
 
-        /* HEADER */
+        /* --- HEADER --- */
         header {
             position: fixed;
-            width: 100%;
-            padding: 20px 8%;
+            top: 0; left: 0; width: 100%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 8, 22, 0.7);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
         }
 
         .logo img {
-            height: 40px; /* Ajuster la hauteur du logo */
+            height: 50px;
             width: auto;
         }
 
-        nav ul {
+        nav {
             display: flex;
-            list-style: none;
-            gap: 25px;
             align-items: center;
+            gap: 30px;
         }
 
         nav a {
             text-decoration: none;
-            color: white;
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 15px;
             transition: color 0.3s;
         }
         
         nav a:hover { color: #00f0ff; }
 
-        .nav-right {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
         .lang-btn {
-            padding: 6px 12px;
-            border: 1px solid #00f0ff;
-            background: none;
-            color: #00f0ff;
+            padding: 8px 16px;
+            border: 1px solid #0f172a;
+            background: transparent;
+            color: #0f172a;
+            font-weight: 600;
             cursor: pointer;
-            border-radius: 5px; /* Carré arrondi comme dans l'image */
+            border-radius: 6px;
             transition: 0.3s;
         }
 
         .lang-btn:hover {
-            background: #00f0ff;
-            color: #050816;
+            border-color: #00f0ff;
+            color: #00f0ff;
         }
 
-        /* HERO SECTION AVEC L'EFFET DE CODE */
+        /* --- HERO SECTION --- */
         .hero {
-            height: 80vh; /* Ajusté pour laisser de la place pour la section À propos */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
+            padding: 180px 5% 100px 5%;
             text-align: center;
-            padding: 0 10%;
-            /* C'EST L'IMAGE D'ARRIÈRE-PLAN KEY */
-            background-image: url('code_explose_bg.png');
+            background-image: url('fond-lignes.png');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .hero h1 {
-            font-size: 50px;
-            font-family: 'Poppins', sans-serif; /* L'image utilise une police sans-serif grasse */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: #0a192f;
+            text-transform: uppercase;
+            line-height: 1.2;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 {
+            font-size: 20px;
+            color: #00f0ff; /* Accent cyan pour faire ressortir la cible */
+            font-family: 'Orbitron', sans-serif;
             margin-bottom: 20px;
-            font-weight: 700;
+            background: #0a192f;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 4px;
         }
 
         .hero p {
             font-size: 18px;
-            color: #cbd5e1;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            padding: 15px 40px;
-            background: none; /* Fond transparent pour la lueur */
-            border: 2px solid #00f0ff; /* Bordure cyan */
-            border-radius: 5px; /* Carré arrondi */
-            font-weight: 600;
-            cursor: pointer;
-            color: white; /* Texte blanc */
-            transition: 0.4s;
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5); /* Lueur */
-            font-size: 16px;
-            text-transform: uppercase;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px #00f0ff;
-            background: #00f0ff;
-            color: #050816;
-        }
-
-        /* SECTIONS GÉNÉRALES */
-        .section {
-            padding: 80px 8%;
-        }
-
-        .section h2 {
-            font-size: 42px;
+            color: #475569;
             margin-bottom: 40px;
-            font-family: 'Orbitron';
-            color: #00f0ff;
-            text-align: left; /* Alignement à gauche */
+            font-weight: 600;
         }
 
-        /* ABOUT */
-        .about-text {
-            color: #cbd5e1;
-            line-height: 1.7;
-            text-align: justify;
+        .btn-glowing {
+            padding: 16px 36px;
+            background: #0a192f;
+            border: 2px solid #00f0ff;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.2);
+            display: inline-block;
+            text-align: center;
         }
 
-        /* TESTIMONIALS */
-        .testimonials {
+        .btn-glowing:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.8), inset 0 0 15px rgba(0, 240, 255, 0.4);
+            background: #0d2342;
+        }
+
+        .btn-facebook {
+            background: transparent;
+            color: #0a192f;
+            border-color: #0a192f;
+            box-shadow: none;
+            margin-left: 15px;
+        }
+
+        .btn-facebook:hover {
+            background: #f1f5f9;
+            color: #0a192f;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+        }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section {
+            padding: 60px 0;
+            text-align: left;
+        }
+
+        .section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #0a192f;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Ligne décorative à côté des titres */
+        .section h3::after {
+            content: "";
+            height: 2px;
+            flex: 1;
+            background: linear-gradient(to right, #00f0ff, transparent);
+        }
+
+        /* --- SERVICES (Grille) --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #00f0ff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateX(5px);
+            border-color: #0a192f;
+        }
+
+        .service-card p {
+            font-weight: 600;
+            color: #0a192f;
+            font-size: 16px;
+        }
+
+        /* --- À PROPOS & SECTEURS --- */
+        .about-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #475569;
+            max-width: 900px;
+            margin-bottom: 20px;
+        }
+
+        .territory-box {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+            display: inline-block;
+        }
+
+        .territory-box strong { color: #0a192f; }
+
+        /* --- CONTACT --- */
+        .contact-form {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            max-width: 800px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #334155;
+            transition: all 0.3s;
+        }
+
+        textarea { resize: vertical; margin-bottom: 20px; }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00f0ff;
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #0a192f;
+            color: #94a3b8;
+            font-size: 14px;
             margin-top: 40px;
         }
 
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.03); /* Fond très subtil */
-            padding: 25px;
-            border-radius: 5px;
-            width: calc(33.33% - 14px);
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Bordure fine */
-            transition: 0.4s;
-        }
+        footer a { color: #00f0ff; text-decoration: none; }
 
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            border-color: #00f0ff;
-        }
-
-        .testimonial-card p {
-            margin-bottom: 15px;
-            color: white;
-        }
-
-        .testimonial-card h4 {
-            color: #00f0ff;
-            font-weight: 400;
-        }
-
-        /* CONTACT (Partie visible uniquement) */
-        .contact h2 {
-            font-size: 42px;
-            margin-bottom: 40px;
-            font-family: 'Orbitron';
-            color: #00f0ff;
-        }
-
-        /* MOBILE (Ajustements de base) */
-        @media(max-width: 768px) {
-            .hero h1 { font-size: 38px; }
-            .testimonials { flex-direction: column; }
-            .testimonial-card { width: 100%; }
+        /* --- RESPONSIVE MOBILE --- */
+        @media(max-width: 900px) {
+            .hero h1 { font-size: 32px; }
+            .hero h2 { font-size: 16px; }
+            .form-row { flex-direction: column; gap: 0; }
+            .form-group { margin-bottom: 20px; }
+            .btn-facebook { margin-left: 0; margin-top: 15px; display: block; }
+            nav a { display: none; }
         }
     </style>
 </head>
-
 <body>
 
     <header>
-        <div class="logo">
-            <img src="logo_composite.png" alt="TI-WiTech Logo">
-        </div>
-        <div class="nav-right">
-            <nav>
-                <ul>
-                    <li><a href="#about" id="nav-about">À propos</a></li>
-                    <li><a href="#testimonials" id="nav-testi">Témoignages</a></li>
-                    <li><a href="#contact" id="nav-contact">Contact</a></li>
-                </ul>
-            </nav>
+        <a href="#" class="logo">
+            <img src="logo.jpg" alt="TI-WiTech Logo">
+        </a>
+        <nav>
+            <a href="#services" id="nav-services">Services</a>
+            <a href="#about" id="nav-about">À propos</a>
+            <a href="#contact" id="nav-contact">Contact</a>
             <button class="lang-btn" onclick="toggleLang()">EN</button>
-        </div>
+        </nav>
     </header>
 
     <section class="hero">
+        <h1 id="hero-title">SOUTIEN INFORMATIQUE<br>À DOMICILE</h1>
+        <h2 id="hero-subtitle">PARTICULIERS & PME</h2>
+        <p id="hero-desc">Informatique • Technologies • Réseautique</p>
+        
         <div>
-            <h1 id="hero-title">SOLUTIONS INFORMATIQUES GLOBALES</h1>
-            <p>Solutions informatiques globales pour votre entreprise.</p>
-            <a href="#contact" class="btn" id="cta">DEMANDER UNE ASSISTANCE</a>
+            <a href="#contact" class="btn-glowing" id="cta">DEMANDER UNE ASSISTANCE</a>
+            <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank" class="btn-glowing btn-facebook" id="cta-fb">SUIVRE SUR FACEBOOK</a>
         </div>
     </section>
 
-    <section class="section" id="about">
-        <h2 id="about-title">À PROPOS</h2>
-        <div class="about-text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-        </div>
-    </section>
+    <div class="container">
 
-    <section class="section" id="testimonials">
-        <h2 id="testi-title">TÉMOIGNAGES</h2>
-        <div class="testimonials">
-            <div class="testimonial-card">
-                <p id="t1-text">"Service rapide et professionnel. Problème réglé en moins d'une heure."</p>
-                <h4 id="t1-author">- Client Entreprise</h4>
+        <section class="section" id="services">
+            <h3 id="services-title">NOS SERVICES</h3>
+            <div class="services-grid">
+                <div class="service-card"><p id="srv-1">Ordinateurs, portables ou Mac</p></div>
+                <div class="service-card"><p id="srv-2">Tablettes et téléphones intelligents</p></div>
+                <div class="service-card"><p id="srv-3">Télévisions et services de diffusion</p></div>
+                <div class="service-card"><p id="srv-4">Internet, Wi-Fi et réseautique</p></div>
+                <div class="service-card"><p id="srv-5">Équipements audio domestiques</p></div>
             </div>
-            <div class="testimonial-card">
-                <p id="t2-text">"Support exceptionnel et sécurité renforcée pour notre réseau."</p>
-                <h4 id="t2-author">- PME Locale</h4>
-            </div>
-            <div class="testimonial-card">
-                <p id="t3-text">"Très fiable, équipe compétente et disponible."</p>
-                <h4 id="t3-author">- Client Résidentiel</h4>
-            </div>
-        </div>
-    </section>
-
-    <section class="section contact" id="contact">
-        <h2>CONTACT</h2>
         </section>
 
+        <section class="section" id="about">
+            <h3 id="about-title">NOTRE MISSION</h3>
+            <p class="about-text" id="about-text">
+                Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.
+            </p>
+            
+            <div class="territory-box">
+                <strong id="territory-title">📍 Secteurs desservis :</strong><br>
+                <span id="territory-text">Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière (Lavaltrie, L’Assomption et environs).</span>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <h3 id="contact-title">CONTACTEZ-NOUS</h3>
+            
+            <div class="contact-form">
+                <form action="https://formspree.io/f/TON_ID_ICI" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" name="nom" id="form-name" placeholder="Nom complet" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="form-email" placeholder="Adresse courriel" required>
+                        </div>
+                    </div>
+                    <textarea name="message" id="form-message" rows="5" placeholder="Décrivez votre problème ou votre besoin..." required></textarea>
+                    
+                    <button type="submit" class="btn-glowing" id="form-btn" style="border-radius: 6px; padding: 14px 30px;">ENVOYER LA DEMANDE</button>
+                </form>
+            </div>
+        </section>
+
+    </div> <footer id="footer-text">
+        © 2026 TI-WiTech | <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">Rejoignez-nous sur Facebook</a><br>
+        <span style="font-size: 12px; margin-top: 10px; display: block; color: #64748b;">Informatique • Technologies • Réseautique</span>
+    </footer>
+
     <script>
-        // Scripts de traduction FR/EN (Comme fourni précédemment)
         const translations = {
             fr: {
-                navAbout: "À propos", navTesti: "Témoignages", navContact: "Contact",
-                hero: "SOLUTIONS INFORMATIQUES GLOBALES", cta: "DEMANDER UNE ASSISTANCE",
-                aboutT: "À PROPOS",
-                testiT: "TÉMOIGNAGES",
-                t1Text: "\"Service rapide et professionnel. Problème réglé en moins d'une heure.\"", t1Author: "- Client Entreprise",
-                t2Text: "\"Support exceptionnel et sécurité renforcée pour notre réseau.\"", t2Author: "- PME Locale",
-                t3Text: "\"Très fiable, équipe compétente et disponible.\"", t3Author: "- Client Résidentiel",
+                navServices: "Services", navAbout: "À propos", navContact: "Contact",
+                hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Informatique • Technologies • Réseautique", 
+                cta: "DEMANDER UNE ASSISTANCE", ctaFb: "SUIVRE SUR FACEBOOK",
+                srvTitle: "NOS SERVICES",
+                srv1: "Ordinateurs, portables ou Mac", srv2: "Tablettes et téléphones intelligents", srv3: "Télévisions et services de diffusion", srv4: "Internet, Wi-Fi et réseautique", srv5: "Équipements audio domestiques",
+                aboutT: "NOTRE MISSION", aboutText: "Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.",
+                terrTitle: "📍 Secteurs desservis :", terrText: "Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière (Lavaltrie, L’Assomption et environs).",
+                contactT: "CONTACTEZ-NOUS",
+                formName: "Nom complet", formEmail: "Adresse courriel", formMsg: "Décrivez votre problème ou votre besoin...", formBtn: "ENVOYER LA DEMANDE",
                 langBtn: "EN"
             },
             en: {
-                navAbout: "About Us", navTesti: "Testimonials", navContact: "Contact",
-                hero: "GLOBAL IT SOLUTIONS", cta: "REQUEST ASSISTANCE",
-                aboutT: "ABOUT US",
-                testiT: "TESTIMONIALS",
-                t1Text: "\"Fast and professional service. Issue resolved in under an hour.\"", t1Author: "- Corporate Client",
-                t2Text: "\"Outstanding support and enhanced security for our network.\"", t2Author: "- Local SMB",
-                t3Text: "\"Highly reliable, competent and available team.\"", t3Author: "- Residential Client",
+                navServices: "Services", navAbout: "About Us", navContact: "Contact",
+                hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Computers • Technology • Networking", 
+                cta: "REQUEST ASSISTANCE", ctaFb: "FOLLOW ON FACEBOOK",
+                srvTitle: "OUR SERVICES",
+                srv1: "Computers, Laptops or Mac", srv2: "Tablets and Smartphones", srv3: "TVs and Streaming Services", srv4: "Internet, Wi-Fi and Networking", srv5: "Home Audio Equipment",
+                aboutT: "OUR MISSION", aboutText: "Our goal is to support you in better understanding and using your devices, while ensuring seamless installation and troubleshooting with clear, structured explanations tailored to your needs.",
+                terrTitle: "📍 Areas Served:", terrText: "North Shore of Montreal (Laval, Terrebonne, Repentigny) and Lanaudière (Lavaltrie, L’Assomption and surroundings).",
+                contactT: "GET IN TOUCH",
+                formName: "Full Name", formEmail: "Email Address", formMsg: "Describe your issue or need...", formBtn: "SEND REQUEST",
                 langBtn: "FR"
             }
         };
@@ -274,24 +406,37 @@
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
             const t = translations[currentLang];
 
-            // Mise à jour du contenu
+            document.getElementById("nav-services").innerText = t.navServices;
             document.getElementById("nav-about").innerText = t.navAbout;
-            document.getElementById("nav-testi").innerText = t.navTesti;
             document.getElementById("nav-contact").innerText = t.navContact;
-            document.getElementById("hero-title").innerText = t.hero;
+            
+            document.getElementById("hero-title").innerHTML = t.hero;
+            document.getElementById("hero-subtitle").innerText = t.heroSub;
+            document.getElementById("hero-desc").innerText = t.heroDesc;
             document.getElementById("cta").innerText = t.cta;
+            document.getElementById("cta-fb").innerText = t.ctaFb;
+
+            document.getElementById("services-title").innerText = t.srvTitle;
+            document.getElementById("srv-1").innerText = t.srv1;
+            document.getElementById("srv-2").innerText = t.srv2;
+            document.getElementById("srv-3").innerText = t.srv3;
+            document.getElementById("srv-4").innerText = t.srv4;
+            document.getElementById("srv-5").innerText = t.srv5;
+
             document.getElementById("about-title").innerText = t.aboutT;
-            document.getElementById("testi-title").innerText = t.testiT;
-            document.getElementById("t1-text").innerText = t.t1Text;
-            document.getElementById("t1-author").innerText = t.t1Author;
-            document.getElementById("t2-text").innerText = t.t2Text;
-            document.getElementById("t2-author").innerText = t.t2Author;
-            document.getElementById("t3-text").innerText = t.t3Text;
-            document.getElementById("t3-author").innerText = t.t3Author;
+            document.getElementById("about-text").innerText = t.aboutText;
+            document.getElementById("territory-title").innerText = t.terrTitle;
+            document.getElementById("territory-text").innerText = t.terrText;
+
+            document.getElementById("contact-title").innerText = t.contactT;
+            document.getElementById("form-name").placeholder = t.formName;
+            document.getElementById("form-email").placeholder = t.formEmail;
+            document.getElementById("form-message").placeholder = t.formMsg;
+            document.getElementById("form-btn").innerText = t.formBtn;
+            
             document.querySelector(".lang-btn").innerText = t.langBtn;
             document.documentElement.lang = currentLang;
         }
     </script>
-
 </body>
 </html>
