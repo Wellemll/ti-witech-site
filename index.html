@@ -61,6 +61,11 @@
         .gallery-item:hover img { transform: scale(1.1); }
 
         /* --- CONTACT & FORMULAIRE INTELLIGENT --- */
+        .contact-info-cards { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
+        .contact-card { flex: 1; background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; text-decoration: none; color: #0a192f; font-weight: 600; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .contact-card:hover { border-color: #00f0ff; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,240,255,0.1); }
+        .contact-card span { font-size: 24px; }
+
         .contact-form { background: #f8fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 800px; margin-bottom: 40px; }
         .form-row { display: flex; gap: 20px; margin-bottom: 20px; }
         .form-group { flex: 1; display: flex; flex-direction: column; }
@@ -84,7 +89,9 @@
 
         /* --- FOOTER --- */
         footer { text-align: center; padding: 40px 20px; background: #0a192f; color: #94a3b8; font-size: 14px; }
-        footer a { color: #00f0ff; text-decoration: none; }
+        footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
+        footer a:hover { text-decoration: underline; }
+        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; flex-wrap: wrap; }
 
         /* --- RESPONSIVE MOBILE --- */
         @media(max-width: 900px) {
@@ -117,7 +124,7 @@
     <section class="hero">
         <h1 id="hero-title">SOUTIEN INFORMATIQUE<br>À DOMICILE</h1>
         <h2 id="hero-subtitle">PARTICULIERS & PME</h2>
-        <p id="hero-desc">Informatique • Technologies • Réseautique</p>
+        <p id="hero-desc">Spécialisé en systèmes et réseaux informatiques</p>
         
         <div>
             <a href="#contact" class="btn-glowing" id="cta">DEMANDER UNE ASSISTANCE</a>
@@ -183,6 +190,18 @@
 
         <section class="section" id="contact">
             <h3 id="contact-title">CONTACTEZ-NOUS</h3>
+            
+            <div class="contact-info-cards">
+                <a href="tel:+14385272242" class="contact-card">
+                    <span>📞</span>
+                    +1 (438) 527-2242
+                </a>
+                <a href="mailto:support@ti-witech.com" class="contact-card">
+                    <span>✉️</span>
+                    support@ti-witech.com
+                </a>
+            </div>
+
             <div class="contact-form">
                 <form action="https://formspree.io/f/TON_ID_ICI" method="POST">
                     
@@ -248,12 +267,16 @@
     </div>
 
     <footer>
-        © 2026 TI-WiTech | <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">Rejoignez-nous sur Facebook</a><br>
+        <div class="footer-links">
+            <a href="tel:+14385272242">📞 +1 (438) 527-2242</a>
+            <a href="mailto:support@ti-witech.com">✉️ support@ti-witech.com</a>
+            <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">📘 Facebook</a>
+        </div>
+        © 2026 TI-WiTech | Soutien Informatique à Domicile & PME<br>
         <span style="font-size: 12px; margin-top: 10px; display: block; color: #64748b;">Informatique • Technologies • Réseautique</span>
     </footer>
 
     <script>
-        // --- FONCTION POUR LIER LES CARTES AU FORMULAIRE ---
         function selectServiceAndScroll(serviceValue) {
             const selectMenu = document.getElementById('form-service');
             selectMenu.value = serviceValue;
@@ -268,11 +291,10 @@
             }, 1500);
         }
 
-        // --- TRADUCTION BILINGUE ---
         const translations = {
             fr: {
                 navServices: "Services", navAbout: "À propos", navGalerie: "En action", navContact: "Contact",
-                hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Informatique • Technologies • Réseautique", 
+                hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Spécialisé en systèmes et réseaux informatiques", 
                 cta: "DEMANDER UNE ASSISTANCE", ctaFb: "SUIVRE SUR FACEBOOK",
                 srvTitle: "NOS SERVICES", srv1: "Ordinateurs, portables ou Mac", srv2: "Tablettes et téléphones intelligents", srv3: "Télévisions et services de diffusion", srv4: "Internet, Wi-Fi et réseautique", srv5: "Équipements audio domestiques",
                 aboutT: "NOTRE MISSION", aboutText: "Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.",
@@ -289,7 +311,7 @@
             },
             en: {
                 navServices: "Services", navAbout: "About Us", navGalerie: "In Action", navContact: "Contact",
-                hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Computers • Technology • Networking", 
+                hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Specialized in IT systems and networks", 
                 cta: "REQUEST ASSISTANCE", ctaFb: "FOLLOW ON FACEBOOK",
                 srvTitle: "OUR SERVICES", srv1: "Computers, Laptops or Mac", srv2: "Tablets and Smartphones", srv3: "TVs and Streaming Services", srv4: "Internet, Wi-Fi and Networking", srv5: "Home Audio Equipment",
                 aboutT: "OUR MISSION", aboutText: "Our goal is to support you in better understanding and using your devices, while ensuring seamless installation and troubleshooting with clear, structured explanations tailored to your needs.",
