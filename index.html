@@ -27,15 +27,14 @@
         .hero h2 { font-size: 18px; color: #00f0ff; font-family: 'Orbitron', sans-serif; margin-bottom: 20px; background: #0a192f; display: inline-block; padding: 5px 15px; border-radius: 4px; }
         .hero p { font-size: 18px; color: #475569; margin-bottom: 40px; font-weight: 600; }
         
-        .btn-glowing { padding: 16px 36px; background: #0a192f; border: 2px solid #00f0ff; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: white; text-decoration: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.2); display: inline-block; }
+        .btn-glowing { padding: 16px 36px; background: #0a192f; border: 2px solid #00f0ff; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; color: white; text-decoration: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 25px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.2); display: inline-block; text-align: center;}
         .btn-glowing:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0, 240, 255, 0.8), inset 0 0 15px rgba(0, 240, 255, 0.4); background: #0d2342; }
         .btn-facebook { background: transparent; color: #0a192f; border-color: #0a192f; box-shadow: none; margin-left: 15px; }
-        .btn-facebook:hover { background: #f1f5f9; color: #0a192f; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transform: translateY(-2px); }
 
-        /* --- CONTENEUR PRINCIPAL --- */
+        /* --- CONTAINER & SECTIONS --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
-        .section { padding: 60px 0; text-align: left; }
-        .section h3 { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; color: #0a192f; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 15px; }
+        .section { padding: 60px 0; }
+        .section h3 { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; color: #0a192f; text-transform: uppercase; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
         .section h3::after { content: ""; height: 2px; flex: 1; background: linear-gradient(to right, #00f0ff, transparent); }
 
         /* --- SERVICES --- */
@@ -44,62 +43,41 @@
         .service-card:hover { transform: translateX(5px); border-color: #0a192f; }
         .service-card p { font-weight: 600; color: #0a192f; font-size: 16px; }
 
-        /* --- À PROPOS --- */
+        /* --- À PROPOS AVEC IMAGE --- */
         .about-wrapper { display: flex; align-items: center; gap: 40px; }
         .about-content { flex: 1; }
         .about-image { flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        .about-image img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
-        .about-image:hover img { transform: scale(1.03); }
-        .about-text { font-size: 16px; line-height: 1.8; color: #475569; margin-bottom: 25px; }
-        .territory-box { background: #f1f5f9; padding: 20px; border-radius: 8px; border: 1px dashed #cbd5e1; display: inline-block; }
-        .territory-box strong { color: #0a192f; }
+        .about-image img { width: 100%; height: auto; display: block; }
+        .territory-box { background: #f1f5f9; padding: 20px; border-radius: 8px; border: 1px dashed #cbd5e1; margin-top: 20px; display: inline-block;}
 
         /* --- GALERIE --- */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .gallery-item { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; cursor: pointer; }
+        .gallery-item { border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; cursor: pointer; }
         .gallery-item:hover img { transform: scale(1.1); }
 
-        /* --- CONTACT --- */
+        /* --- CONTACT INFO CARDS --- */
         .contact-info-cards { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
-        .contact-card { flex: 1; background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; text-decoration: none; color: #0a192f; font-weight: 600; transition: all 0.3s; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .contact-card:hover { border-color: #00f0ff; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,240,255,0.1); }
-        .contact-card span { font-size: 24px; }
+        .contact-card { flex: 1; background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; text-align: center; text-decoration: none; color: #0a192f; font-weight: 600; transition: 0.3s; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .contact-card:hover { border-color: #00f0ff; transform: translateY(-3px); }
 
+        /* --- FORMULAIRE --- */
         .contact-form { background: #f8fafc; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 800px; margin-bottom: 40px; }
         .form-row { display: flex; gap: 20px; margin-bottom: 20px; }
         .form-group { flex: 1; display: flex; flex-direction: column; }
-        
-        input[type="text"], input[type="email"], textarea, select { 
-            width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 6px; 
-            background: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; 
-            color: #334155; transition: all 0.3s; 
-        }
-        select { cursor: pointer; margin-bottom: 20px; }
-        textarea { resize: vertical; margin-bottom: 20px; }
-        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus { 
-            outline: none; border-color: #00f0ff; box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1); 
-        }
-
-        .checkbox-section { margin-bottom: 25px; }
-        .checkbox-section p { margin-bottom: 12px; font-weight: 600; color: #0a192f; font-size: 15px; }
-        .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .checkbox-label { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #475569; cursor: pointer; }
-        .checkbox-label input[type="checkbox"] { width: 18px; height: 18px; accent-color: #00f0ff; cursor: pointer; }
+        input[type="text"], input[type="email"], textarea, select { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 15px; }
+        .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0 25px 0; }
+        .checkbox-label { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
 
         /* --- FOOTER --- */
         footer { text-align: center; padding: 40px 20px; background: #0a192f; color: #94a3b8; font-size: 14px; }
         footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
-        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 15px; flex-wrap: wrap; }
 
-        /* --- RESPONSIVE --- */
         @media(max-width: 900px) {
             .hero h1 { font-size: 32px; }
             .about-wrapper { flex-direction: column; }
             .form-row { flex-direction: column; gap: 0; }
-            .form-group { margin-bottom: 20px; }
             .checkbox-grid { grid-template-columns: 1fr; }
-            .btn-facebook { margin-left: 0; margin-top: 15px; display: block; }
             nav a { display: none; }
         }
     </style>
@@ -107,9 +85,7 @@
 <body>
 
     <header>
-        <a href="#" class="logo">
-            <img src="logo.jpg" alt="TI-WiTech Logo">
-        </a>
+        <a href="#" class="logo"><img src="logo.jpg" alt="TI-WiTech Logo"></a>
         <nav>
             <a href="#services" id="nav-services">Services</a>
             <a href="#about" id="nav-about">À propos</a>
@@ -123,7 +99,6 @@
         <h1 id="hero-title">SOUTIEN INFORMATIQUE<br>À DOMICILE</h1>
         <h2 id="hero-subtitle">PARTICULIERS & PME</h2>
         <p id="hero-desc">Spécialisé en systèmes et réseaux informatiques</p>
-        
         <div>
             <a href="#contact" class="btn-glowing" id="cta">DEMANDER UNE ASSISTANCE</a>
             <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank" class="btn-glowing btn-facebook" id="cta-fb">SUIVRE SUR FACEBOOK</a>
@@ -131,25 +106,14 @@
     </section>
 
     <div class="container">
-
         <section class="section" id="services">
             <h3 id="services-title">NOS SERVICES</h3>
             <div class="services-grid">
-                <div class="service-card" onclick="selectServiceAndScroll('Ordinateur / Mac')">
-                    <p id="srv-1">Ordinateurs, portables ou Mac</p>
-                </div>
-                <div class="service-card" onclick="selectServiceAndScroll('Tablette / Téléphone')">
-                    <p id="srv-2">Tablettes et téléphones intelligents</p>
-                </div>
-                <div class="service-card" onclick="selectServiceAndScroll('Télévision / Diffusion')">
-                    <p id="srv-3">Télévisions et services de diffusion</p>
-                </div>
-                <div class="service-card" onclick="selectServiceAndScroll('Réseau / Wi-Fi')">
-                    <p id="srv-4">Internet, Wi-Fi et réseautique</p>
-                </div>
-                <div class="service-card" onclick="selectServiceAndScroll('Audio')">
-                    <p id="srv-5">Équipements audio domestiques</p>
-                </div>
+                <div class="service-card" onclick="selectServiceAndScroll('Ordinateur / Mac')"><p id="srv-1">Ordinateurs, portables ou Mac</p></div>
+                <div class="service-card" onclick="selectServiceAndScroll('Tablette / Téléphone')"><p id="srv-2">Tablettes et téléphones intelligents</p></div>
+                <div class="service-card" onclick="selectServiceAndScroll('Télévision / Diffusion')"><p id="srv-3">Télévisions et services de diffusion</p></div>
+                <div class="service-card" onclick="selectServiceAndScroll('Réseau / Wi-Fi')"><p id="srv-4">Internet, Wi-Fi et réseautique</p></div>
+                <div class="service-card" onclick="selectServiceAndScroll('Audio')"><p id="srv-5">Équipements audio domestiques</p></div>
             </div>
         </section>
 
@@ -157,17 +121,13 @@
             <h3 id="about-title">NOTRE MISSION</h3>
             <div class="about-wrapper">
                 <div class="about-content">
-                    <p class="about-text" id="about-text">
-                        Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.
-                    </p>
+                    <p class="about-text" id="about-text">Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.</p>
                     <div class="territory-box">
                         <strong id="territory-title">📍 Secteurs desservis :</strong><br>
                         <span id="territory-text">Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière (Lavaltrie, L’Assomption et environs).</span>
                     </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80" alt="Support technique">
-                </div>
+                <div class="about-image"><img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80" alt="Support TI"></div>
             </div>
         </section>
 
@@ -175,14 +135,13 @@
             <h3 id="galerie-title">EN ACTION</h3>
             <div class="gallery-grid">
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80" alt="Réseau"></div>
-                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=600&q=80" alt="Tablette"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=600&q=80" alt="Mobilité"></div>
                 <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=600&q=80" alt="Audio"></div>
             </div>
         </section>
 
         <section class="section" id="contact">
             <h3 id="contact-title">CONTACTEZ-NOUS</h3>
-            
             <div class="contact-info-cards">
                 <a href="tel:+14385272242" class="contact-card"><span>📞</span>+1 (438) 527-2242</a>
                 <a href="mailto:support@ti-witech.com" class="contact-card"><span>✉️</span>support@ti-witech.com</a>
@@ -190,65 +149,42 @@
 
             <div class="contact-form">
                 <form action="https://api.web3forms.com/submit" method="POST">
-                    
-                    <input type="hidden" name="access_key" value="b627ce49-ab21-4c06-89e7-17f39eeabd72">
-                    
+                    <input type="hidden" name="access_key" value="9b122fe1-fe35-4f35-b4c1-753a0288d0e2">
+                    <input type="hidden" name="subject" value="Nouvelle Demande TI-WiTech">
                     <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
                     <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" name="nom" id="form-name" placeholder="Nom complet" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" id="form-email" placeholder="Adresse courriel" required>
-                        </div>
+                        <div class="form-group"><input type="text" name="nom" id="form-name" placeholder="Nom complet" required></div>
+                        <div class="form-group"><input type="email" name="email" id="form-email" placeholder="Adresse courriel" required></div>
                     </div>
 
-                    <select name="appareil_concerne" id="form-service" required>
+                    <select name="appareil" id="form-service" required>
                         <option value="" disabled selected id="opt-default">-- Sélectionnez l'appareil concerné --</option>
-                        <option value="Ordinateur / Mac" id="opt-1">Ordinateur, portable ou Mac</option>
-                        <option value="Tablette / Téléphone" id="opt-2">Tablette ou Téléphone intelligent</option>
-                        <option value="Télévision / Diffusion" id="opt-3">Télévision ou service de diffusion</option>
-                        <option value="Réseau / Wi-Fi" id="opt-4">Internet, Wi-Fi et réseautique</option>
-                        <option value="Audio" id="opt-5">Équipement audio domestique</option>
-                        <option value="Autre" id="opt-6">Autre équipement</option>
+                        <option value="Ordinateur / Mac">Ordinateur, portable ou Mac</option>
+                        <option value="Tablette / Téléphone">Tablette ou Téléphone intelligent</option>
+                        <option value="Télévision / Diffusion">Télévision ou service de diffusion</option>
+                        <option value="Réseau / Wi-Fi">Internet, Wi-Fi et réseautique</option>
+                        <option value="Audio">Équipement audio domestique</option>
                     </select>
 
                     <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" name="modele" id="form-model" placeholder="Modèle (ex: iPhone 13, PC Dell...)">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="annee" id="form-year" placeholder="Année approximative (ex: 2021)">
-                        </div>
+                        <div class="form-group"><input type="text" name="modele" id="form-model" placeholder="Modèle"></div>
+                        <div class="form-group"><input type="text" name="annee" id="form-year" placeholder="Année"></div>
                     </div>
 
                     <div class="checkbox-section">
-                        <p id="checkbox-title">Quel est le problème principal ? (Cochez ce qui s'applique)</p>
+                        <p id="checkbox-title">Quel est le problème principal ?</p>
                         <div class="checkbox-grid">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="probleme[]" value="Lenteur / Gel"> <span id="chk-1">Lenteur ou Gel</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="probleme[]" value="Virus / Piratage"> <span id="chk-2">Virus ou Pop-ups</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="probleme[]" value="Connexion Internet"> <span id="chk-3">Problème Wi-Fi</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="probleme[]" value="Configuration / Installation"> <span id="chk-4">Installation</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="probleme[]" value="Matériel brisé"> <span id="chk-5">Bris matériel</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="probleme[]" value="Autre"> <span id="chk-6">Autre</span>
-                            </label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Lenteur"> <span id="chk-1">Lenteur ou Gel</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Virus"> <span id="chk-2">Virus ou Pop-ups</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="WiFi"> <span id="chk-3">Problème Wi-Fi</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Installation"> <span id="chk-4">Installation / Config</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Bris"> <span id="chk-5">Bris matériel</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Autre"> <span id="chk-6">Autre</span></label>
                         </div>
                     </div>
 
                     <textarea name="message" id="form-message" rows="4" placeholder="Détails supplémentaires..."></textarea>
-                    
                     <button type="submit" class="btn-glowing" id="form-btn" style="width: 100%;">ENVOYER LA DEMANDE</button>
                 </form>
             </div>
@@ -260,8 +196,7 @@
             <a href="tel:+14385272242">📞 +1 (438) 527-2242</a>
             <a href="mailto:support@ti-witech.com">✉️ support@ti-witech.com</a>
         </div>
-        © 2026 TI-WiTech | <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">Suivez-nous sur Facebook</a><br>
-        <span style="font-size: 12px; margin-top: 10px; display: block; color: #64748b;">Informatique • Technologies • Réseautique</span>
+        © 2026 TI-WiTech | <a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank">Suivez-nous sur Facebook</a>
     </footer>
 
     <script>
@@ -278,27 +213,13 @@
                 navServices: "Services", navAbout: "À propos", navGalerie: "En action", navContact: "Contact",
                 hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Spécialisé en systèmes et réseaux informatiques", 
                 cta: "DEMANDER UNE ASSISTANCE", ctaFb: "SUIVRE SUR FACEBOOK",
-                srvTitle: "NOS SERVICES", srv1: "Ordinateurs, portables ou Mac", srv2: "Tablettes et téléphones intelligents", srv3: "Télévisions et services de diffusion", srv4: "Internet, Wi-Fi et réseautique", srv5: "Équipements audio domestiques",
-                aboutT: "NOTRE MISSION", aboutText: "Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.",
-                terrTitle: "📍 Secteurs desservis :", terrText: "Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière (Lavaltrie, L’Assomption et environs).",
-                galerieT: "EN ACTION", contactT: "CONTACTEZ-NOUS", formName: "Nom complet", formEmail: "Adresse courriel",
-                optDef: "-- Sélectionnez l'appareil concerné --", opt1: "Ordinateur, portable ou Mac", opt2: "Tablette ou Téléphone intelligent", opt3: "Télévision ou service de diffusion", opt4: "Internet, Wi-Fi et réseautique", opt5: "Équipement audio domestique", opt6: "Autre équipement",
-                formModel: "Modèle (ex: iPhone 13, PC Dell...)", formYear: "Année approximative (ex: 2021)",
-                chkTitle: "Quel est le problème principal ?", chk1: "Lenteur ou Gel", chk2: "Virus ou Pop-ups", chk3: "Problème Wi-Fi", chk4: "Installation", chk5: "Bris matériel", chk6: "Autre",
-                formMsg: "Détails supplémentaires...", formBtn: "ENVOYER LA DEMANDE", langBtn: "EN"
+                srvTitle: "NOS SERVICES", aboutT: "NOTRE MISSION", galerieT: "EN ACTION", contactT: "CONTACTEZ-NOUS", formBtn: "ENVOYER LA DEMANDE", langBtn: "EN"
             },
             en: {
                 navServices: "Services", navAbout: "About Us", navGalerie: "In Action", navContact: "Contact",
                 hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Specialized in IT systems and networks", 
                 cta: "REQUEST ASSISTANCE", ctaFb: "FOLLOW ON FACEBOOK",
-                srvTitle: "OUR SERVICES", srv1: "Computers, Laptops or Mac", srv2: "Tablets and Smartphones", srv3: "TVs and Streaming Services", srv4: "Internet, Wi-Fi and Networking", srv5: "Home Audio Equipment",
-                aboutT: "OUR MISSION", aboutText: "Our goal is to support you in better understanding and using your devices, while ensuring seamless installation and troubleshooting with clear, structured explanations tailored to your needs.",
-                terrTitle: "📍 Areas Served:", terrText: "North Shore of Montreal (Laval, Terrebonne, Repentigny) and Lanaudière (Lavaltrie, L’Assomption and surroundings).",
-                galerieT: "IN ACTION", contactT: "GET IN TOUCH", formName: "Full Name", formEmail: "Email Address",
-                optDef: "-- Select the device --", opt1: "Computer, Laptop or Mac", opt2: "Tablet or Smartphone", opt3: "TV or Streaming Service", opt4: "Internet, Wi-Fi and Networking", opt5: "Home Audio Equipment", opt6: "Other equipment",
-                formModel: "Model (e.g., iPhone 13, Dell PC...)", formYear: "Approximate year (e.g., 2021)",
-                chkTitle: "What is the main issue?", chk1: "Slow or Freezing", chk2: "Virus or Hacking", chk3: "Wi-Fi issue", chk4: "Installation", chk5: "Hardware damage", chk6: "Other",
-                formMsg: "Additional details...", formBtn: "SEND REQUEST", langBtn: "FR"
+                srvTitle: "OUR SERVICES", aboutT: "OUR MISSION", galerieT: "IN ACTION", contactT: "GET IN TOUCH", formBtn: "SEND REQUEST", langBtn: "FR"
             }
         };
 
@@ -316,36 +237,9 @@
             document.getElementById("cta").innerText = t.cta;
             document.getElementById("cta-fb").innerText = t.ctaFb;
             document.getElementById("services-title").innerText = t.srvTitle;
-            document.getElementById("srv-1").innerText = t.srv1;
-            document.getElementById("srv-2").innerText = t.srv2;
-            document.getElementById("srv-3").innerText = t.srv3;
-            document.getElementById("srv-4").innerText = t.srv4;
-            document.getElementById("srv-5").innerText = t.srv5;
             document.getElementById("about-title").innerText = t.aboutT;
-            document.getElementById("about-text").innerText = t.aboutText;
-            document.getElementById("territory-title").innerText = t.terrTitle;
-            document.getElementById("territory-text").innerText = t.terrText;
             document.getElementById("galerie-title").innerText = t.galerieT;
             document.getElementById("contact-title").innerText = t.contactT;
-            document.getElementById("form-name").placeholder = t.formName;
-            document.getElementById("form-email").placeholder = t.formEmail;
-            document.getElementById("opt-default").innerText = t.optDef;
-            document.getElementById("opt-1").innerText = t.opt1;
-            document.getElementById("opt-2").innerText = t.opt2;
-            document.getElementById("opt-3").innerText = t.opt3;
-            document.getElementById("opt-4").innerText = t.opt4;
-            document.getElementById("opt-5").innerText = t.opt5;
-            document.getElementById("opt-6").innerText = t.opt6;
-            document.getElementById("form-model").placeholder = t.formModel;
-            document.getElementById("form-year").placeholder = t.formYear;
-            document.getElementById("checkbox-title").innerText = t.chkTitle;
-            document.getElementById("chk-1").innerText = t.chk1;
-            document.getElementById("chk-2").innerText = t.chk2;
-            document.getElementById("chk-3").innerText = t.chk3;
-            document.getElementById("chk-4").innerText = t.chk4;
-            document.getElementById("chk-5").innerText = t.chk5;
-            document.getElementById("chk-6").innerText = t.chk6;
-            document.getElementById("form-message").placeholder = t.formMsg;
             document.getElementById("form-btn").innerText = t.formBtn;
             document.querySelector(".lang-btn").innerText = t.langBtn;
             document.documentElement.lang = currentLang;
