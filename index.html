@@ -180,7 +180,11 @@
                     </select>
 
                     <div class="form-row">
-                        <div class="form-group"><input type="text" name="modele" id="form-model" placeholder="Modèle"></div>
+                        <div class="form-group">
+                            <select name="modele" id="form-model">
+                                <option value="" id="opt-model-default">-- Marque / Modèle --</option>
+                            </select>
+                        </div>
                         <div class="form-group"><input type="text" name="annee" id="form-year" placeholder="Année"></div>
                     </div>
 
@@ -209,7 +213,33 @@
     </footer>
 
     <script>
-        // SCRIPT POUR ENVOI AJAX (SANS RECHARGER LA PAGE)
+        // LOGIQUE DES MODÈLES DYNAMIQUES
+        const deviceSelect = document.getElementById('form-service');
+        const modelSelect = document.getElementById('form-model');
+
+        const brands = {
+            "Ordinateur / Mac": ["Apple (Macbook/iMac)", "Asus", "Dell", "HP", "Lenovo", "Acer", "MSI", "Autre"],
+            "Tablette / Téléphone": ["Apple (iPhone/iPad)", "Samsung", "Google Pixel", "TCL", "Motorola", "Huawei", "Autre"],
+            "Télévision / Diffusion": ["Samsung", "LG", "Sony", "Hisense", "TCL", "Roku TV", "Fire TV", "Autre"],
+            "Réseau / Wi-Fi": ["Borne fournisseur (Bell/Videotron)", "TP-Link", "ASUS", "Netgear", "Linksys", "Google Home", "Autre"],
+            "Audio": ["Sonos", "Bose", "Sony", "JBL", "Samsung", "Denon", "Autre"]
+        };
+
+        deviceSelect.addEventListener('change', function() {
+            const selectedDevice = this.value;
+            const options = brands[selectedDevice] || [];
+            
+            modelSelect.innerHTML = `<option value="" disabled selected>${currentLang === 'fr' ? '-- Sélectionnez la marque --' : '-- Select Brand --'}</option>`;
+            
+            options.forEach(brand => {
+                const el = document.createElement('option');
+                el.value = brand;
+                el.textContent = brand;
+                modelSelect.appendChild(el);
+            });
+        });
+
+        // SCRIPT POUR ENVOI AJAX
         const form = document.getElementById('wf-form');
         const result = document.getElementById('result');
 
@@ -234,13 +264,13 @@
                     result.style.color = "#00f0ff";
                     result.innerHTML = currentLang === 'fr' ? "✅ Message envoyé avec succès !" : "✅ Message sent successfully!";
                     form.reset();
+                    // Réinitialiser le menu modèle après reset
+                    modelSelect.innerHTML = `<option value="" id="opt-model-default">-- Marque / Modèle --</option>`;
                 } else {
-                    console.log(response);
                     result.innerHTML = json.message;
                 }
             })
             .catch(error => {
-                console.log(error);
                 result.innerHTML = currentLang === 'fr' ? "Une erreur est survenue." : "An error occurred.";
             })
             .then(function() {
@@ -251,6 +281,9 @@
         function selectServiceAndScroll(val) {
             const s = document.getElementById('form-service');
             s.value = val;
+            // Déclenche manuellement la mise à jour des modèles
+            s.dispatchEvent(new Event('change'));
+            
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             s.style.boxShadow = "0 0 0 4px rgba(0, 240, 255, 0.4)";
             setTimeout(() => { s.style.boxShadow = "none"; }, 1500);
@@ -329,7 +362,8 @@
             document.getElementById("opt-3").innerText = t.opt3;
             document.getElementById("opt-4").innerText = t.opt4;
             document.getElementById("opt-5").innerText = t.opt5;
-            document.getElementById("form-model").placeholder = t.phModel;
+            // Ajustement ici car phModel n'existe plus en tant que placeholder simple
+            document.getElementById("opt-model-default").innerText = currentLang === 'fr' ? "-- Marque / Modèle --" : "-- Brand / Model --";
             document.getElementById("form-year").placeholder = t.phYear;
             document.getElementById("form-message").placeholder = t.phMsg;
             
