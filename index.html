@@ -156,49 +156,43 @@
             <h3 id="contact-title">CONTACTEZ-NOUS</h3>
             <div class="contact-info-cards">
                 <a href="tel:+14385272242" class="contact-card" id="contact-phone"><span>📞</span>+1 (438) 527-2242</a>
-                <a href="mailto:support@ti-witech.com" class="contact-card" id="contact-email"><span>✉️</span>support@ti-witech.com</a>
+                <a href="mailto:contact@ti-witech.com" class="contact-card" id="contact-email"><span>✉️</span>contact@ti-witech.com</a>
             </div>
 
             <div class="contact-form">
-                <form action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="9b122fe1-fe35-4f35-b4c1-753a0288d0e2">
-                    <input type="hidden" name="subject" value="Nouvelle Demande TI-WiTech">
-                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                <div class="form-row">
+                    <div class="form-group"><input type="text" id="form-name" placeholder="Nom complet"></div>
+                    <div class="form-group"><input type="email" id="form-email" placeholder="Adresse courriel"></div>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group"><input type="text" name="nom" id="form-name" placeholder="Nom complet" required></div>
-                        <div class="form-group"><input type="email" name="email" id="form-email" placeholder="Adresse courriel" required></div>
+                <select id="form-service" style="margin-bottom: 20px;">
+                    <option value="" disabled selected id="opt-default">-- Sélectionnez l'appareil concerné --</option>
+                    <option value="Ordinateur / Mac" id="opt-1">Ordinateur, portable ou Mac</option>
+                    <option value="Tablette / Téléphone" id="opt-2">Tablette ou Téléphone intelligent</option>
+                    <option value="Télévision / Diffusion" id="opt-3">Télévision ou service de diffusion</option>
+                    <option value="Réseau / Wi-Fi" id="opt-4">Internet, Wi-Fi et réseautique</option>
+                    <option value="Audio" id="opt-5">Équipement audio domestique</option>
+                </select>
+
+                <div class="form-row">
+                    <div class="form-group"><input type="text" id="form-model" placeholder="Modèle"></div>
+                    <div class="form-group"><input type="text" id="form-year" placeholder="Année"></div>
+                </div>
+
+                <div class="checkbox-section">
+                    <p id="checkbox-title">Quel est le problème principal ?</p>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Lenteur"> <span id="chk-1">Lenteur ou Gel</span></label>
+                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Virus"> <span id="chk-2">Virus ou Pop-ups</span></label>
+                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="WiFi"> <span id="chk-3">Problème Wi-Fi</span></label>
+                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Installation"> <span id="chk-4">Installation / Config</span></label>
+                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Bris"> <span id="chk-5">Bris matériel</span></label>
+                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Autre"> <span id="chk-6">Autre</span></label>
                     </div>
+                </div>
 
-                    <select name="appareil" id="form-service" required style="margin-bottom: 20px;">
-                        <option value="" disabled selected id="opt-default">-- Sélectionnez l'appareil concerné --</option>
-                        <option value="Ordinateur / Mac" id="opt-1">Ordinateur, portable ou Mac</option>
-                        <option value="Tablette / Téléphone" id="opt-2">Tablette ou Téléphone intelligent</option>
-                        <option value="Télévision / Diffusion" id="opt-3">Télévision ou service de diffusion</option>
-                        <option value="Réseau / Wi-Fi" id="opt-4">Internet, Wi-Fi et réseautique</option>
-                        <option value="Audio" id="opt-5">Équipement audio domestique</option>
-                    </select>
-
-                    <div class="form-row">
-                        <div class="form-group"><input type="text" name="modele" id="form-model" placeholder="Modèle"></div>
-                        <div class="form-group"><input type="text" name="annee" id="form-year" placeholder="Année"></div>
-                    </div>
-
-                    <div class="checkbox-section">
-                        <p id="checkbox-title">Quel est le problème principal ?</p>
-                        <div class="checkbox-grid">
-                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Lenteur"> <span id="chk-1">Lenteur ou Gel</span></label>
-                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Virus"> <span id="chk-2">Virus ou Pop-ups</span></label>
-                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="WiFi"> <span id="chk-3">Problème Wi-Fi</span></label>
-                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Installation"> <span id="chk-4">Installation / Config</span></label>
-                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Bris"> <span id="chk-5">Bris matériel</span></label>
-                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Autre"> <span id="chk-6">Autre</span></label>
-                        </div>
-                    </div>
-
-                    <textarea name="message" id="form-message" rows="4" placeholder="Détails supplémentaires..." style="margin-bottom: 25px;"></textarea>
-                    <button type="submit" class="btn-glowing" id="form-btn" style="width: 100%;">ENVOYER LA DEMANDE</button>
-                </form>
+                <textarea id="form-message" rows="4" placeholder="Détails supplémentaires..." style="margin-bottom: 25px;"></textarea>
+                <button type="button" onclick="sendEmail()" class="btn-glowing" id="form-btn" style="width: 100%;">ENVOYER LA DEMANDE</button>
             </div>
         </section>
     </div>
@@ -208,6 +202,32 @@
     </footer>
 
     <script>
+        function sendEmail() {
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const service = document.getElementById('form-service').value;
+            const model = document.getElementById('form-model').value;
+            const year = document.getElementById('form-year').value;
+            const message = document.getElementById('form-message').value;
+            
+            let problems = [];
+            document.querySelectorAll('.prob-chk:checked').forEach((chk) => {
+                problems.push(chk.value);
+            });
+
+            const subject = encodeURIComponent("Demande de soutien TI - " + name);
+            const body = encodeURIComponent(
+                "Nom: " + name + "\n" +
+                "Courriel client: " + email + "\n" +
+                "Appareil: " + service + "\n" +
+                "Modèle/Année: " + model + " (" + year + ")\n" +
+                "Problèmes cochés: " + problems.join(", ") + "\n\n" +
+                "Détails: " + message
+            );
+
+            window.location.href = `mailto:contact@ti-witech.com?subject=${subject}&body=${body}`;
+        }
+
         function selectServiceAndScroll(val) {
             const s = document.getElementById('form-service');
             s.value = val;
@@ -311,7 +331,3 @@
     </script>
 </body>
 </html>
-
-
-
-
