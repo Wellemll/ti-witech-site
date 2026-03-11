@@ -160,39 +160,46 @@
             </div>
 
             <div class="contact-form">
-                <div class="form-row">
-                    <div class="form-group"><input type="text" id="form-name" placeholder="Nom complet"></div>
-                    <div class="form-group"><input type="email" id="form-email" placeholder="Adresse courriel"></div>
-                </div>
+                <form action="https://api.web3forms.com/submit" method="POST" id="wf-form">
+                    <input type="hidden" name="access_key" value="bfe4929f-2e0c-4149-96db-2582b6de7d44">
+                    <input type="hidden" name="subject" value="Nouvelle Demande TI-WiTech">
+                    <input type="hidden" name="from_name" value="TI-WiTech Website">
 
-                <select id="form-service" style="margin-bottom: 20px;">
-                    <option value="" disabled selected id="opt-default">-- Sélectionnez l'appareil concerné --</option>
-                    <option value="Ordinateur / Mac" id="opt-1">Ordinateur, portable ou Mac</option>
-                    <option value="Tablette / Téléphone" id="opt-2">Tablette ou Téléphone intelligent</option>
-                    <option value="Télévision / Diffusion" id="opt-3">Télévision ou service de diffusion</option>
-                    <option value="Réseau / Wi-Fi" id="opt-4">Internet, Wi-Fi et réseautique</option>
-                    <option value="Audio" id="opt-5">Équipement audio domestique</option>
-                </select>
-
-                <div class="form-row">
-                    <div class="form-group"><input type="text" id="form-model" placeholder="Modèle"></div>
-                    <div class="form-group"><input type="text" id="form-year" placeholder="Année"></div>
-                </div>
-
-                <div class="checkbox-section">
-                    <p id="checkbox-title">Quel est le problème principal ?</p>
-                    <div class="checkbox-grid">
-                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Lenteur"> <span id="chk-1">Lenteur ou Gel</span></label>
-                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Virus"> <span id="chk-2">Virus ou Pop-ups</span></label>
-                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="WiFi"> <span id="chk-3">Problème Wi-Fi</span></label>
-                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Installation"> <span id="chk-4">Installation / Config</span></label>
-                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Bris"> <span id="chk-5">Bris matériel</span></label>
-                        <label class="checkbox-label"><input type="checkbox" class="prob-chk" value="Autre"> <span id="chk-6">Autre</span></label>
+                    <div class="form-row">
+                        <div class="form-group"><input type="text" name="name" id="form-name" placeholder="Nom complet" required></div>
+                        <div class="form-group"><input type="email" name="email" id="form-email" placeholder="Adresse courriel" required></div>
                     </div>
-                </div>
 
-                <textarea id="form-message" rows="4" placeholder="Détails supplémentaires..." style="margin-bottom: 25px;"></textarea>
-                <button type="button" onclick="sendEmail()" class="btn-glowing" id="form-btn" style="width: 100%;">ENVOYER LA DEMANDE</button>
+                    <select name="appareil" id="form-service" required style="margin-bottom: 20px;">
+                        <option value="" disabled selected id="opt-default">-- Sélectionnez l'appareil concerné --</option>
+                        <option value="Ordinateur / Mac" id="opt-1">Ordinateur, portable ou Mac</option>
+                        <option value="Tablette / Téléphone" id="opt-2">Tablette ou Téléphone intelligent</option>
+                        <option value="Télévision / Diffusion" id="opt-3">Télévision ou service de diffusion</option>
+                        <option value="Réseau / Wi-Fi" id="opt-4">Internet, Wi-Fi et réseautique</option>
+                        <option value="Audio" id="opt-5">Équipement audio domestique</option>
+                    </select>
+
+                    <div class="form-row">
+                        <div class="form-group"><input type="text" name="modele" id="form-model" placeholder="Modèle"></div>
+                        <div class="form-group"><input type="text" name="annee" id="form-year" placeholder="Année"></div>
+                    </div>
+
+                    <div class="checkbox-section">
+                        <p id="checkbox-title">Quel est le problème principal ?</p>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Lenteur"> <span id="chk-1">Lenteur ou Gel</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Virus"> <span id="chk-2">Virus ou Pop-ups</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="WiFi"> <span id="chk-3">Problème Wi-Fi</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Installation"> <span id="chk-4">Installation / Config</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Bris"> <span id="chk-5">Bris matériel</span></label>
+                            <label class="checkbox-label"><input type="checkbox" name="probleme[]" value="Autre"> <span id="chk-6">Autre</span></label>
+                        </div>
+                    </div>
+
+                    <textarea name="message" id="form-message" rows="4" placeholder="Détails supplémentaires..." style="margin-bottom: 25px;"></textarea>
+                    <button type="submit" class="btn-glowing" id="form-btn" style="width: 100%;">ENVOYER LA DEMANDE</button>
+                    <div id="result" style="margin-top: 15px; text-align: center; font-weight: bold;"></div>
+                </form>
             </div>
         </section>
     </div>
@@ -202,31 +209,44 @@
     </footer>
 
     <script>
-        function sendEmail() {
-            const name = document.getElementById('form-name').value;
-            const email = document.getElementById('form-email').value;
-            const service = document.getElementById('form-service').value;
-            const model = document.getElementById('form-model').value;
-            const year = document.getElementById('form-year').value;
-            const message = document.getElementById('form-message').value;
-            
-            let problems = [];
-            document.querySelectorAll('.prob-chk:checked').forEach((chk) => {
-                problems.push(chk.value);
+        // SCRIPT POUR ENVOI AJAX (SANS RECHARGER LA PAGE)
+        const form = document.getElementById('wf-form');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            result.innerHTML = currentLang === 'fr' ? "Envoi en cours..." : "Sending...";
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    result.style.color = "#00f0ff";
+                    result.innerHTML = currentLang === 'fr' ? "✅ Message envoyé avec succès !" : "✅ Message sent successfully!";
+                    form.reset();
+                } else {
+                    console.log(response);
+                    result.innerHTML = json.message;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                result.innerHTML = currentLang === 'fr' ? "Une erreur est survenue." : "An error occurred.";
+            })
+            .then(function() {
+                setTimeout(() => { result.innerHTML = ""; }, 5000);
             });
-
-            const subject = encodeURIComponent("Demande de soutien TI - " + name);
-            const body = encodeURIComponent(
-                "Nom: " + name + "\n" +
-                "Courriel client: " + email + "\n" +
-                "Appareil: " + service + "\n" +
-                "Modèle/Année: " + model + " (" + year + ")\n" +
-                "Problèmes cochés: " + problems.join(", ") + "\n\n" +
-                "Détails: " + message
-            );
-
-            window.location.href = `mailto:contact@ti-witech.com?subject=${subject}&body=${body}`;
-        }
+        });
 
         function selectServiceAndScroll(val) {
             const s = document.getElementById('form-service');
@@ -260,7 +280,7 @@
                 srvTitle: "OUR SERVICES", 
                 srv1: "Computers, Laptops or Mac", srv2: "Tablets and Smartphones", srv3: "TVs and Streaming Services", srv4: "Internet, Wi-Fi and Networking", srv5: "Home Audio Equipment",
                 aboutT: "OUR MISSION", aboutText: "Our goal is to support you in better understanding and using your needs, while ensuring seamless installation and troubleshooting with clear, structured explanations tailored to your needs.",
-                terrTitle: "📍 Areas Served:", terrText: "North Shore of Montreal (Laval, Terrebonne, Repentigny) and Lanaudière (Lavaltrie, L’Assomption and surroundings).",
+                terrTitle: "📍 Areas Served:", terrText: "North Shore of Montreal (Laval, Terrebonne, Repentigny) and Lanaudière (Lavaltrie, L’Assomption et surroundings).",
                 galerieT: "IN ACTION", contactT: "GET IN TOUCH", 
                 phName: "Full Name", phEmail: "Email Address", phModel: "Model", phYear: "Year", phMsg: "Additional details...",
                 optDefault: "-- Select the device --", 
