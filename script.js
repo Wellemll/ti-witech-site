@@ -1,78 +1,40 @@
 // ==========================================
-// SCRIPT.JS - TI-WiTech
-// Logique du formulaire et système de traduction avec Mémoire
+// SCRIPT.JS - TI-WiTech (Version Finale Anti-Amnésie)
 // ==========================================
 
-// --- 1. GESTION DES MARQUES / MODÈLES ---
-const deviceSelect = document.getElementById('form-service');
-const modelSelect = document.getElementById('form-model');
+// --- 1. SYSTÈME DE MÉMOIRE & URL (NOUVEAU) ---
+// On regarde d'abord si la langue est dans l'URL (ex: ?lang=en)
+const urlParams = new URLSearchParams(window.location.search);
+const langParam = urlParams.get('lang');
 
-const brands = {
-    "Ordinateur / Mac": ["Apple (Macbook/iMac)", "Asus", "Dell", "HP", "Lenovo", "Acer", "MSI", "Autre"],
-    "Tablette / Téléphone": ["Apple (iPhone/iPad)", "Samsung", "Google Pixel", "TCL", "Motorola", "Huawei", "Autre"],
-    "Télévision / Diffusion": ["Samsung", "LG", "Sony", "Hisense", "TCL", "Roku TV", "Fire TV", "Autre"],
-    "Réseau / Wi-Fi": ["Borne fournisseur (Bell/Videotron)", "TP-Link", "ASUS", "Netgear", "Linksys", "Google Home", "Autre"],
-    "Audio": ["Sonos", "Bose", "Sony", "JBL", "Samsung", "Denon", "Autre"]
-};
-
-if (deviceSelect) {
-    deviceSelect.addEventListener('change', function() {
-        const selectedDevice = this.value;
-        const options = brands[selectedDevice] || [];
-        modelSelect.innerHTML = `<option value="" disabled selected>${currentLang === 'fr' ? '-- Sélectionnez la marque --' : '-- Select Brand --'}</option>`;
-        
-        options.forEach(brand => {
-            const el = document.createElement('option');
-            el.value = brand;
-            el.textContent = brand;
-            modelSelect.appendChild(el);
-        });
-    });
+if (langParam === 'fr' || langParam === 'en') {
+    localStorage.setItem('siteLang', langParam); // On sauvegarde si on peut
 }
 
-// --- 2. ENVOI DU FORMULAIRE (WEB3FORMS) ---
-const form = document.getElementById('wf-form');
-const result = document.getElementById('result');
+// On définit la langue actuelle
+let currentLang = langParam || localStorage.getItem('siteLang') || 'fr';
 
-if (form) {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
-        result.innerHTML = currentLang === 'fr' ? "Envoi en cours..." : "Sending...";
+// --- 2. FORCER LA LANGUE SUR TOUS LES LIENS (NOUVEAU) ---
+// Cette fonction ajoute "?lang=en" à chaque fois que tu cliques sur une de tes pages
+document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link && link.getAttribute('href')) {
+        let href = link.getAttribute('href');
+        // Si c'est un lien vers une de TES pages (pas Facebook ou un email)
+        if (href.includes('.html') || href.startsWith('#')) {
+            e.preventDefault(); // On bloque le clic normal
+            
+            // On fabrique la nouvelle URL avec la langue
+            let newUrl = new URL(link.href, window.location.href);
+            newUrl.searchParams.set('lang', currentLang);
+            
+            // On redirige vers cette nouvelle page
+            window.location.href = newUrl.toString();
+        }
+    }
+});
 
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: json
-        })
-        .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-                result.style.color = "#00f0ff";
-                result.innerHTML = currentLang === 'fr' ? "✅ Message envoyé avec succès !" : "✅ Message sent successfully!";
-                form.reset();
-                modelSelect.innerHTML = `<option value="" id="opt-model-default">-- Marque / Modèle --</option>`;
-            } else {
-                result.innerHTML = json.message;
-            }
-        })
-        .catch(error => {
-            result.innerHTML = currentLang === 'fr' ? "Une erreur est survenue." : "An error occurred.";
-        })
-        .then(function() {
-            setTimeout(() => { result.innerHTML = ""; }, 5000);
-        });
-    });
-}
-
-
-// --- 3. SYSTÈME DE TRADUCTION MULTIPAGE AVEC MÉMOIRE ---
-
-// On vérifie si une langue est déjà sauvegardée dans le navigateur, sinon c'est le français par défaut.
-let currentLang = localStorage.getItem('siteLang') || 'fr';
-
+// --- 3. DICTIONNAIRE DE TRADUCTION ---
 const translations = {
     fr: {
         navServices: "Services", navAbout: "À propos", navGalerie: "En action", navContact: "Contact", langBtn: "EN",
@@ -89,8 +51,7 @@ const translations = {
         phName: "Nom complet", phEmail: "Adresse courriel", phYear: "Année", phMsg: "Détails supplémentaires...",
         optDefault: "-- Sélectionnez l'appareil concerné --", optModelDefault: "-- Marque / Modèle --",
         opt1: "Ordinateur, portable ou Mac", opt2: "Tablette ou Téléphone intelligent", opt3: "Télévision ou service de diffusion", opt4: "Internet, Wi-Fi et réseautique", opt5: "Équipement audio domestique",
-        chkTitle: "Quel est le problème principal ?", 
-        chk1: "Lenteur ou Gel", chk2: "Virus ou Pop-ups", chk3: "Problème Wi-Fi", chk4: "Installation / Config", chk5: "Bris matériel", chk6: "Autre",
+        chkTitle: "Quel est le problème principal ?", chk1: "Lenteur ou Gel", chk2: "Virus ou Pop-ups", chk3: "Problème Wi-Fi", chk4: "Installation / Config", chk5: "Bris matériel", chk6: "Autre",
         formBtn: "ENVOYER LA DEMANDE",
         
         // Ordinateur
@@ -148,8 +109,7 @@ const translations = {
         phName: "Full Name", phEmail: "Email Address", phYear: "Year", phMsg: "Additional details...",
         optDefault: "-- Select the device --", optModelDefault: "-- Brand / Model --",
         opt1: "Computer, Laptop or Mac", opt2: "Tablet or Smartphone", opt3: "TV or Streaming Service", opt4: "Internet, Wi-Fi and Networking", opt5: "Home Audio Equipment",
-        chkTitle: "What is the main issue?", 
-        chk1: "Slow or Freezing", chk2: "Virus or Pop-ups", chk3: "Wi-Fi issue", chk4: "Setup / Config", chk5: "Hardware damage", chk6: "Other",
+        chkTitle: "What is the main issue?", chk1: "Slow or Freezing", chk2: "Virus or Pop-ups", chk3: "Wi-Fi issue", chk4: "Setup / Config", chk5: "Hardware damage", chk6: "Other",
         formBtn: "SEND REQUEST",
         
         // Ordinateur
@@ -194,7 +154,7 @@ const translations = {
     }
 };
 
-// Fonction sécurisée pour mettre à jour le texte
+// --- 4. APPLICATION DES TRADUCTIONS ---
 function safeSetText(id, text, isPlaceholder = false) {
     const el = document.getElementById(id);
     if (el) {
@@ -203,7 +163,6 @@ function safeSetText(id, text, isPlaceholder = false) {
     }
 }
 
-// Nouvelle fonction qui applique la traduction sur TOUTE la page
 function applyTranslations() {
     const t = translations[currentLang];
     
@@ -277,30 +236,93 @@ function applyTranslations() {
     document.documentElement.lang = currentLang;
 }
 
-// Ce qui se passe quand on clique sur le bouton FR/EN
 function toggleLang() {
     currentLang = currentLang === 'fr' ? 'en' : 'fr';
-    localStorage.setItem('siteLang', currentLang); // SAUVEGARDE EN MÉMOIRE ICI !
+    
+    // On sauvegarde la mémoire si possible, ET on met à jour l'URL affichée sans recharger la page
+    localStorage.setItem('siteLang', currentLang);
+    let newUrl = new URL(window.location.href);
+    newUrl.searchParams.set('lang', currentLang);
+    window.history.replaceState({}, '', newUrl);
+    
     applyTranslations();
 }
 
-// --- INITIALISATION AU CHARGEMENT DE LA PAGE ---
+// --- 5. INITIALISATION AU CHARGEMENT DE LA PAGE ---
 window.addEventListener('DOMContentLoaded', (event) => {
     
-    // 1. On applique la bonne langue immédiatement au chargement
     applyTranslations();
     
-    // 2. Logique de retour au formulaire (AUTO-SÉLECTION DEPUIS UNE AUTRE PAGE)
-    const urlParams = new URLSearchParams(window.location.search);
-    const serviceParam = urlParams.get('service');
-    
-    if (serviceParam && deviceSelect) {
-        deviceSelect.value = serviceParam;
+    // Logique des menus déroulants
+    const deviceSelect = document.getElementById('form-service');
+    const modelSelect = document.getElementById('form-model');
+    const brands = {
+        "Ordinateur / Mac": ["Apple (Macbook/iMac)", "Asus", "Dell", "HP", "Lenovo", "Acer", "MSI", "Autre"],
+        "Tablette / Téléphone": ["Apple (iPhone/iPad)", "Samsung", "Google Pixel", "TCL", "Motorola", "Huawei", "Autre"],
+        "Télévision / Diffusion": ["Samsung", "LG", "Sony", "Hisense", "TCL", "Roku TV", "Fire TV", "Autre"],
+        "Réseau / Wi-Fi": ["Borne fournisseur (Bell/Videotron)", "TP-Link", "ASUS", "Netgear", "Linksys", "Google Home", "Autre"],
+        "Audio": ["Sonos", "Bose", "Sony", "JBL", "Samsung", "Denon", "Autre"]
+    };
+
+    if (deviceSelect) {
+        deviceSelect.addEventListener('change', function() {
+            const selectedDevice = this.value;
+            const options = brands[selectedDevice] || [];
+            modelSelect.innerHTML = `<option value="" disabled selected>${currentLang === 'fr' ? '-- Sélectionnez la marque --' : '-- Select Brand --'}</option>`;
+            
+            options.forEach(brand => {
+                const el = document.createElement('option');
+                el.value = brand;
+                el.textContent = brand;
+                modelSelect.appendChild(el);
+            });
+        });
+    }
+
+    // Sélection automatique depuis une autre page
+    if (urlParams.get('service') && deviceSelect) {
+        deviceSelect.value = urlParams.get('service');
         deviceSelect.dispatchEvent(new Event('change'));
         setTimeout(() => {
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             deviceSelect.style.boxShadow = "0 0 0 4px rgba(0, 240, 255, 0.4)";
             setTimeout(() => { deviceSelect.style.boxShadow = "none"; }, 1500);
         }, 500);
+    }
+    
+    // Formulaire Web3Forms
+    const form = document.getElementById('wf-form');
+    const result = document.getElementById('result');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+            result.innerHTML = currentLang === 'fr' ? "Envoi en cours..." : "Sending...";
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    result.style.color = "#00f0ff";
+                    result.innerHTML = currentLang === 'fr' ? "✅ Message envoyé avec succès !" : "✅ Message sent successfully!";
+                    form.reset();
+                    if(modelSelect) modelSelect.innerHTML = `<option value="" id="opt-model-default">-- Marque / Modèle --</option>`;
+                } else {
+                    result.innerHTML = json.message;
+                }
+            })
+            .catch(error => {
+                result.innerHTML = currentLang === 'fr' ? "Une erreur est survenue." : "An error occurred.";
+            })
+            .then(function() {
+                setTimeout(() => { result.innerHTML = ""; }, 5000);
+            });
+        });
     }
 });
