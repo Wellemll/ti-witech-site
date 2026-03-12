@@ -100,7 +100,7 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
     .lang-btn { padding: 5px 12px; font-size: 13px; }
 
     nav a { display: none; }
-    .hero { padding-top: 120px; } /* On remonte un peu le texte puisque l'en-tête est plus petit */
+    .hero { padding-top: 90px; } /* On remonte un peu le texte puisque l'en-tête est plus petit */
     .about-wrapper { grid-template-columns: 1fr; gap: 30px; }
     .gallery-grid { grid-template-columns: 1fr; }
     .contact-info-cards { grid-template-columns: 1fr; }
@@ -110,4 +110,5 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
     .section { padding: 60px 0; }
     .details-grid { grid-template-columns: 1fr; padding: 30px; }
 }
+
 
