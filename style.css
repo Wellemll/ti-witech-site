@@ -94,7 +94,7 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
     header { padding: 8px 15px; } 
     
     /* LA MAGIE EST ICI : On rapetisse le logo pour les cellulaires */
-    .logo img { height: 60px; } 
+    .logo img { height: 100px; } 
     
     /* On rend le bouton de langue un poil plus discret */
     .lang-btn { padding: 5px 12px; font-size: 13px; }
@@ -110,3 +110,4 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
     .section { padding: 60px 0; }
     .details-grid { grid-template-columns: 1fr; padding: 30px; }
 }
+
