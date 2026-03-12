@@ -42,7 +42,8 @@
 
         /* --- SERVICES --- */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .service-card { background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #f1f5f9; border-bottom: 5px solid #00f0ff; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; text-align: center; }
+        /* MODIFICATION ICI : ajout de text-decoration: none; et display: block; pour les balises <a> */
+        .service-card { text-decoration: none; display: block; background: #ffffff; padding: 40px 30px; border-radius: 12px; border: 1px solid #f1f5f9; border-bottom: 5px solid #00f0ff; box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; text-align: center; }
         .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-bottom-color: #0a192f; }
         .service-card p { font-weight: 700; color: #0a192f; font-size: 18px; }
 
@@ -121,11 +122,11 @@
         <section class="section" id="services">
             <h3 id="services-title">NOS SERVICES</h3>
             <div class="services-grid">
-                <div class="service-card" onclick="selectServiceAndScroll('Ordinateur / Mac')"><p id="srv-1">Ordinateurs, portables ou Mac</p></div>
-                <div class="service-card" onclick="selectServiceAndScroll('Tablette / Téléphone')"><p id="srv-2">Tablettes et téléphones intelligents</p></div>
-                <div class="service-card" onclick="selectServiceAndScroll('Télévision / Diffusion')"><p id="srv-3">Télévisions et services de diffusion</p></div>
-                <div class="service-card" onclick="selectServiceAndScroll('Réseau / Wi-Fi')"><p id="srv-4">Internet, Wi-Fi et réseautique</p></div>
-                <div class="service-card" onclick="selectServiceAndScroll('Audio')"><p id="srv-5">Équipements audio domestiques</p></div>
+                <a href="service-ordinateur.html" class="service-card"><p id="srv-1">Ordinateurs, portables ou Mac</p></a>
+                <a href="service-tablette.html" class="service-card"><p id="srv-2">Tablettes et téléphones intelligents</p></a>
+                <a href="service-tv.html" class="service-card"><p id="srv-3">Télévisions et services de diffusion</p></a>
+                <a href="service-reseau.html" class="service-card"><p id="srv-4">Internet, Wi-Fi et réseautique</p></a>
+                <a href="service-audio.html" class="service-card"><p id="srv-5">Équipements audio domestiques</p></a>
             </div>
         </section>
 
@@ -212,176 +213,6 @@
         <span id="footer-text">© 2026 TI-WiTech | </span><a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank" id="footer-fb">Suivez-nous sur Facebook</a>
     </footer>
 
-    <script>
-        // LOGIQUE DES MODÈLES DYNAMIQUES
-        const deviceSelect = document.getElementById('form-service');
-        const modelSelect = document.getElementById('form-model');
-
-        const brands = {
-            "Ordinateur / Mac": ["Apple (Macbook/iMac)", "Asus", "Dell", "HP", "Lenovo", "Acer", "MSI", "Autre"],
-            "Tablette / Téléphone": ["Apple (iPhone/iPad)", "Samsung", "Google Pixel", "TCL", "Motorola", "Huawei", "Autre"],
-            "Télévision / Diffusion": ["Samsung", "LG", "Sony", "Hisense", "TCL", "Roku TV", "Fire TV", "Autre"],
-            "Réseau / Wi-Fi": ["Borne fournisseur (Bell/Videotron)", "TP-Link", "ASUS", "Netgear", "Linksys", "Google Home", "Autre"],
-            "Audio": ["Sonos", "Bose", "Sony", "JBL", "Samsung", "Denon", "Autre"]
-        };
-
-        deviceSelect.addEventListener('change', function() {
-            const selectedDevice = this.value;
-            const options = brands[selectedDevice] || [];
-            
-            modelSelect.innerHTML = `<option value="" disabled selected>${currentLang === 'fr' ? '-- Sélectionnez la marque --' : '-- Select Brand --'}</option>`;
-            
-            options.forEach(brand => {
-                const el = document.createElement('option');
-                el.value = brand;
-                el.textContent = brand;
-                modelSelect.appendChild(el);
-            });
-        });
-
-        // SCRIPT POUR ENVOI AJAX
-        const form = document.getElementById('wf-form');
-        const result = document.getElementById('result');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-            result.innerHTML = currentLang === 'fr' ? "Envoi en cours..." : "Sending...";
-
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: json
-            })
-            .then(async (response) => {
-                let json = await response.json();
-                if (response.status == 200) {
-                    result.style.color = "#00f0ff";
-                    result.innerHTML = currentLang === 'fr' ? "✅ Message envoyé avec succès !" : "✅ Message sent successfully!";
-                    form.reset();
-                    // Réinitialiser le menu modèle après reset
-                    modelSelect.innerHTML = `<option value="" id="opt-model-default">-- Marque / Modèle --</option>`;
-                } else {
-                    result.innerHTML = json.message;
-                }
-            })
-            .catch(error => {
-                result.innerHTML = currentLang === 'fr' ? "Une erreur est survenue." : "An error occurred.";
-            })
-            .then(function() {
-                setTimeout(() => { result.innerHTML = ""; }, 5000);
-            });
-        });
-
-        function selectServiceAndScroll(val) {
-            const s = document.getElementById('form-service');
-            s.value = val;
-            // Déclenche manuellement la mise à jour des modèles
-            s.dispatchEvent(new Event('change'));
-            
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-            s.style.boxShadow = "0 0 0 4px rgba(0, 240, 255, 0.4)";
-            setTimeout(() => { s.style.boxShadow = "none"; }, 1500);
-        }
-
-        const translations = {
-            fr: {
-                navServices: "Services", navAbout: "À propos", navGalerie: "En action", navContact: "Contact",
-                hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Spécialisé en systèmes et réseaux informatiques", 
-                cta: "DEMANDER UNE ASSISTANCE", ctaFb: "SUIVRE SUR FACEBOOK",
-                srvTitle: "NOS SERVICES", 
-                srv1: "Ordinateurs, portables ou Mac", srv2: "Tablettes et téléphones intelligents", srv3: "Télévisions et services de diffusion", srv4: "Internet, Wi-Fi et réseautique", srv5: "Équipements audio domestiques",
-                aboutT: "NOTRE MISSION", aboutText: "Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils, tout en assurant l’installation et la résolution de problèmes à l’aide d’explications claires, structurées et adaptées à vos besoins.",
-                terrTitle: "📍 Secteurs desservis :", terrText: "Rive-Nord de Montréal (Laval, Terrebonne, Repentigny) et Lanaudière (Lavaltrie, L’Assomption et environs).",
-                galerieT: "EN ACTION", contactT: "CONTACTEZ-NOUS", 
-                phName: "Nom complet", phEmail: "Adresse courriel", phModel: "Modèle", phYear: "Année", phMsg: "Détails supplémentaires...",
-                optDefault: "-- Sélectionnez l'appareil concerné --", 
-                opt1: "Ordinateur, portable ou Mac", opt2: "Tablette ou Téléphone intelligent", opt3: "Télévision ou service de diffusion", opt4: "Internet, Wi-Fi et réseautique", opt5: "Équipement audio domestique",
-                chkTitle: "Quel est le problème principal ?", 
-                chk1: "Lenteur ou Gel", chk2: "Virus ou Pop-ups", chk3: "Problème Wi-Fi", chk4: "Installation / Config", chk5: "Bris matériel", chk6: "Autre",
-                formBtn: "ENVOYER LA DEMANDE", footerText: "© 2026 TI-WiTech | ", footerFb: "Suivez-nous sur Facebook", langBtn: "EN"
-            },
-            en: {
-                navServices: "Services", navAbout: "About Us", navGalerie: "In Action", navContact: "Contact",
-                hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Specialized in IT systems and networks", 
-                cta: "REQUEST ASSISTANCE", ctaFb: "FOLLOW ON FACEBOOK",
-                srvTitle: "OUR SERVICES", 
-                srv1: "Computers, Laptops or Mac", srv2: "Tablets and Smartphones", srv3: "TVs and Streaming Services", srv4: "Internet, Wi-Fi and Networking", srv5: "Home Audio Equipment",
-                aboutT: "OUR MISSION", aboutText: "Our goal is to support you in better understanding and using your needs, while ensuring seamless installation and troubleshooting with clear, structured explanations tailored to your needs.",
-                terrTitle: "📍 Areas Served:", terrText: "North Shore of Montreal (Laval, Terrebonne, Repentigny) and Lanaudière (Lavaltrie, L’Assomption et surroundings).",
-                galerieT: "IN ACTION", contactT: "GET IN TOUCH", 
-                phName: "Full Name", phEmail: "Email Address", phModel: "Model", phYear: "Year", phMsg: "Additional details...",
-                optDefault: "-- Select the device --", 
-                opt1: "Computer, Laptop or Mac", opt2: "Tablet or Smartphone", opt3: "TV or Streaming Service", opt4: "Internet, Wi-Fi and Networking", opt5: "Home Audio Equipment",
-                chkTitle: "What is the main issue?", 
-                chk1: "Slow or Freezing", chk2: "Virus or Pop-ups", chk3: "Wi-Fi issue", chk4: "Setup / Config", chk5: "Hardware damage", chk6: "Other",
-                formBtn: "SEND REQUEST", footerText: "© 2026 TI-WiTech | ", footerFb: "Follow us on Facebook", langBtn: "FR"
-            }
-        };
-
-        let currentLang = 'fr';
-        function toggleLang() {
-            currentLang = currentLang === 'fr' ? 'en' : 'fr';
-            const t = translations[currentLang];
-            
-            document.getElementById("nav-services").innerText = t.navServices;
-            document.getElementById("nav-about").innerText = t.navAbout;
-            document.getElementById("nav-galerie").innerText = t.navGalerie;
-            document.getElementById("nav-contact").innerText = t.navContact;
-            
-            document.getElementById("hero-title").innerHTML = t.hero;
-            document.getElementById("hero-subtitle").innerText = t.heroSub;
-            document.getElementById("hero-desc").innerText = t.heroDesc;
-            document.getElementById("cta").innerText = t.cta;
-            document.getElementById("cta-fb").innerText = t.ctaFb;
-            
-            document.getElementById("services-title").innerText = t.srvTitle;
-            document.getElementById("srv-1").innerText = t.srv1;
-            document.getElementById("srv-2").innerText = t.srv2;
-            document.getElementById("srv-3").innerText = t.srv3;
-            document.getElementById("srv-4").innerText = t.srv4;
-            document.getElementById("srv-5").innerText = t.srv5;
-            document.getElementById("about-title").innerText = t.aboutT;
-            document.getElementById("about-text").innerText = t.aboutText;
-            document.getElementById("territory-title").innerText = t.terrTitle;
-            document.getElementById("territory-text").innerText = t.terrText;
-            
-            document.getElementById("galerie-title").innerText = t.galerieT;
-            document.getElementById("contact-title").innerText = t.contactT;
-            
-            document.getElementById("form-name").placeholder = t.phName;
-            document.getElementById("form-email").placeholder = t.phEmail;
-            document.getElementById("opt-default").innerText = t.optDefault;
-            document.getElementById("opt-1").innerText = t.opt1;
-            document.getElementById("opt-2").innerText = t.opt2;
-            document.getElementById("opt-3").innerText = t.opt3;
-            document.getElementById("opt-4").innerText = t.opt4;
-            document.getElementById("opt-5").innerText = t.opt5;
-            // Ajustement ici car phModel n'existe plus en tant que placeholder simple
-            document.getElementById("opt-model-default").innerText = currentLang === 'fr' ? "-- Marque / Modèle --" : "-- Brand / Model --";
-            document.getElementById("form-year").placeholder = t.phYear;
-            document.getElementById("form-message").placeholder = t.phMsg;
-            
-            document.getElementById("checkbox-title").innerText = t.chkTitle;
-            document.getElementById("chk-1").innerText = t.chk1;
-            document.getElementById("chk-2").innerText = t.chk2;
-            document.getElementById("chk-3").innerText = t.chk3;
-            document.getElementById("chk-4").innerText = t.chk4;
-            document.getElementById("chk-5").innerText = t.chk5;
-            document.getElementById("chk-6").innerText = t.chk6;
-            
-            document.getElementById("form-btn").innerText = t.formBtn;
-            document.getElementById("footer-text").innerText = t.footerText;
-            document.getElementById("footer-fb").innerText = t.footerFb;
-            
-            document.querySelector(".lang-btn").innerText = t.langBtn;
-            document.documentElement.lang = currentLang;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
