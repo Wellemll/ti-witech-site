@@ -1,6 +1,6 @@
 // ==========================================
 // SCRIPT.JS - TI-WiTech
-// Logique du formulaire et système de traduction
+// Logique du formulaire et système de traduction avec Mémoire
 // ==========================================
 
 // --- 1. GESTION DES MARQUES / MODÈLES ---
@@ -67,31 +67,18 @@ if (form) {
     });
 }
 
-// --- 3. AUTO-SÉLECTION DEPUIS UNE AUTRE PAGE ---
-window.addEventListener('DOMContentLoaded', (event) => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const serviceParam = urlParams.get('service');
-    
-    if (serviceParam && deviceSelect) {
-        deviceSelect.value = serviceParam;
-        deviceSelect.dispatchEvent(new Event('change'));
-        setTimeout(() => {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-            deviceSelect.style.boxShadow = "0 0 0 4px rgba(0, 240, 255, 0.4)";
-            setTimeout(() => { deviceSelect.style.boxShadow = "none"; }, 1500);
-        }, 500);
-    }
-});
 
-// --- 4. SYSTÈME DE TRADUCTION MULTIPAGE ---
-let currentLang = 'fr';
+// --- 3. SYSTÈME DE TRADUCTION MULTIPAGE AVEC MÉMOIRE ---
+
+// On vérifie si une langue est déjà sauvegardée dans le navigateur, sinon c'est le français par défaut.
+let currentLang = localStorage.getItem('siteLang') || 'fr';
 
 const translations = {
     fr: {
         navServices: "Services", navAbout: "À propos", navGalerie: "En action", navContact: "Contact", langBtn: "EN",
         footerText: "© 2026 TI-WiTech | ", footerFb: "Suivez-nous sur Facebook",
         
-        // --- Page Accueil ---
+        // Accueil
         hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Spécialisé en systèmes et réseaux informatiques", 
         cta: "DEMANDER UNE ASSISTANCE", ctaFb: "SUIVRE SUR FACEBOOK",
         srvTitle: "NOS SERVICES", 
@@ -106,56 +93,41 @@ const translations = {
         chk1: "Lenteur ou Gel", chk2: "Virus ou Pop-ups", chk3: "Problème Wi-Fi", chk4: "Installation / Config", chk5: "Bris matériel", chk6: "Autre",
         formBtn: "ENVOYER LA DEMANDE",
         
-        // --- Page Ordinateur ---
-        pageOrdTitle: "ORDINATEURS & MAC",
-        pageOrdDesc: "Redonnez une seconde jeunesse à votre équipement. Nous offrons un diagnostic complet et des solutions durables pour vos ordinateurs de bureau et portables.",
-        pageOrdCta: "RÉSERVER POUR MON ORDINATEUR",
-        "ord-detail-title": "Une expertise sur mesure",
-        "ord-detail-text": "Que votre appareil soit lent, infecté par un virus ou qu'il nécessite une mise à jour matérielle, nous intervenons directement à votre domicile pour régler le problème rapidement.",
+        // Ordinateur
+        pageOrdTitle: "ORDINATEURS & MAC", pageOrdDesc: "Redonnez une seconde jeunesse à votre équipement. Nous offrons un diagnostic complet et des solutions durables pour vos ordinateurs de bureau et portables.", pageOrdCta: "RÉSERVER POUR MON ORDINATEUR",
+        "ord-detail-title": "Une expertise sur mesure", "ord-detail-text": "Que votre appareil soit lent, infecté par un virus ou qu'il nécessite une mise à jour matérielle, nous intervenons directement à votre domicile pour régler le problème rapidement.",
         "ord-feat-1-title": "Optimisation & Vitesse", "ord-feat-1-desc": "Nettoyage système, ajout de mémoire vive (RAM) et remplacement par un disque dur ultra-rapide (SSD).",
         "ord-feat-2-title": "Sécurité & Virus", "ord-feat-2-desc": "Suppression de logiciels malveillants, fenêtres indésirables (pop-ups) et installation d'antivirus fiables.",
         "ord-feat-3-title": "Configuration Initiale", "ord-feat-3-desc": "Installation de votre nouvel appareil, transfert de données depuis l'ancien et configuration de vos courriels et imprimantes.",
         "ord-action-title": "Besoin d'un technicien ?",
         
-        // --- Page Tablette ---
-        pageTabTitle: "TABLETTES & TÉLÉPHONES",
-        pageTabDesc: "Configuration, synchronisation et assistance pour vos appareils mobiles Apple (iOS) et Android.",
-        pageTabCta: "RÉSERVER POUR MA TABLETTE/TÉLÉPHONE",
-        "tab-detail-title": "Restez connecté en toute simplicité",
-        "tab-detail-text": "Que ce soit pour configurer un nouvel appareil ou retrouver des mots de passe perdus, nous vous aidons à maîtriser votre tablette ou téléphone intelligent.",
+        // Tablette
+        pageTabTitle: "TABLETTES & TÉLÉPHONES", pageTabDesc: "Configuration, synchronisation et assistance pour vos appareils mobiles Apple (iOS) et Android.", pageTabCta: "RÉSERVER POUR MA TABLETTE/TÉLÉPHONE",
+        "tab-detail-title": "Restez connecté en toute simplicité", "tab-detail-text": "Que ce soit pour configurer un nouvel appareil ou retrouver des mots de passe perdus, nous vous aidons à maîtriser votre tablette ou téléphone intelligent.",
         "tab-feat-1-title": "Courriels & Comptes", "tab-feat-1-desc": "Configuration de vos boîtes de réception, iCloud, Google et récupération d'accès.",
         "tab-feat-2-title": "Transfert de données", "tab-feat-2-desc": "Migration sécurisée de vos photos, contacts et applications vers un nouvel appareil.",
         "tab-feat-3-title": "Formation & Accompagnement", "tab-feat-3-desc": "Apprenez à utiliser FaceTime, à imprimer depuis votre tablette ou à organiser vos photos.",
         "tab-action-title": "Besoin d'un technicien ?",
 
-        // --- Page TV ---
-        pageTvTitle: "TÉLÉVISIONS & DIFFUSION",
-        pageTvDesc: "Profitez pleinement de vos divertissements avec une installation professionnelle de vos écrans et services de streaming.",
-        pageTvCta: "RÉSERVER POUR MA TÉLÉVISION",
-        "tv-detail-title": "Votre cinéma maison, simplifié",
-        "tv-detail-text": "Nous éliminons la complexité des câbles et des télécommandes multiples pour vous offrir une expérience de visionnement fluide et agréable.",
+        // TV
+        pageTvTitle: "TÉLÉVISIONS & DIFFUSION", pageTvDesc: "Profitez pleinement de vos divertissements avec une installation professionnelle de vos écrans et services de streaming.", pageTvCta: "RÉSERVER POUR MA TÉLÉVISION",
+        "tv-detail-title": "Votre cinéma maison, simplifié", "tv-detail-text": "Nous éliminons la complexité des câbles et des télécommandes multiples pour vous offrir une expérience de visionnement fluide et agréable.",
         "tv-feat-1-title": "Installation & Branchement", "tv-feat-1-desc": "Configuration de votre Smart TV, barre de son et consoles de jeux vidéo.",
         "tv-feat-2-title": "Services de Streaming", "tv-feat-2-desc": "Configuration de Netflix, Prime Video, Tou.tv, et appareils Apple TV, Roku, Chromecast.",
         "tv-feat-3-title": "Simplification", "tv-feat-3-desc": "Réduction du nombre de télécommandes et explications claires sur le fonctionnement global.",
         "tv-action-title": "Besoin d'un technicien ?",
 
-        // --- Page Réseau ---
-        pageResTitle: "INTERNET, WI-FI & RÉSEAUTIQUE",
-        pageResDesc: "Obtenez une connexion rapide, stable et sécurisée partout dans votre maison ou votre petite entreprise.",
-        pageResCta: "RÉSERVER POUR MON RÉSEAU",
-        "res-detail-title": "Fini les zones sans connexion",
-        "res-detail-text": "Un bon réseau est le cœur de votre domicile technologique. Nous diagnostiquons et résolvons vos problèmes de lenteur et de déconnexion fréquentes.",
+        // Réseau
+        pageResTitle: "INTERNET, WI-FI & RÉSEAUTIQUE", pageResDesc: "Obtenez une connexion rapide, stable et sécurisée partout dans votre maison ou votre petite entreprise.", pageResCta: "RÉSERVER POUR MON RÉSEAU",
+        "res-detail-title": "Fini les zones sans connexion", "res-detail-text": "Un bon réseau est le cœur de votre domicile technologique. Nous diagnostiquons et résolvons vos problèmes de lenteur et de déconnexion fréquentes.",
         "res-feat-1-title": "Optimisation du Wi-Fi", "res-feat-1-desc": "Installation de routeurs maillés (Mesh) pour éliminer les zones mortes et couvrir toute la maison.",
         "res-feat-2-title": "Câblage & Prises", "res-feat-2-desc": "Branchement optimal de vos équipements réseau pour garantir des vitesses maximales.",
         "res-feat-3-title": "Sécurité du Réseau", "res-feat-3-desc": "Sécurisation de votre connexion, création de réseaux invités et protection de vos données.",
         "res-action-title": "Besoin d'un technicien ?",
 
-        // --- Page Audio ---
-        pageAudTitle: "ÉQUIPEMENTS AUDIO DOMESTIQUES",
-        pageAudDesc: "Une qualité sonore exceptionnelle dans chaque pièce grâce à une configuration audio experte.",
-        pageAudCta: "RÉSERVER POUR MON AUDIO",
-        "aud-detail-title": "La musique au bout des doigts",
-        "aud-detail-text": "Que vous soyez audiophile ou que vous souhaitiez simplement de la musique d'ambiance, nous configurons vos systèmes pour un contrôle facile depuis votre téléphone.",
+        // Audio
+        pageAudTitle: "ÉQUIPEMENTS AUDIO DOMESTIQUES", pageAudDesc: "Une qualité sonore exceptionnelle dans chaque pièce grâce à une configuration audio experte.", pageAudCta: "RÉSERVER POUR MON AUDIO",
+        "aud-detail-title": "La musique au bout des doigts", "aud-detail-text": "Que vous soyez audiophile ou que vous souhaitiez simplement de la musique d'ambiance, nous configurons vos systèmes pour un contrôle facile depuis votre téléphone.",
         "aud-feat-1-title": "Systèmes Multi-pièces", "aud-feat-1-desc": "Configuration de Sonos, Bose ou autres systèmes pour jouer votre musique partout de manière synchronisée.",
         "aud-feat-2-title": "Cinéma Maison", "aud-feat-2-desc": "Branchement d'amplificateurs, récepteurs et positionnement optimal de vos haut-parleurs.",
         "aud-feat-3-title": "Intégration Sans Fil", "aud-feat-3-desc": "Connectez facilement vos appareils mobiles à votre système de son pour diffuser Spotify, Apple Music ou vos balados.",
@@ -165,7 +137,7 @@ const translations = {
         navServices: "Services", navAbout: "About Us", navGalerie: "In Action", navContact: "Contact", langBtn: "FR",
         footerText: "© 2026 TI-WiTech | ", footerFb: "Follow us on Facebook",
         
-        // --- Home Page ---
+        // Accueil
         hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Specialized in IT systems and networks", 
         cta: "REQUEST ASSISTANCE", ctaFb: "FOLLOW ON FACEBOOK",
         srvTitle: "OUR SERVICES", 
@@ -180,56 +152,41 @@ const translations = {
         chk1: "Slow or Freezing", chk2: "Virus or Pop-ups", chk3: "Wi-Fi issue", chk4: "Setup / Config", chk5: "Hardware damage", chk6: "Other",
         formBtn: "SEND REQUEST",
         
-        // --- Computer Page ---
-        pageOrdTitle: "COMPUTERS & MAC",
-        pageOrdDesc: "Give your equipment a second life. We offer comprehensive diagnostics and lasting solutions for your desktop and laptop computers.",
-        pageOrdCta: "BOOK FOR MY COMPUTER",
-        "ord-detail-title": "Customized Expertise",
-        "ord-detail-text": "Whether your device is slow, infected with a virus, or needs a hardware upgrade, we come directly to your home to solve the problem quickly.",
+        // Ordinateur
+        pageOrdTitle: "COMPUTERS & MAC", pageOrdDesc: "Give your equipment a second life. We offer comprehensive diagnostics and lasting solutions for your desktop and laptop computers.", pageOrdCta: "BOOK FOR MY COMPUTER",
+        "ord-detail-title": "Customized Expertise", "ord-detail-text": "Whether your device is slow, infected with a virus, or needs a hardware upgrade, we come directly to your home to solve the problem quickly.",
         "ord-feat-1-title": "Speed & Optimization", "ord-feat-1-desc": "System cleanup, RAM upgrades, and replacement with ultra-fast solid-state drives (SSD).",
         "ord-feat-2-title": "Security & Virus Removal", "ord-feat-2-desc": "Removal of malware, unwanted pop-ups, and installation of reliable antivirus software.",
         "ord-feat-3-title": "Initial Setup", "ord-feat-3-desc": "Setup of your new device, data transfer from your old one, and configuration of emails and printers.",
         "ord-action-title": "Need a technician?",
         
-        // --- Tablet Page ---
-        pageTabTitle: "TABLETS & PHONES",
-        pageTabDesc: "Setup, syncing, and support for your Apple (iOS) and Android mobile devices.",
-        pageTabCta: "BOOK FOR MY TABLET/PHONE",
-        "tab-detail-title": "Stay connected with ease",
-        "tab-detail-text": "Whether setting up a new device or recovering lost passwords, we help you master your tablet or smartphone.",
+        // Tablette
+        pageTabTitle: "TABLETS & PHONES", pageTabDesc: "Setup, syncing, and support for your Apple (iOS) and Android mobile devices.", pageTabCta: "BOOK FOR MY TABLET/PHONE",
+        "tab-detail-title": "Stay connected with ease", "tab-detail-text": "Whether setting up a new device or recovering lost passwords, we help you master your tablet or smartphone.",
         "tab-feat-1-title": "Emails & Accounts", "tab-feat-1-desc": "Setup of your inboxes, iCloud, Google, and access recovery.",
         "tab-feat-2-title": "Data Transfer", "tab-feat-2-desc": "Secure migration of your photos, contacts, and apps to a new device.",
         "tab-feat-3-title": "Training & Support", "tab-feat-3-desc": "Learn how to use FaceTime, print from your tablet, or organize your photos.",
         "tab-action-title": "Need a technician?",
 
-        // --- TV Page ---
-        pageTvTitle: "TVs & STREAMING",
-        pageTvDesc: "Fully enjoy your entertainment with professional installation of your screens and streaming services.",
-        pageTvCta: "BOOK FOR MY TV",
-        "tv-detail-title": "Your home theater, simplified",
-        "tv-detail-text": "We eliminate the complexity of cables and multiple remotes to offer you a smooth and enjoyable viewing experience.",
+        // TV
+        pageTvTitle: "TVs & STREAMING", pageTvDesc: "Fully enjoy your entertainment with professional installation of your screens and streaming services.", pageTvCta: "BOOK FOR MY TV",
+        "tv-detail-title": "Your home theater, simplified", "tv-detail-text": "We eliminate the complexity of cables and multiple remotes to offer you a smooth and enjoyable viewing experience.",
         "tv-feat-1-title": "Installation & Connection", "tv-feat-1-desc": "Setup of your Smart TV, soundbar, and video game consoles.",
         "tv-feat-2-title": "Streaming Services", "tv-feat-2-desc": "Setup of Netflix, Prime Video, Tou.tv, and Apple TV, Roku, Chromecast devices.",
         "tv-feat-3-title": "Simplification", "tv-feat-3-desc": "Reduction in the number of remotes and clear explanations on how everything works.",
         "tv-action-title": "Need a technician?",
 
-        // --- Network Page ---
-        pageResTitle: "INTERNET, WI-FI & NETWORKING",
-        pageResDesc: "Get a fast, stable, and secure connection anywhere in your home or small business.",
-        pageResCta: "BOOK FOR MY NETWORK",
-        "res-detail-title": "No more dead zones",
-        "res-detail-text": "A good network is the heart of your smart home. We diagnose and resolve your slow speeds and frequent disconnections.",
+        // Réseau
+        pageResTitle: "INTERNET, WI-FI & NETWORKING", pageResDesc: "Get a fast, stable, and secure connection anywhere in your home or small business.", pageResCta: "BOOK FOR MY NETWORK",
+        "res-detail-title": "No more dead zones", "res-detail-text": "A good network is the heart of your smart home. We diagnose and resolve your slow speeds and frequent disconnections.",
         "res-feat-1-title": "Wi-Fi Optimization", "res-feat-1-desc": "Installation of Mesh routers to eliminate dead zones and cover the entire house.",
         "res-feat-2-title": "Cabling & Outlets", "res-feat-2-desc": "Optimal connection of your network equipment to ensure maximum speeds.",
         "res-feat-3-title": "Network Security", "res-feat-3-desc": "Securing your connection, creating guest networks, and protecting your data.",
         "res-action-title": "Need a technician?",
 
-        // --- Audio Page ---
-        pageAudTitle: "HOME AUDIO EQUIPMENT",
-        pageAudDesc: "Exceptional sound quality in every room thanks to expert audio configuration.",
-        pageAudCta: "BOOK FOR MY AUDIO",
-        "aud-detail-title": "Music at your fingertips",
-        "aud-detail-text": "Whether you're an audiophile or just want background music, we configure your systems for easy control from your phone.",
+        // Audio
+        pageAudTitle: "HOME AUDIO EQUIPMENT", pageAudDesc: "Exceptional sound quality in every room thanks to expert audio configuration.", pageAudCta: "BOOK FOR MY AUDIO",
+        "aud-detail-title": "Music at your fingertips", "aud-detail-text": "Whether you're an audiophile or just want background music, we configure your systems for easy control from your phone.",
         "aud-feat-1-title": "Multi-room Systems", "aud-feat-1-desc": "Setup of Sonos, Bose, or other systems to play your music synchronously everywhere.",
         "aud-feat-2-title": "Home Theater", "aud-feat-2-desc": "Connection of amplifiers, receivers, and optimal placement of your speakers.",
         "aud-feat-3-title": "Wireless Integration", "aud-feat-3-desc": "Easily connect your mobile devices to your sound system to stream Spotify, Apple Music, or your podcasts.",
@@ -246,8 +203,8 @@ function safeSetText(id, text, isPlaceholder = false) {
     }
 }
 
-function toggleLang() {
-    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+// Nouvelle fonction qui applique la traduction sur TOUTE la page
+function applyTranslations() {
     const t = translations[currentLang];
     
     // Éléments Communs
@@ -319,3 +276,31 @@ function toggleLang() {
     langBtns.forEach(btn => btn.innerText = t.langBtn);
     document.documentElement.lang = currentLang;
 }
+
+// Ce qui se passe quand on clique sur le bouton FR/EN
+function toggleLang() {
+    currentLang = currentLang === 'fr' ? 'en' : 'fr';
+    localStorage.setItem('siteLang', currentLang); // SAUVEGARDE EN MÉMOIRE ICI !
+    applyTranslations();
+}
+
+// --- INITIALISATION AU CHARGEMENT DE LA PAGE ---
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // 1. On applique la bonne langue immédiatement au chargement
+    applyTranslations();
+    
+    // 2. Logique de retour au formulaire (AUTO-SÉLECTION DEPUIS UNE AUTRE PAGE)
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service');
+    
+    if (serviceParam && deviceSelect) {
+        deviceSelect.value = serviceParam;
+        deviceSelect.dispatchEvent(new Event('change'));
+        setTimeout(() => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            deviceSelect.style.boxShadow = "0 0 0 4px rgba(0, 240, 255, 0.4)";
+            setTimeout(() => { deviceSelect.style.boxShadow = "none"; }, 1500);
+        }, 500);
+    }
+});
