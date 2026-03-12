@@ -1,35 +1,34 @@
 // ==========================================
-// SCRIPT.JS - TI-WiTech (Version Finale Anti-Amnésie)
+// SCRIPT.JS - TI-WiTech (Version Blindée Anti-Erreur)
 // ==========================================
 
-// --- 1. SYSTÈME DE MÉMOIRE & URL (NOUVEAU) ---
-// On regarde d'abord si la langue est dans l'URL (ex: ?lang=en)
+// --- 1. SÉCURITÉ LANGUE & URL ---
 const urlParams = new URLSearchParams(window.location.search);
 const langParam = urlParams.get('lang');
 
 if (langParam === 'fr' || langParam === 'en') {
-    localStorage.setItem('siteLang', langParam); // On sauvegarde si on peut
+    localStorage.setItem('siteLang', langParam);
 }
 
-// On définit la langue actuelle
 let currentLang = langParam || localStorage.getItem('siteLang') || 'fr';
+if (currentLang !== 'fr' && currentLang !== 'en') currentLang = 'fr'; // Sécurité absolue
 
-// --- 2. FORCER LA LANGUE SUR TOUS LES LIENS (NOUVEAU) ---
-// Cette fonction ajoute "?lang=en" à chaque fois que tu cliques sur une de tes pages
+// --- 2. INTERCEPTION DES LIENS (Pour garder la langue entre les pages) ---
 document.addEventListener('click', function(e) {
     const link = e.target.closest('a');
     if (link && link.getAttribute('href')) {
         let href = link.getAttribute('href');
-        // Si c'est un lien vers une de TES pages (pas Facebook ou un email)
-        if (href.includes('.html') || href.startsWith('#')) {
-            e.preventDefault(); // On bloque le clic normal
-            
-            // On fabrique la nouvelle URL avec la langue
-            let newUrl = new URL(link.href, window.location.href);
-            newUrl.searchParams.set('lang', currentLang);
-            
-            // On redirige vers cette nouvelle page
-            window.location.href = newUrl.toString();
+        // On n'intercepte que si on change vraiment de page HTML
+        if (href.includes('.html')) {
+            e.preventDefault();
+            try {
+                let newUrl = new URL(link.href, window.location.href);
+                newUrl.searchParams.set('lang', currentLang);
+                window.location.href = newUrl.toString();
+            } catch(error) {
+                // Si le navigateur bloque (ex: fichier local), on y va normalement
+                window.location.href = href;
+            }
         }
     }
 });
@@ -154,8 +153,9 @@ const translations = {
     }
 };
 
-// --- 4. APPLICATION DES TRADUCTIONS ---
+// --- 4. APPLICATION SÉCURISÉE DES TRADUCTIONS ---
 function safeSetText(id, text, isPlaceholder = false) {
+    if (!text) return; // Sécurité : si la traduction n'existe pas, on ne fait rien
     const el = document.getElementById(id);
     if (el) {
         if (isPlaceholder) el.placeholder = text;
@@ -165,7 +165,8 @@ function safeSetText(id, text, isPlaceholder = false) {
 
 function applyTranslations() {
     const t = translations[currentLang];
-    
+    if (!t) return;
+
     // Éléments Communs
     safeSetText("nav-services", t.navServices); safeSetText("nav-about", t.navAbout);
     safeSetText("nav-galerie", t.navGalerie); safeSetText("nav-contact", t.navContact);
@@ -190,7 +191,7 @@ function applyTranslations() {
     safeSetText("chk-3", t.chk3); safeSetText("chk-4", t.chk4); safeSetText("chk-5", t.chk5);
     safeSetText("chk-6", t.chk6); safeSetText("form-btn", t.formBtn);
     
-    // Page Ordinateur
+    // Pages de Services (Toutes regroupées et sécurisées)
     safeSetText("page-ord-title", t.pageOrdTitle); safeSetText("page-ord-desc", t.pageOrdDesc); safeSetText("page-ord-cta", t.pageOrdCta);
     safeSetText("ord-detail-title", t["ord-detail-title"]); safeSetText("ord-detail-text", t["ord-detail-text"]);
     safeSetText("ord-feat-1-title", t["ord-feat-1-title"]); safeSetText("ord-feat-1-desc", t["ord-feat-1-desc"]);
@@ -198,7 +199,6 @@ function applyTranslations() {
     safeSetText("ord-feat-3-title", t["ord-feat-3-title"]); safeSetText("ord-feat-3-desc", t["ord-feat-3-desc"]);
     safeSetText("ord-action-title", t["ord-action-title"]);
 
-    // Page Tablette
     safeSetText("page-tab-title", t.pageTabTitle); safeSetText("page-tab-desc", t.pageTabDesc); safeSetText("page-tab-cta", t.pageTabCta);
     safeSetText("tab-detail-title", t["tab-detail-title"]); safeSetText("tab-detail-text", t["tab-detail-text"]);
     safeSetText("tab-feat-1-title", t["tab-feat-1-title"]); safeSetText("tab-feat-1-desc", t["tab-feat-1-desc"]);
@@ -206,7 +206,6 @@ function applyTranslations() {
     safeSetText("tab-feat-3-title", t["tab-feat-3-title"]); safeSetText("tab-feat-3-desc", t["tab-feat-3-desc"]);
     safeSetText("tab-action-title", t["tab-action-title"]);
 
-    // Page TV
     safeSetText("page-tv-title", t.pageTvTitle); safeSetText("page-tv-desc", t.pageTvDesc); safeSetText("page-tv-cta", t.pageTvCta);
     safeSetText("tv-detail-title", t["tv-detail-title"]); safeSetText("tv-detail-text", t["tv-detail-text"]);
     safeSetText("tv-feat-1-title", t["tv-feat-1-title"]); safeSetText("tv-feat-1-desc", t["tv-feat-1-desc"]);
@@ -214,7 +213,6 @@ function applyTranslations() {
     safeSetText("tv-feat-3-title", t["tv-feat-3-title"]); safeSetText("tv-feat-3-desc", t["tv-feat-3-desc"]);
     safeSetText("tv-action-title", t["tv-action-title"]);
 
-    // Page Réseau
     safeSetText("page-res-title", t.pageResTitle); safeSetText("page-res-desc", t.pageResDesc); safeSetText("page-res-cta", t.pageResCta);
     safeSetText("res-detail-title", t["res-detail-title"]); safeSetText("res-detail-text", t["res-detail-text"]);
     safeSetText("res-feat-1-title", t["res-feat-1-title"]); safeSetText("res-feat-1-desc", t["res-feat-1-desc"]);
@@ -222,7 +220,6 @@ function applyTranslations() {
     safeSetText("res-feat-3-title", t["res-feat-3-title"]); safeSetText("res-feat-3-desc", t["res-feat-3-desc"]);
     safeSetText("res-action-title", t["res-action-title"]);
 
-    // Page Audio
     safeSetText("page-aud-title", t.pageAudTitle); safeSetText("page-aud-desc", t.pageAudDesc); safeSetText("page-aud-cta", t.pageAudCta);
     safeSetText("aud-detail-title", t["aud-detail-title"]); safeSetText("aud-detail-text", t["aud-detail-text"]);
     safeSetText("aud-feat-1-title", t["aud-feat-1-title"]); safeSetText("aud-feat-1-desc", t["aud-feat-1-desc"]);
@@ -238,12 +235,16 @@ function applyTranslations() {
 
 function toggleLang() {
     currentLang = currentLang === 'fr' ? 'en' : 'fr';
-    
-    // On sauvegarde la mémoire si possible, ET on met à jour l'URL affichée sans recharger la page
     localStorage.setItem('siteLang', currentLang);
-    let newUrl = new URL(window.location.href);
-    newUrl.searchParams.set('lang', currentLang);
-    window.history.replaceState({}, '', newUrl);
+    
+    // Essayer de mettre à jour l'URL (échouera souvent en local sur PC, mais on l'attrape avec catch)
+    try {
+        let newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('lang', currentLang);
+        window.history.replaceState({}, '', newUrl);
+    } catch(e) {
+        console.log("Fichier local détecté : Traduction appliquée sans changer l'URL.");
+    }
     
     applyTranslations();
 }
@@ -268,14 +269,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         deviceSelect.addEventListener('change', function() {
             const selectedDevice = this.value;
             const options = brands[selectedDevice] || [];
-            modelSelect.innerHTML = `<option value="" disabled selected>${currentLang === 'fr' ? '-- Sélectionnez la marque --' : '-- Select Brand --'}</option>`;
-            
-            options.forEach(brand => {
-                const el = document.createElement('option');
-                el.value = brand;
-                el.textContent = brand;
-                modelSelect.appendChild(el);
-            });
+            if(modelSelect) {
+                modelSelect.innerHTML = `<option value="" disabled selected>${currentLang === 'fr' ? '-- Sélectionnez la marque --' : '-- Select Brand --'}</option>`;
+                options.forEach(brand => {
+                    const el = document.createElement('option');
+                    el.value = brand;
+                    el.textContent = brand;
+                    modelSelect.appendChild(el);
+                });
+            }
         });
     }
 
@@ -284,7 +286,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         deviceSelect.value = urlParams.get('service');
         deviceSelect.dispatchEvent(new Event('change'));
         setTimeout(() => {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            const contactSection = document.getElementById('contact');
+            if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
             deviceSelect.style.boxShadow = "0 0 0 4px rgba(0, 240, 255, 0.4)";
             setTimeout(() => { deviceSelect.style.boxShadow = "none"; }, 1500);
         }, 500);
@@ -299,7 +302,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             const formData = new FormData(form);
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
-            result.innerHTML = currentLang === 'fr' ? "Envoi en cours..." : "Sending...";
+            if(result) result.innerHTML = currentLang === 'fr' ? "Envoi en cours..." : "Sending...";
 
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
@@ -309,19 +312,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
             .then(async (response) => {
                 let json = await response.json();
                 if (response.status == 200) {
-                    result.style.color = "#00f0ff";
-                    result.innerHTML = currentLang === 'fr' ? "✅ Message envoyé avec succès !" : "✅ Message sent successfully!";
+                    if(result) {
+                        result.style.color = "#00f0ff";
+                        result.innerHTML = currentLang === 'fr' ? "✅ Message envoyé avec succès !" : "✅ Message sent successfully!";
+                    }
                     form.reset();
                     if(modelSelect) modelSelect.innerHTML = `<option value="" id="opt-model-default">-- Marque / Modèle --</option>`;
                 } else {
-                    result.innerHTML = json.message;
+                    if(result) result.innerHTML = json.message;
                 }
             })
             .catch(error => {
-                result.innerHTML = currentLang === 'fr' ? "Une erreur est survenue." : "An error occurred.";
+                if(result) result.innerHTML = currentLang === 'fr' ? "Une erreur est survenue." : "An error occurred.";
             })
             .then(function() {
-                setTimeout(() => { result.innerHTML = ""; }, 5000);
+                setTimeout(() => { if(result) result.innerHTML = ""; }, 5000);
             });
         });
     }
