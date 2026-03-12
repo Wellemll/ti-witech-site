@@ -5,20 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tablettes & Téléphones | TI-WiTech</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     </head>
 <body>
     <header>
         <a href="index.html" class="logo"><img src="logo.png" alt="TI-WiTech Logo"></a>
-        </header>
+        <nav>
+            <a href="index.html#services" id="nav-services">Services</a>
+            <a href="index.html#about" id="nav-about">À propos</a>
+            <a href="index.html#galerie" id="nav-galerie">En action</a>
+            <a href="index.html#contact" id="nav-contact">Contact</a>
+            <button class="lang-btn" onclick="toggleLang()">EN</button>
+        </nav>
+    </header>
 
-    <section class="hero" style="min-height: 50vh; padding-top: 150px;">
-        <h1 id="page-tab-title">SERVICE: TABLETTES & TÉLÉPHONES</h1>
-        <p id="page-tab-desc">Configuration de vos courriels, transfert de données, et assistance générale pour vos appareils mobiles iOS et Android.</p>
-        
+    <section class="service-hero" style="background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1920&q=80') center/cover;">
+        <h1 id="page-tab-title">TABLETTES & TÉLÉPHONES</h1>
+        <p id="page-tab-desc">Configuration, synchronisation et assistance pour vos appareils mobiles Apple (iOS) et Android.</p>
+    </section>
+
+    <section class="service-details">
+        <div class="details-grid">
+            <div class="details-text">
+                <h2 id="tab-detail-title">Restez connecté en toute simplicité</h2>
+                <p id="tab-detail-text">Que ce soit pour configurer un nouvel appareil ou retrouver des mots de passe perdus, nous vous aidons à maîtriser votre tablette ou téléphone intelligent.</p>
+                
+                <ul class="feature-list">
+                    <li>
+                        <span>📧</span>
+                        <div>
+                            <span id="tab-feat-1-title">Courriels & Comptes</span>
+                            <p id="tab-feat-1-desc">Configuration de vos boîtes de réception, iCloud, Google et récupération d'accès.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🔄</span>
+                        <div>
+                            <span id="tab-feat-2-title">Transfert de données</span>
+                            <p id="tab-feat-2-desc">Migration sécurisée de vos photos, contacts et applications vers un nouvel appareil.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🎓</span>
+                        <div>
+                            <span id="tab-feat-3-title">Formation & Accompagnement</span>
+                            <p id="tab-feat-3-desc">Apprenez à utiliser FaceTime, à imprimer depuis votre tablette ou à organiser vos photos.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="details-image">
+                <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=800&q=80" alt="Utilisation d'un téléphone intelligent">
+            </div>
+        </div>
+    </section>
+
+    <section class="action-section">
+        <h2 style="margin-bottom: 30px; font-family: 'Orbitron', sans-serif; color: #0a192f;" id="tab-action-title">Besoin d'un technicien ?</h2>
         <a href="index.html?service=Tablette / Téléphone#contact" class="btn-glowing" id="page-tab-cta">RÉSERVER POUR MA TABLETTE/TÉLÉPHONE</a>
     </section>
 
-    <footer>...</footer>
+    <footer>
+        <span id="footer-text">© 2026 TI-WiTech | </span><a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank" id="footer-fb">Suivez-nous sur Facebook</a>
+    </footer>
 
     <script src="script.js"></script>
 </body>
