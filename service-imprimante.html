@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprimantes & Bureau | TI-WiTech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><img src="logo.png" alt="TI-WiTech Logo"></a>
+        <nav>
+            <a href="index.html#services" id="nav-services">Services</a>
+            <a href="index.html#about" id="nav-about">À propos</a>
+            <a href="index.html#galerie" id="nav-galerie">En action</a>
+            <a href="index.html#contact" id="nav-contact">Contact</a>
+            <button class="lang-btn" onclick="toggleLang()">EN</button>
+        </nav>
+    </header>
+
+    <section class="service-hero" style="background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url('https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=1920&q=80') center/cover;">
+        <h1 id="page-imp-title">IMPRIMANTES & BUREAU</h1>
+        <p id="page-imp-desc">Configuration et dépannage de vos imprimantes, numériseurs et postes de télétravail.</p>
+    </section>
+
+    <section class="service-details">
+        <div class="details-grid">
+            <div class="details-text">
+                <h2 id="imp-detail-title">Un espace de travail fonctionnel</h2>
+                <p id="imp-detail-text">Ne laissez pas un problème de connexion ou de configuration ralentir votre productivité. Nous installons et réparons vos équipements de bureau pour un fonctionnement sans faille.</p>
+                
+                <ul class="feature-list">
+                    <li>
+                        <span>🖨️</span>
+                        <div>
+                            <span id="imp-feat-1-title">Configuration Sans Fil</span>
+                            <p id="imp-feat-1-desc">Connexion de votre imprimante au réseau Wi-Fi pour imprimer facilement depuis vos ordinateurs, tablettes et téléphones.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🛠️</span>
+                        <div>
+                            <span id="imp-feat-2-title">Dépannage & Erreurs</span>
+                            <p id="imp-feat-2-desc">Résolution des erreurs d'impression, numérisation (scanner) impossible et mise à jour des pilotes.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🖥️</span>
+                        <div>
+                            <span id="imp-feat-3-title">Télétravail & Accessoires</span>
+                            <p id="imp-feat-3-desc">Installation de deux écrans, stations d'accueil (dock) et caméras web pour des réunions optimales.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="details-image">
+                <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f?auto=format&fit=crop&w=800&q=80" alt="Équipement de bureau et imprimante">
+            </div>
+        </div>
+    </section>
+
+    <section class="action-section">
+        <h2 style="margin-bottom: 30px; font-family: 'Orbitron', sans-serif; color: #0a192f;" id="imp-action-title">Besoin d'un technicien ?</h2>
+        <a href="index.html?service=Imprimante / Bureau#contact" class="btn-glowing" id="page-imp-cta">RÉSERVER POUR MON BUREAU</a>
+    </section>
+
+    <footer>
+        <span id="footer-text">© 2026 TI-WiTech | </span><a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank" id="footer-fb">Suivez-nous sur Facebook</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
