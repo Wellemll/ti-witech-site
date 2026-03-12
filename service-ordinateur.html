@@ -3,10 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordinateurs & Mac | TI-WiTech</title>
+    <title>Service Ordinateurs & Mac | TI-WiTech</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    </head>
+    <style>
+        /* --- STYLES DE BASE (Identiques à ton accueil) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #334155; overflow-x: hidden; line-height: 1.6; }
+        header { position: fixed; top: 0; left: 0; width: 100%; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo img { height: 120px; width: auto; transition: 0.3s; }
+        nav { display: flex; align-items: center; gap: 30px; }
+        nav a { text-decoration: none; color: #0f172a; font-weight: 600; font-size: 15px; transition: 0.3s; position: relative; }
+        nav a:hover { color: #00f0ff; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: #00f0ff; transition: 0.3s; }
+        nav a:hover::after { width: 100%; }
+        .lang-btn { padding: 8px 16px; border: 2px solid #0f172a; background: transparent; color: #0f172a; font-weight: 700; cursor: pointer; border-radius: 6px; transition: 0.3s; }
+        .lang-btn:hover { border-color: #00f0ff; color: #00f0ff; transform: scale(1.05); }
+        .btn-glowing { padding: 18px 36px; background: #0a192f; border: 2px solid #00f0ff; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 16px; color: white; text-decoration: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(0, 240, 255, 0.3); display: inline-block; text-align: center;}
+        .btn-glowing:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 240, 255, 0.5); background: #0d2342; }
+        footer { padding: 60px 20px; background: #0a192f; color: #94a3b8; text-align: center; margin-top: 50px; }
+        footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
+
+        /* --- STYLES SPÉCIFIQUES POUR LES PAGES DE SERVICES --- */
+        .service-hero { 
+            position: relative; 
+            padding: 200px 5% 100px 5%; 
+            text-align: center; 
+            /* Belle image de fond assombrie pour faire ressortir le texte */
+            background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.95)), url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1920&q=80') center/cover; 
+            color: white;
+        }
+        .service-hero h1 { font-family: 'Orbitron', sans-serif; font-size: clamp(32px, 4vw, 48px); font-weight: 900; color: #00f0ff; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1px;}
+        .service-hero p { font-size: 20px; color: #cbd5e1; max-width: 800px; margin: 0 auto; line-height: 1.8; }
+
+        .service-details { max-width: 1200px; margin: -50px auto 50px auto; padding: 0 5%; position: relative; z-index: 10; }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: #ffffff; padding: 50px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-top: 5px solid #00f0ff; }
+        
+        .details-text h2 { font-family: 'Orbitron', sans-serif; font-size: 24px; color: #0a192f; margin-bottom: 20px; }
+        .details-text p { margin-bottom: 20px; font-size: 16px; color: #475569; }
+        
+        .feature-list { list-style: none; margin-top: 30px; }
+        .feature-list li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; font-size: 16px; font-weight: 600; color: #0a192f;}
+        .feature-list li span { font-size: 24px; color: #00f0ff; line-height: 1; }
+        .feature-list li p { font-size: 14px; color: #64748b; font-weight: 400; margin-top: 5px; margin-bottom: 0;}
+
+        .details-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+
+        .action-section { text-align: center; padding: 60px 5%; }
+
+        @media(max-width: 900px) {
+            header { padding: 10px 20px; }
+            nav a { display: none; }
+            .details-grid { grid-template-columns: 1fr; padding: 30px; }
+        }
+    </style>
+</head>
 <body>
+
     <header>
         <a href="index.html" class="logo"><img src="logo.png" alt="TI-WiTech Logo"></a>
         <nav>
@@ -18,15 +71,54 @@
         </nav>
     </header>
 
-    <section class="hero" style="min-height: 50vh; padding-top: 150px;">
-        <h1 id="page-ord-title">SERVICE: ORDINATEURS & MAC</h1>
-        <p id="page-ord-desc">Diagnostic, réparation matérielle, suppression de virus, et optimisation de vitesse pour vos appareils Windows et Apple.</p>
-        
+    <section class="service-hero">
+        <h1 id="page-ord-title">ORDINATEURS & MAC</h1>
+        <p id="page-ord-desc">Redonnez une seconde jeunesse à votre équipement. Nous offrons un diagnostic complet et des solutions durables pour vos ordinateurs de bureau et portables.</p>
+    </section>
+
+    <section class="service-details">
+        <div class="details-grid">
+            <div class="details-text">
+                <h2 id="ord-detail-title">Une expertise sur mesure</h2>
+                <p id="ord-detail-text">Que votre appareil soit lent, infecté par un virus ou qu'il nécessite une mise à jour matérielle, nous intervenons directement à votre domicile pour régler le problème rapidement.</p>
+                
+                <ul class="feature-list">
+                    <li>
+                        <span>🚀</span>
+                        <div>
+                            <span id="ord-feat-1-title">Optimisation & Vitesse</span>
+                            <p id="ord-feat-1-desc">Nettoyage système, ajout de mémoire vive (RAM) et remplacement par un disque dur ultra-rapide (SSD).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>🛡️</span>
+                        <div>
+                            <span id="ord-feat-2-title">Sécurité & Virus</span>
+                            <p id="ord-feat-2-desc">Suppression de logiciels malveillants, fenêtres indésirables (pop-ups) et installation d'antivirus fiables.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span>⚙️</span>
+                        <div>
+                            <span id="ord-feat-3-title">Configuration Initiale</span>
+                            <p id="ord-feat-3-desc">Installation de votre nouvel appareil, transfert de données depuis l'ancien et configuration de vos courriels et imprimantes.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="details-image">
+                <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=800&q=80" alt="Réparation ordinateur">
+            </div>
+        </div>
+    </section>
+
+    <section class="action-section">
+        <h2 style="margin-bottom: 30px; font-family: 'Orbitron', sans-serif; color: #0a192f;" id="ord-action-title">Besoin d'un technicien ?</h2>
         <a href="index.html?service=Ordinateur / Mac#contact" class="btn-glowing" id="page-ord-cta">RÉSERVER POUR MON ORDINATEUR</a>
     </section>
 
     <footer>
-        <span id="footer-text">© 2026 TI-WiTech | </span><a href="https://www.facebook.com/" target="_blank" id="footer-fb">Suivez-nous sur Facebook</a>
+        <span id="footer-text">© 2026 TI-WiTech | </span><a href="https://www.facebook.com/share/1AQKgXYb18/?mibextid=wwXIfr" target="_blank" id="footer-fb">Suivez-nous sur Facebook</a>
     </footer>
 
     <script src="script.js"></script>
