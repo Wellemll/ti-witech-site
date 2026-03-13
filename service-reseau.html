@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('siteTheme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
     <header>
         <a href="index.html" class="logo"><img src="logo.png" alt="TI-WiTech Logo"></a>
         <nav>
@@ -74,6 +79,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
