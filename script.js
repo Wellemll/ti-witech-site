@@ -1,5 +1,5 @@
 // ==========================================
-// SCRIPT.JS - TI-WiTech (Version Blindée Anti-Erreur)
+// SCRIPT.JS - TI-WiTech (Version avec Imprimantes)
 // ==========================================
 
 // --- 1. SÉCURITÉ LANGUE & URL ---
@@ -11,14 +11,13 @@ if (langParam === 'fr' || langParam === 'en') {
 }
 
 let currentLang = langParam || localStorage.getItem('siteLang') || 'fr';
-if (currentLang !== 'fr' && currentLang !== 'en') currentLang = 'fr'; // Sécurité absolue
+if (currentLang !== 'fr' && currentLang !== 'en') currentLang = 'fr';
 
-// --- 2. INTERCEPTION DES LIENS (Pour garder la langue entre les pages) ---
+// --- 2. INTERCEPTION DES LIENS ---
 document.addEventListener('click', function(e) {
     const link = e.target.closest('a');
     if (link && link.getAttribute('href')) {
         let href = link.getAttribute('href');
-        // On n'intercepte que si on change vraiment de page HTML
         if (href.includes('.html')) {
             e.preventDefault();
             try {
@@ -26,7 +25,6 @@ document.addEventListener('click', function(e) {
                 newUrl.searchParams.set('lang', currentLang);
                 window.location.href = newUrl.toString();
             } catch(error) {
-                // Si le navigateur bloque (ex: fichier local), on y va normalement
                 window.location.href = href;
             }
         }
@@ -43,13 +41,13 @@ const translations = {
         hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Spécialisé en systèmes et réseaux informatiques", 
         cta: "DEMANDER UNE ASSISTANCE", ctaFb: "SUIVRE SUR FACEBOOK",
         srvTitle: "NOS SERVICES", 
-        srv1: "Ordinateurs, portables ou Mac", srv2: "Tablettes et téléphones intelligents", srv3: "Télévisions et services de diffusion", srv4: "Internet, Wi-Fi et réseautique", srv5: "Équipements audio domestiques",
+        srv1: "Ordinateurs, portables ou Mac", srv2: "Tablettes et téléphones intelligents", srv3: "Télévisions et services de diffusion", srv4: "Internet, Wi-Fi et réseautique", srv5: "Équipements audio domestiques", srv6: "Imprimantes et équipement de bureau",
         aboutT: "NOTRE MISSION", aboutText: "Notre objectif est de vous accompagner afin de mieux comprendre et utiliser vos appareils...",
         terrTitle: "📍 Secteurs desservis :", terrText: "Rive-Nord de Montréal et Lanaudière.",
         galerieT: "EN ACTION", contactT: "CONTACTEZ-NOUS", 
         phName: "Nom complet", phEmail: "Adresse courriel", phYear: "Année", phMsg: "Détails supplémentaires...",
         optDefault: "-- Sélectionnez l'appareil concerné --", optModelDefault: "-- Marque / Modèle --",
-        opt1: "Ordinateur, portable ou Mac", opt2: "Tablette ou Téléphone intelligent", opt3: "Télévision ou service de diffusion", opt4: "Internet, Wi-Fi et réseautique", opt5: "Équipement audio domestique",
+        opt1: "Ordinateur, portable ou Mac", opt2: "Tablette ou Téléphone intelligent", opt3: "Télévision ou service de diffusion", opt4: "Internet, Wi-Fi et réseautique", opt5: "Équipement audio domestique", opt6: "Imprimante ou Équipement de bureau",
         chkTitle: "Quel est le problème principal ?", chk1: "Lenteur ou Gel", chk2: "Virus ou Pop-ups", chk3: "Problème Wi-Fi", chk4: "Installation / Config", chk5: "Bris matériel", chk6: "Autre",
         formBtn: "ENVOYER LA DEMANDE",
         
@@ -71,7 +69,7 @@ const translations = {
 
         // TV
         pageTvTitle: "TÉLÉVISIONS & DIFFUSION", pageTvDesc: "Profitez pleinement de vos divertissements avec une installation professionnelle de vos écrans et services de streaming.", pageTvCta: "RÉSERVER POUR MA TÉLÉVISION",
-        "tv-detail-title": "Votre cinéma maison, simplifié", "tv-detail-text": "Nous éliminons la complexité des câbles et des télécommandes multiples pour vous offrir une expérience de visionnement fluide et agréable.",
+        "tv-detail-title": "Votre cinéma maison, simplifié", "tv-detail-text": "Nous éliminons la complexité des cables et des télécommandes multiples pour vous offrir une expérience de visionnement fluide et agréable.",
         "tv-feat-1-title": "Installation & Branchement", "tv-feat-1-desc": "Configuration de votre Smart TV, barre de son et consoles de jeux vidéo.",
         "tv-feat-2-title": "Services de Streaming", "tv-feat-2-desc": "Configuration de Netflix, Prime Video, Tou.tv, et appareils Apple TV, Roku, Chromecast.",
         "tv-feat-3-title": "Simplification", "tv-feat-3-desc": "Réduction du nombre de télécommandes et explications claires sur le fonctionnement global.",
@@ -91,7 +89,15 @@ const translations = {
         "aud-feat-1-title": "Systèmes Multi-pièces", "aud-feat-1-desc": "Configuration de Sonos, Bose ou autres systèmes pour jouer votre musique partout de manière synchronisée.",
         "aud-feat-2-title": "Cinéma Maison", "aud-feat-2-desc": "Branchement d'amplificateurs, récepteurs et positionnement optimal de vos haut-parleurs.",
         "aud-feat-3-title": "Intégration Sans Fil", "aud-feat-3-desc": "Connectez facilement vos appareils mobiles à votre système de son pour diffuser Spotify, Apple Music ou vos balados.",
-        "aud-action-title": "Besoin d'un technicien ?"
+        "aud-action-title": "Besoin d'un technicien ?",
+
+        // Imprimante
+        pageImpTitle: "IMPRIMANTES & BUREAU", pageImpDesc: "Configuration et dépannage de vos imprimantes, numériseurs et postes de télétravail.", pageImpCta: "RÉSERVER POUR MON BUREAU",
+        "imp-detail-title": "Un espace de travail fonctionnel", "imp-detail-text": "Ne laissez pas un problème de connexion ou de configuration ralentir votre productivité. Nous installons et réparons vos équipements de bureau pour un fonctionnement sans faille.",
+        "imp-feat-1-title": "Configuration Sans Fil", "imp-feat-1-desc": "Connexion de votre imprimante au réseau Wi-Fi pour imprimer facilement depuis vos ordinateurs, tablettes et téléphones.",
+        "imp-feat-2-title": "Dépannage & Erreurs", "imp-feat-2-desc": "Résolution des erreurs d'impression, numérisation (scanner) impossible et mise à jour des pilotes.",
+        "imp-feat-3-title": "Télétravail & Accessoires", "imp-feat-3-desc": "Installation de deux écrans, stations d'accueil (dock) et caméras web pour des réunions optimales.",
+        "imp-action-title": "Besoin d'un technicien ?"
     },
     en: {
         navServices: "Services", navAbout: "About Us", navGalerie: "In Action", navContact: "Contact", langBtn: "FR",
@@ -101,13 +107,13 @@ const translations = {
         hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Specialized in IT systems and networks", 
         cta: "REQUEST ASSISTANCE", ctaFb: "FOLLOW ON FACEBOOK",
         srvTitle: "OUR SERVICES", 
-        srv1: "Computers, Laptops or Mac", srv2: "Tablets and Smartphones", srv3: "TVs and Streaming Services", srv4: "Internet, Wi-Fi and Networking", srv5: "Home Audio Equipment",
+        srv1: "Computers, Laptops or Mac", srv2: "Tablets and Smartphones", srv3: "TVs and Streaming Services", srv4: "Internet, Wi-Fi and Networking", srv5: "Home Audio Equipment", srv6: "Printers and Office Equipment",
         aboutT: "OUR MISSION", aboutText: "Our goal is to support you in better understanding and using your devices...",
         terrTitle: "📍 Areas Served:", terrText: "North Shore of Montreal and Lanaudière.",
         galerieT: "IN ACTION", contactT: "GET IN TOUCH", 
         phName: "Full Name", phEmail: "Email Address", phYear: "Year", phMsg: "Additional details...",
         optDefault: "-- Select the device --", optModelDefault: "-- Brand / Model --",
-        opt1: "Computer, Laptop or Mac", opt2: "Tablet or Smartphone", opt3: "TV or Streaming Service", opt4: "Internet, Wi-Fi and Networking", opt5: "Home Audio Equipment",
+        opt1: "Computer, Laptop or Mac", opt2: "Tablet or Smartphone", opt3: "TV or Streaming Service", opt4: "Internet, Wi-Fi and Networking", opt5: "Home Audio Equipment", opt6: "Printer or Office Equipment",
         chkTitle: "What is the main issue?", chk1: "Slow or Freezing", chk2: "Virus or Pop-ups", chk3: "Wi-Fi issue", chk4: "Setup / Config", chk5: "Hardware damage", chk6: "Other",
         formBtn: "SEND REQUEST",
         
@@ -149,13 +155,21 @@ const translations = {
         "aud-feat-1-title": "Multi-room Systems", "aud-feat-1-desc": "Setup of Sonos, Bose, or other systems to play your music synchronously everywhere.",
         "aud-feat-2-title": "Home Theater", "aud-feat-2-desc": "Connection of amplifiers, receivers, and optimal placement of your speakers.",
         "aud-feat-3-title": "Wireless Integration", "aud-feat-3-desc": "Easily connect your mobile devices to your sound system to stream Spotify, Apple Music, or your podcasts.",
-        "aud-action-title": "Need a technician?"
+        "aud-action-title": "Need a technician?",
+
+        // Imprimante
+        pageImpTitle: "PRINTERS & OFFICE", pageImpDesc: "Setup and troubleshooting for your printers, scanners, and remote work stations.", pageImpCta: "BOOK FOR MY OFFICE",
+        "imp-detail-title": "A functional workspace", "imp-detail-text": "Don't let a connection or setup issue slow down your productivity. We install and repair your office equipment for seamless operation.",
+        "imp-feat-1-title": "Wireless Setup", "imp-feat-1-desc": "Connecting your printer to the Wi-Fi network to easily print from your computers, tablets, and phones.",
+        "imp-feat-2-title": "Troubleshooting & Errors", "imp-feat-2-desc": "Resolving printing errors, scanning failures, and updating drivers.",
+        "imp-feat-3-title": "Remote Work & Accessories", "imp-feat-3-desc": "Setup of dual monitors, docking stations, and webcams for optimal meetings.",
+        "imp-action-title": "Need a technician?"
     }
 };
 
 // --- 4. APPLICATION SÉCURISÉE DES TRADUCTIONS ---
 function safeSetText(id, text, isPlaceholder = false) {
-    if (!text) return; // Sécurité : si la traduction n'existe pas, on ne fait rien
+    if (!text) return;
     const el = document.getElementById(id);
     if (el) {
         if (isPlaceholder) el.placeholder = text;
@@ -175,8 +189,9 @@ function applyTranslations() {
     // Page d'accueil
     safeSetText("hero-title", t.hero); safeSetText("hero-subtitle", t.heroSub); safeSetText("hero-desc", t.heroDesc);
     safeSetText("cta", t.cta); safeSetText("cta-fb", t.ctaFb);
-    safeSetText("services-title", t.srvTitle); safeSetText("srv-1", t.srv1); safeSetText("srv-2", t.srv2);
-    safeSetText("srv-3", t.srv3); safeSetText("srv-4", t.srv4); safeSetText("srv-5", t.srv5);
+    safeSetText("services-title", t.srvTitle); 
+    safeSetText("srv-1", t.srv1); safeSetText("srv-2", t.srv2); safeSetText("srv-3", t.srv3); 
+    safeSetText("srv-4", t.srv4); safeSetText("srv-5", t.srv5); safeSetText("srv-6", t.srv6);
     safeSetText("about-title", t.aboutT); safeSetText("about-text", t.aboutText);
     safeSetText("territory-title", t.terrTitle); safeSetText("territory-text", t.terrText);
     safeSetText("galerie-title", t.galerieT); safeSetText("contact-title", t.contactT);
@@ -186,12 +201,12 @@ function applyTranslations() {
     safeSetText("form-year", t.phYear, true); safeSetText("form-message", t.phMsg, true);
     safeSetText("opt-default", t.optDefault); safeSetText("opt-model-default", t.optModelDefault);
     safeSetText("opt-1", t.opt1); safeSetText("opt-2", t.opt2); safeSetText("opt-3", t.opt3);
-    safeSetText("opt-4", t.opt4); safeSetText("opt-5", t.opt5);
+    safeSetText("opt-4", t.opt4); safeSetText("opt-5", t.opt5); safeSetText("opt-6", t.opt6);
     safeSetText("checkbox-title", t.chkTitle); safeSetText("chk-1", t.chk1); safeSetText("chk-2", t.chk2);
     safeSetText("chk-3", t.chk3); safeSetText("chk-4", t.chk4); safeSetText("chk-5", t.chk5);
     safeSetText("chk-6", t.chk6); safeSetText("form-btn", t.formBtn);
     
-    // Pages de Services (Toutes regroupées et sécurisées)
+    // Pages de Services
     safeSetText("page-ord-title", t.pageOrdTitle); safeSetText("page-ord-desc", t.pageOrdDesc); safeSetText("page-ord-cta", t.pageOrdCta);
     safeSetText("ord-detail-title", t["ord-detail-title"]); safeSetText("ord-detail-text", t["ord-detail-text"]);
     safeSetText("ord-feat-1-title", t["ord-feat-1-title"]); safeSetText("ord-feat-1-desc", t["ord-feat-1-desc"]);
@@ -227,6 +242,13 @@ function applyTranslations() {
     safeSetText("aud-feat-3-title", t["aud-feat-3-title"]); safeSetText("aud-feat-3-desc", t["aud-feat-3-desc"]);
     safeSetText("aud-action-title", t["aud-action-title"]);
 
+    safeSetText("page-imp-title", t.pageImpTitle); safeSetText("page-imp-desc", t.pageImpDesc); safeSetText("page-imp-cta", t.pageImpCta);
+    safeSetText("imp-detail-title", t["imp-detail-title"]); safeSetText("imp-detail-text", t["imp-detail-text"]);
+    safeSetText("imp-feat-1-title", t["imp-feat-1-title"]); safeSetText("imp-feat-1-desc", t["imp-feat-1-desc"]);
+    safeSetText("imp-feat-2-title", t["imp-feat-2-title"]); safeSetText("imp-feat-2-desc", t["imp-feat-2-desc"]);
+    safeSetText("imp-feat-3-title", t["imp-feat-3-title"]); safeSetText("imp-feat-3-desc", t["imp-feat-3-desc"]);
+    safeSetText("imp-action-title", t["imp-action-title"]);
+
     // Bouton de langue
     const langBtns = document.querySelectorAll(".lang-btn");
     langBtns.forEach(btn => btn.innerText = t.langBtn);
@@ -237,14 +259,11 @@ function toggleLang() {
     currentLang = currentLang === 'fr' ? 'en' : 'fr';
     localStorage.setItem('siteLang', currentLang);
     
-    // Essayer de mettre à jour l'URL (échouera souvent en local sur PC, mais on l'attrape avec catch)
     try {
         let newUrl = new URL(window.location.href);
         newUrl.searchParams.set('lang', currentLang);
         window.history.replaceState({}, '', newUrl);
-    } catch(e) {
-        console.log("Fichier local détecté : Traduction appliquée sans changer l'URL.");
-    }
+    } catch(e) {}
     
     applyTranslations();
 }
@@ -262,7 +281,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         "Tablette / Téléphone": ["Apple (iPhone/iPad)", "Samsung", "Google Pixel", "TCL", "Motorola", "Huawei", "Autre"],
         "Télévision / Diffusion": ["Samsung", "LG", "Sony", "Hisense", "TCL", "Roku TV", "Fire TV", "Autre"],
         "Réseau / Wi-Fi": ["Borne fournisseur (Bell/Videotron)", "TP-Link", "ASUS", "Netgear", "Linksys", "Google Home", "Autre"],
-        "Audio": ["Sonos", "Bose", "Sony", "JBL", "Samsung", "Denon", "Autre"]
+        "Audio": ["Sonos", "Bose", "Sony", "JBL", "Samsung", "Denon", "Autre"],
+        "Imprimante / Bureau": ["HP", "Brother", "Canon", "Epson", "Lexmark", "Autre"]
     };
 
     if (deviceSelect) {
