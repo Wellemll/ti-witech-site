@@ -112,7 +112,7 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 }
 
 
-/* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ --- */
+/* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ - CORRIGÉ --- */
 .theme-btn {
     background: none;
     border: none;
@@ -134,43 +134,48 @@ body.dark-mode nav a {
     color: #e0e0e0 !important;
 }
 
-/* 1. On cible toutes les cartes et formulaires, INCLUANT LA GROSSE BOÎTE DES SERVICES */
+/* 1. Fix pour toutes les cartes et boîtes de service */
 body.dark-mode .service-card, 
 body.dark-mode .contact-info-cards div,
 body.dark-mode .contact-form,
 body.dark-mode .details-text,
-body.dark-mode .details-grid { /* <-- AJOUTÉ : Fix pour la page de service */
+body.dark-mode .details-grid,
+body.dark-mode .territory-box {
     background-color: #1e1e1e !important;
     color: #e0e0e0 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
 }
 
-/* 2. AJOUTÉ : Fix pour la petite boîte "Secteurs desservis" */
-body.dark-mode .territory-box {
-    background-color: #1e1e1e !important;
-}
-
-/* 3. AJOUTÉ : Fix pour le fond blanc des cases à cocher */
+/* 2. Fix pour le fond blanc des cases à cocher */
 body.dark-mode .checkbox-grid {
     background-color: #2a2a2a !important;
     border: 1px solid #555 !important;
 }
 
-/* 4. AJOUTÉ : Fix pour rendre les boutons EN/FR et Facebook visibles (en bleu néon) */
+/* 3. LE GROS FIX POUR LES BOUTONS INVISIBLES (Facebook, EN/FR) */
+/* On cible spécifiquement la bordure ET le texte pour les forcer en bleu néon */
 body.dark-mode .lang-btn,
 body.dark-mode .btn-outline {
-    color: #00f0ff !important;
-    border: 1px solid #00f0ff !important;
+    color: #00f0ff !important; /* Texte en bleu néon */
+    border: 1px solid #00f0ff !important; /* Bordure en bleu néon */
+    background-color: transparent !important; /* S'assure que le fond reste transparent */
 }
 
+/* Hover effect pour ces boutons en mode sombre (inverse les couleurs) */
+body.dark-mode .lang-btn:hover,
+body.dark-mode .btn-outline:hover {
+    background-color: #00f0ff !important;
+    color: #0a192f !important;
+}
+
+/* 4. Textes et Titres */
 body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
 body.dark-mode span {
     color: #00f0ff !important;
 }
 
-/* On ajoute les labels des cases à cocher ici pour qu'ils soient lisibles */
 body.dark-mode p, body.dark-mode li, 
-body.dark-mode .checkbox-grid label { /* <-- AJOUTÉ */
+body.dark-mode .checkbox-grid label {
     color: #cccccc !important;
 }
 
