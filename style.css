@@ -110,5 +110,62 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
     .section { padding: 60px 0; }
     .details-grid { grid-template-columns: 1fr; padding: 30px; }
 }
+/* --- 12. MODE SOMBRE (DARK MODE) --- */
+/* Le bouton Lune/Soleil */
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Couleurs quand le mode sombre est activé */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+body.dark-mode header {
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+}
+body.dark-mode nav a {
+    color: #e0e0e0;
+}
+body.dark-mode .service-card, 
+body.dark-mode .contact-info-cards div,
+body.dark-mode .contact-form {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode .service-card h3,
+body.dark-mode .details-text h2,
+body.dark-mode .details-text span {
+    color: #00f0ff; /* On garde le bleu néon pour faire ressortir les titres */
+}
+body.dark-mode .details-text p,
+body.dark-mode .about-text p,
+body.dark-mode li p {
+    color: #b0b0b0; /* Gris doux pour la lecture */
+}
+body.dark-mode footer {
+    background-color: #0a0a0a;
+    color: #888;
+}
+body.dark-mode input, 
+body.dark-mode select, 
+body.dark-mode textarea {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
 
 
