@@ -112,79 +112,49 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 }
 
 
-/* --- 12. MODE SOMBRE (DARK MODE) - CORRECTION EXTRÊME --- */
+/* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ --- */
 .theme-btn {
-    background: none; border: none; font-size: 20px; cursor: pointer; margin-right: 15px; transition: 0.3s;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
 }
 .theme-btn:hover { transform: scale(1.1); }
 
-/* 1. FOND GÉNÉRAL DE LA PAGE */
-body.dark-mode, 
-body.dark-mode section {
+body.dark-mode {
     background-color: #121212 !important;
+    color: #e0e0e0 !important;
 }
-
-/* 2. FORCER TOUTES LES BOÎTES BLANCHES EN GRIS FONCÉ */
+body.dark-mode header {
+    background-color: #1a1a1a !important;
+}
+body.dark-mode nav a {
+    color: #e0e0e0 !important;
+}
+/* On cible toutes les cartes et formulaires pour les forcer en sombre */
 body.dark-mode .service-card, 
 body.dark-mode .contact-info-cards div,
 body.dark-mode .contact-form,
-body.dark-mode .details-text,
-body.dark-mode .about-text,
-body.dark-mode .gallery-grid img {
+body.dark-mode .details-text {
     background-color: #1e1e1e !important;
-    border: 1px solid #333 !important;
+    color: #e0e0e0 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
 }
-
-/* 3. SAUVER LES BANNIÈRES AVEC IMAGES (Pour ne pas les effacer) */
-body.dark-mode .hero,
-body.dark-mode .service-hero {
-    background-color: transparent !important; 
-}
-
-/* 4. TOUS LES TEXTES NORMAUX (Qui étaient invisibles) */
-body.dark-mode,
-body.dark-mode p, 
-body.dark-mode li, 
-body.dark-mode a, 
-body.dark-mode label, 
-body.dark-mode span,
-body.dark-mode div {
-    color: #cccccc !important; /* Gris très clair, super lisible */
-}
-
-/* 5. TOUS LES TITRES (En Bleu Néon) */
-body.dark-mode h1, 
-body.dark-mode h2, 
-body.dark-mode h3,
-body.dark-mode .feature-list span {
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
+body.dark-mode span {
     color: #00f0ff !important;
 }
-
-/* 6. LE FORMULAIRE DE CONTACT ET MENUS DÉROULANTS */
-body.dark-mode input, 
-body.dark-mode select, 
-body.dark-mode textarea {
-    background-color: #2a2a2a !important;
-    color: #ffffff !important;
-    border: 1px solid #666 !important;
-}
-body.dark-mode input::placeholder, 
-body.dark-mode textarea::placeholder {
-    color: #aaaaaa !important; /* Les textes "Nom", "Courriel" seront bien visibles */
-}
-
-/* 7. L'EN-TÊTE ET LE PIED DE PAGE */
-body.dark-mode header {
-    background-color: #1a1a1a !important;
-    border-bottom: 1px solid #333 !important;
+body.dark-mode p, body.dark-mode li {
+    color: #cccccc !important;
 }
 body.dark-mode footer {
     background-color: #0a0a0a !important;
     color: #888 !important;
 }
-
-/* 8. NE PAS TOUCHER AUX BOUTONS NÉON */
-body.dark-mode .btn-glowing {
-    color: #0a192f !important; /* Garde le texte foncé sur le bouton lumineux */
+body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+    border: 1px solid #555 !important;
 }
