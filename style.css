@@ -91,6 +91,10 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 /* --- RÉGLAGES SPÉCIFIQUES POUR CELLULAIRES --- */
 @media (max-width: 900px) {
     /* 1. On amincit la barre foncée au maximum */
+nav a {
+        display: none !important;
+    }
+   
     header {
         padding: 5px 15px !important; 
     }
@@ -190,6 +194,7 @@ body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
     color: #ffffff !important;
     border: 1px solid #555 !important;
 }
+
 
 
 
