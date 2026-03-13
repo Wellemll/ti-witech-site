@@ -88,6 +88,28 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 .details-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
 .action-section { text-align: center; padding: 60px 5%; }
 
+/* --- 11. ADAPTATION MOBILE (RESPONSIVE) --- */
+@media(max-width: 900px) {
+    /* On réduit un peu l'espacement de l'en-tête */
+    header { padding: 8px 15px; } 
+    
+    /* LA MAGIE EST ICI : On rapetisse le logo pour les cellulaires */
+    .logo img { height: 60px; } 
+    
+    /* On rend le bouton de langue un poil plus discret */
+    .lang-btn { padding: 5px 12px; font-size: 13px; }
+
+    nav a { display: none; }
+    .hero { padding-top: 120px; } /* On remonte un peu le texte puisque l'en-tête est plus petit */
+    .about-wrapper { grid-template-columns: 1fr; gap: 30px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .contact-info-cards { grid-template-columns: 1fr; }
+    .checkbox-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { flex-direction: column; gap: 20px; }
+    .contact-form { padding: 30px 20px; }
+    .section { padding: 60px 0; }
+    .details-grid { grid-template-columns: 1fr; padding: 30px; }
+}
 
 /* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ --- */
 .theme-btn {
