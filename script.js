@@ -334,3 +334,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 });
+
+// --- 7. MENU HAMBURGER MOBILE ---
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (hamburgerBtn && navMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            // Ajoute ou retire la classe "active" pour ouvrir/fermer le menu
+            navMenu.classList.toggle('active'); 
+        });
+
+        // Optionnel mais pratique : Fermer le menu quand on clique sur un lien
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+});
