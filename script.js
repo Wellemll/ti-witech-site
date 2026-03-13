@@ -1,8 +1,8 @@
 // ==========================================
-// SCRIPT.JS - TI-WiTech (Version Finale Avec Expertise Imprimante Réseau)
+// SCRIPT.JS - TI-WiTech (Langue + Mode Sombre Intégré)
 // ==========================================
 
-// --- 1. SÉCURITÉ LANGUE & URL ---
+// --- 1. SÉCURITÉ LANGUE & THÈME ---
 const urlParams = new URLSearchParams(window.location.search);
 const langParam = urlParams.get('lang');
 
@@ -12,6 +12,9 @@ if (langParam === 'fr' || langParam === 'en') {
 
 let currentLang = langParam || localStorage.getItem('siteLang') || 'fr';
 if (currentLang !== 'fr' && currentLang !== 'en') currentLang = 'fr';
+
+// Récupération de la mémoire du thème
+let currentTheme = localStorage.getItem('siteTheme') || 'light';
 
 // --- 2. INTERCEPTION DES LIENS ---
 document.addEventListener('click', function(e) {
@@ -36,8 +39,6 @@ const translations = {
     fr: {
         navServices: "Services", navAbout: "À propos", navGalerie: "En action", navContact: "Contact", langBtn: "EN",
         footerText: "© 2026 TI-WiTech | ", footerFb: "Suivez-nous sur Facebook",
-        
-        // Accueil
         hero: "SOUTIEN INFORMATIQUE<br>À DOMICILE", heroSub: "PARTICULIERS & PME", heroDesc: "Spécialisé en systèmes et réseaux informatiques", 
         cta: "DEMANDER UNE ASSISTANCE", ctaFb: "SUIVRE SUR FACEBOOK",
         srvTitle: "NOS SERVICES", 
@@ -50,48 +51,36 @@ const translations = {
         opt1: "Ordinateur, portable ou Mac", opt2: "Tablette ou Téléphone intelligent", opt3: "Télévision ou service de diffusion", opt4: "Internet, Wi-Fi et réseautique", opt5: "Équipement audio domestique", opt6: "Imprimante ou Équipement de bureau",
         chkTitle: "Quel est le problème principal ?", chk1: "Lenteur ou Gel", chk2: "Virus ou Pop-ups", chk3: "Problème Wi-Fi", chk4: "Installation / Config", chk5: "Bris matériel", chk6: "Autre",
         formBtn: "ENVOYER LA DEMANDE",
-        
-        // Ordinateur
         pageOrdTitle: "ORDINATEURS & MAC", pageOrdDesc: "Redonnez une seconde jeunesse à votre équipement. Nous offrons un diagnostic complet et des solutions durables pour vos ordinateurs de bureau et portables.", pageOrdCta: "RÉSERVER POUR MON ORDINATEUR",
         "ord-detail-title": "Une expertise sur mesure", "ord-detail-text": "Que votre appareil soit lent, infecté par un virus ou qu'il nécessite une mise à jour matérielle, nous intervenons directement à votre domicile pour régler le problème rapidement.",
         "ord-feat-1-title": "Optimisation & Vitesse", "ord-feat-1-desc": "Nettoyage système, ajout de mémoire vive (RAM) et remplacement par un disque dur ultra-rapide (SSD).",
         "ord-feat-2-title": "Sécurité & Virus", "ord-feat-2-desc": "Suppression de logiciels malveillants, fenêtres indésirables (pop-ups) et installation d'antivirus fiables.",
         "ord-feat-3-title": "Configuration Initiale", "ord-feat-3-desc": "Installation de votre nouvel appareil, transfert de données depuis l'ancien et configuration de vos courriels et imprimantes.",
         "ord-action-title": "Besoin d'un technicien ?",
-        
-        // Tablette
         pageTabTitle: "TABLETTES & TÉLÉPHONES", pageTabDesc: "Configuration, synchronisation et assistance pour vos appareils mobiles Apple (iOS) et Android.", pageTabCta: "RÉSERVER POUR MA TABLETTE/TÉLÉPHONE",
         "tab-detail-title": "Restez connecté en toute simplicité", "tab-detail-text": "Que ce soit pour configurer un nouvel appareil ou retrouver des mots de passe perdus, nous vous aidons à maîtriser votre tablette ou téléphone intelligent.",
         "tab-feat-1-title": "Courriels & Comptes", "tab-feat-1-desc": "Configuration de vos boîtes de réception, iCloud, Google et récupération d'accès.",
         "tab-feat-2-title": "Transfert de données", "tab-feat-2-desc": "Migration sécurisée de vos photos, contacts et applications vers un nouvel appareil.",
         "tab-feat-3-title": "Formation & Accompagnement", "tab-feat-3-desc": "Apprenez à utiliser FaceTime, à imprimer depuis votre tablette ou à organiser vos photos.",
         "tab-action-title": "Besoin d'un technicien ?",
-
-        // TV
         pageTvTitle: "TÉLÉVISIONS & DIFFUSION", pageTvDesc: "Profitez pleinement de vos divertissements avec une installation professionnelle de vos écrans et services de streaming.", pageTvCta: "RÉSERVER POUR MA TÉLÉVISION",
         "tv-detail-title": "Votre cinéma maison, simplifié", "tv-detail-text": "Nous éliminons la complexité des cables et des télécommandes multiples pour vous offrir une expérience de visionnement fluide et agréable.",
         "tv-feat-1-title": "Installation & Branchement", "tv-feat-1-desc": "Configuration de votre Smart TV, barre de son et consoles de jeux vidéo.",
         "tv-feat-2-title": "Services de Streaming", "tv-feat-2-desc": "Configuration de Netflix, Prime Video, Tou.tv, et appareils Apple TV, Roku, Chromecast.",
         "tv-feat-3-title": "Simplification", "tv-feat-3-desc": "Réduction du nombre de télécommandes et explications claires sur le fonctionnement global.",
         "tv-action-title": "Besoin d'un technicien ?",
-
-        // Réseau
         pageResTitle: "INTERNET, WI-FI & RÉSEAUTIQUE", pageResDesc: "Obtenez une connexion rapide, stable et sécurisée partout dans votre maison ou votre petite entreprise.", pageResCta: "RÉSERVER POUR MON RÉSEAU",
         "res-detail-title": "Fini les zones sans connexion", "res-detail-text": "Un bon réseau est le cœur de votre domicile technologique. Nous diagnostiquons et résolvons vos problèmes de lenteur et de déconnexion fréquentes.",
         "res-feat-1-title": "Optimisation du Wi-Fi", "res-feat-1-desc": "Installation de routeurs maillés (Mesh) pour éliminer les zones mortes et couvrir toute la maison.",
         "res-feat-2-title": "Câblage & Prises", "res-feat-2-desc": "Branchement optimal de vos équipements réseau pour garantir des vitesses maximales.",
         "res-feat-3-title": "Sécurité du Réseau", "res-feat-3-desc": "Sécurisation de votre connexion, création de réseaux invités et protection de vos données.",
         "res-action-title": "Besoin d'un technicien ?",
-
-        // Audio
         pageAudTitle: "ÉQUIPEMENTS AUDIO DOMESTIQUES", pageAudDesc: "Une qualité sonore exceptionnelle dans chaque pièce grâce à une configuration audio experte.", pageAudCta: "RÉSERVER POUR MON AUDIO",
         "aud-detail-title": "La musique au bout des doigts", "aud-detail-text": "Que vous soyez audiophile ou que vous souhaitiez simplement de la musique d'ambiance, nous configurons vos systèmes pour un contrôle facile depuis votre téléphone.",
         "aud-feat-1-title": "Systèmes Multi-pièces", "aud-feat-1-desc": "Configuration de Sonos, Bose ou autres systèmes pour jouer votre musique partout de manière synchronisée.",
         "aud-feat-2-title": "Cinéma Maison", "aud-feat-2-desc": "Branchement d'amplificateurs, récepteurs et positionnement optimal de vos haut-parleurs.",
         "aud-feat-3-title": "Intégration Sans Fil", "aud-feat-3-desc": "Connectez facilement vos appareils mobiles à votre système de son pour diffuser Spotify, Apple Music ou vos balados.",
         "aud-action-title": "Besoin d'un technicien ?",
-
-        // Imprimante (TEXTES MODIFIÉS ICI)
         pageImpTitle: "IMPRIMANTES & BUREAU", pageImpDesc: "Installation complète, configuration réseau (Wi-Fi, IP fixe) et dépannage de vos imprimantes, numériseurs et postes de télétravail.", pageImpCta: "RÉSERVER POUR MON BUREAU",
         "imp-detail-title": "Un espace de travail fonctionnel", "imp-detail-text": "Ne laissez pas un problème de connexion ou de configuration ralentir votre productivité. Nous installons et réparons vos équipements de bureau pour un fonctionnement sans faille.",
         "imp-feat-1-title": "Installation Réseau & IP", "imp-feat-1-desc": "Configuration de votre imprimante sur le réseau, attribution d'adresses IP fixes (statiques) et partage avec tous vos appareils pour une impression fiable.",
@@ -102,8 +91,6 @@ const translations = {
     en: {
         navServices: "Services", navAbout: "About Us", navGalerie: "In Action", navContact: "Contact", langBtn: "FR",
         footerText: "© 2026 TI-WiTech | ", footerFb: "Follow us on Facebook",
-        
-        // Accueil
         hero: "AT-HOME IT<br>SUPPORT", heroSub: "INDIVIDUALS & SMBs", heroDesc: "Specialized in IT systems and networks", 
         cta: "REQUEST ASSISTANCE", ctaFb: "FOLLOW ON FACEBOOK",
         srvTitle: "OUR SERVICES", 
@@ -116,48 +103,36 @@ const translations = {
         opt1: "Computer, Laptop or Mac", opt2: "Tablet or Smartphone", opt3: "TV or Streaming Service", opt4: "Internet, Wi-Fi and Networking", opt5: "Home Audio Equipment", opt6: "Printer or Office Equipment",
         chkTitle: "What is the main issue?", chk1: "Slow or Freezing", chk2: "Virus or Pop-ups", chk3: "Wi-Fi issue", chk4: "Setup / Config", chk5: "Hardware damage", chk6: "Other",
         formBtn: "SEND REQUEST",
-        
-        // Ordinateur
         pageOrdTitle: "COMPUTERS & MAC", pageOrdDesc: "Give your equipment a second life. We offer comprehensive diagnostics and lasting solutions for your desktop and laptop computers.", pageOrdCta: "BOOK FOR MY COMPUTER",
         "ord-detail-title": "Customized Expertise", "ord-detail-text": "Whether your device is slow, infected with a virus, or needs a hardware upgrade, we come directly to your home to solve the problem quickly.",
         "ord-feat-1-title": "Speed & Optimization", "ord-feat-1-desc": "System cleanup, RAM upgrades, and replacement with ultra-fast solid-state drives (SSD).",
         "ord-feat-2-title": "Security & Virus Removal", "ord-feat-2-desc": "Removal of malware, unwanted pop-ups, and installation of reliable antivirus software.",
         "ord-feat-3-title": "Initial Setup", "ord-feat-3-desc": "Setup of your new device, data transfer from your old one, and configuration of emails and printers.",
         "ord-action-title": "Need a technician?",
-        
-        // Tablette
         pageTabTitle: "TABLETS & PHONES", pageTabDesc: "Setup, syncing, and support for your Apple (iOS) and Android mobile devices.", pageTabCta: "BOOK FOR MY TABLET/PHONE",
         "tab-detail-title": "Stay connected with ease", "tab-detail-text": "Whether setting up a new device or recovering lost passwords, we help you master your tablet or smartphone.",
         "tab-feat-1-title": "Emails & Accounts", "tab-feat-1-desc": "Setup of your inboxes, iCloud, Google, and access recovery.",
         "tab-feat-2-title": "Data Transfer", "tab-feat-2-desc": "Secure migration of your photos, contacts, and apps to a new device.",
         "tab-feat-3-title": "Training & Support", "tab-feat-3-desc": "Learn how to use FaceTime, print from your tablet, or organize your photos.",
         "tab-action-title": "Need a technician?",
-
-        // TV
         pageTvTitle: "TVs & STREAMING", pageTvDesc: "Fully enjoy your entertainment with professional installation of your screens and streaming services.", pageTvCta: "BOOK FOR MY TV",
         "tv-detail-title": "Your home theater, simplified", "tv-detail-text": "We eliminate the complexity of cables and multiple remotes to offer you a smooth and enjoyable viewing experience.",
         "tv-feat-1-title": "Installation & Connection", "tv-feat-1-desc": "Setup of your Smart TV, soundbar, and video game consoles.",
         "tv-feat-2-title": "Streaming Services", "tv-feat-2-desc": "Setup of Netflix, Prime Video, Tou.tv, and Apple TV, Roku, Chromecast devices.",
         "tv-feat-3-title": "Simplification", "tv-feat-3-desc": "Reduction in the number of remotes and clear explanations on how everything works.",
         "tv-action-title": "Need a technician?",
-
-        // Réseau
         pageResTitle: "INTERNET, WI-FI & NETWORKING", pageResDesc: "Get a fast, stable, and secure connection anywhere in your home or small business.", pageResCta: "BOOK FOR MY NETWORK",
         "res-detail-title": "No more dead zones", "res-detail-text": "A good network is the heart of your smart home. We diagnose and resolve your slow speeds and frequent disconnections.",
         "res-feat-1-title": "Wi-Fi Optimization", "res-feat-1-desc": "Installation of Mesh routers to eliminate dead zones and cover the entire house.",
         "res-feat-2-title": "Cabling & Outlets", "res-feat-2-desc": "Optimal connection of your network equipment to ensure maximum speeds.",
         "res-feat-3-title": "Network Security", "res-feat-3-desc": "Securing your connection, creating guest networks, and protecting your data.",
         "res-action-title": "Need a technician?",
-
-        // Audio
         pageAudTitle: "HOME AUDIO EQUIPMENT", pageAudDesc: "Exceptional sound quality in every room thanks to expert audio configuration.", pageAudCta: "BOOK FOR MY AUDIO",
         "aud-detail-title": "Music at your fingertips", "aud-detail-text": "Whether you're an audiophile or just want background music, we configure your systems for easy control from your phone.",
         "aud-feat-1-title": "Multi-room Systems", "aud-feat-1-desc": "Setup of Sonos, Bose, or other systems to play your music synchronously everywhere.",
         "aud-feat-2-title": "Home Theater", "aud-feat-2-desc": "Connection of amplifiers, receivers, and optimal placement of your speakers.",
         "aud-feat-3-title": "Wireless Integration", "aud-feat-3-desc": "Easily connect your mobile devices to your sound system to stream Spotify, Apple Music, or your podcasts.",
         "aud-action-title": "Need a technician?",
-
-        // Imprimante (ENGLISH TEXTS MODIFIED HERE)
         pageImpTitle: "PRINTERS & OFFICE", pageImpDesc: "Complete installation, network configuration (Wi-Fi, static IP), and troubleshooting for your printers, scanners, and remote work stations.", pageImpCta: "BOOK FOR MY OFFICE",
         "imp-detail-title": "A functional workspace", "imp-detail-text": "Don't let a connection or setup issue slow down your productivity. We install and repair your office equipment for seamless operation.",
         "imp-feat-1-title": "Network & IP Installation", "imp-feat-1-desc": "Configuring your printer on the network, assigning static (fixed) IP addresses, and sharing with all your devices for reliable printing.",
@@ -167,7 +142,7 @@ const translations = {
     }
 };
 
-// --- 4. APPLICATION SÉCURISÉE DES TRADUCTIONS ---
+// --- 4. GESTION DES TEXTES ET FONCTIONS ---
 function safeSetText(id, text, isPlaceholder = false) {
     if (!text) return;
     const el = document.getElementById(id);
@@ -181,12 +156,9 @@ function applyTranslations() {
     const t = translations[currentLang];
     if (!t) return;
 
-    // Éléments Communs
     safeSetText("nav-services", t.navServices); safeSetText("nav-about", t.navAbout);
     safeSetText("nav-galerie", t.navGalerie); safeSetText("nav-contact", t.navContact);
     safeSetText("footer-text", t.footerText); safeSetText("footer-fb", t.footerFb);
-    
-    // Page d'accueil
     safeSetText("hero-title", t.hero); safeSetText("hero-subtitle", t.heroSub); safeSetText("hero-desc", t.heroDesc);
     safeSetText("cta", t.cta); safeSetText("cta-fb", t.ctaFb);
     safeSetText("services-title", t.srvTitle); 
@@ -195,8 +167,6 @@ function applyTranslations() {
     safeSetText("about-title", t.aboutT); safeSetText("about-text", t.aboutText);
     safeSetText("territory-title", t.terrTitle); safeSetText("territory-text", t.terrText);
     safeSetText("galerie-title", t.galerieT); safeSetText("contact-title", t.contactT);
-    
-    // Formulaire
     safeSetText("form-name", t.phName, true); safeSetText("form-email", t.phEmail, true);
     safeSetText("form-year", t.phYear, true); safeSetText("form-message", t.phMsg, true);
     safeSetText("opt-default", t.optDefault); safeSetText("opt-model-default", t.optModelDefault);
@@ -206,7 +176,7 @@ function applyTranslations() {
     safeSetText("chk-3", t.chk3); safeSetText("chk-4", t.chk4); safeSetText("chk-5", t.chk5);
     safeSetText("chk-6", t.chk6); safeSetText("form-btn", t.formBtn);
     
-    // Pages de Services
+    // Pages Services
     safeSetText("page-ord-title", t.pageOrdTitle); safeSetText("page-ord-desc", t.pageOrdDesc); safeSetText("page-ord-cta", t.pageOrdCta);
     safeSetText("ord-detail-title", t["ord-detail-title"]); safeSetText("ord-detail-text", t["ord-detail-text"]);
     safeSetText("ord-feat-1-title", t["ord-feat-1-title"]); safeSetText("ord-feat-1-desc", t["ord-feat-1-desc"]);
@@ -249,7 +219,6 @@ function applyTranslations() {
     safeSetText("imp-feat-3-title", t["imp-feat-3-title"]); safeSetText("imp-feat-3-desc", t["imp-feat-3-desc"]);
     safeSetText("imp-action-title", t["imp-action-title"]);
 
-    // Bouton de langue
     const langBtns = document.querySelectorAll(".lang-btn");
     langBtns.forEach(btn => btn.innerText = t.langBtn);
     document.documentElement.lang = currentLang;
@@ -258,22 +227,38 @@ function applyTranslations() {
 function toggleLang() {
     currentLang = currentLang === 'fr' ? 'en' : 'fr';
     localStorage.setItem('siteLang', currentLang);
-    
     try {
         let newUrl = new URL(window.location.href);
         newUrl.searchParams.set('lang', currentLang);
         window.history.replaceState({}, '', newUrl);
     } catch(e) {}
-    
     applyTranslations();
 }
 
-// --- 5. INITIALISATION AU CHARGEMENT DE LA PAGE ---
+// --- 5. GESTION DU MODE SOMBRE ---
+function applyTheme(theme) {
+    const themeBtns = document.querySelectorAll('.theme-btn');
+    if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeBtns.forEach(btn => btn.innerText = '☀️');
+    } else {
+        document.body.classList.remove('dark-mode');
+        themeBtns.forEach(btn => btn.innerText = '🌙');
+    }
+}
+
+function toggleTheme() {
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('siteTheme', currentTheme);
+    applyTheme(currentTheme);
+}
+
+// --- 6. INITIALISATION ---
 window.addEventListener('DOMContentLoaded', (event) => {
     
     applyTranslations();
+    applyTheme(currentTheme); // On applique le thème au chargement
     
-    // Logique des menus déroulants
     const deviceSelect = document.getElementById('form-service');
     const modelSelect = document.getElementById('form-model');
     const brands = {
@@ -301,7 +286,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    // Sélection automatique depuis une autre page
     if (urlParams.get('service') && deviceSelect) {
         deviceSelect.value = urlParams.get('service');
         deviceSelect.dispatchEvent(new Event('change'));
@@ -313,7 +297,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }, 500);
     }
     
-    // Formulaire Web3Forms
     const form = document.getElementById('wf-form');
     const result = document.getElementById('result');
     if (form) {
@@ -350,33 +333,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
             });
         });
     }
-
-    
-    // --- 6. GESTION DU MODE SOMBRE (DARK MODE) ---
-// On vérifie la mémoire du navigateur au chargement
-let currentTheme = localStorage.getItem('siteTheme') || 'light';
-
-// Fonction qui applique les bonnes couleurs et la bonne icône
-function applyTheme(theme) {
-    const themeBtns = document.querySelectorAll('.theme-btn');
-    if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-        themeBtns.forEach(btn => btn.innerText = '☀️'); // Devient un soleil
-    } else {
-        document.body.classList.remove('dark-mode');
-        themeBtns.forEach(btn => btn.innerText = '🌙'); // Devient une lune
-    }
-}
-
-// Ce qui se passe quand on clique sur le bouton
-function toggleTheme() {
-    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('siteTheme', currentTheme); // On sauvegarde
-    applyTheme(currentTheme);
-}
-
-// On applique le thème immédiatement dès que le script est lu
-applyTheme(currentTheme);
 });
-
-
