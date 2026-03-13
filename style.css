@@ -133,22 +133,47 @@ body.dark-mode header {
 body.dark-mode nav a {
     color: #e0e0e0 !important;
 }
-/* On cible toutes les cartes et formulaires pour les forcer en sombre */
+
+/* 1. On cible toutes les cartes et formulaires, INCLUANT LA GROSSE BOÎTE DES SERVICES */
 body.dark-mode .service-card, 
 body.dark-mode .contact-info-cards div,
 body.dark-mode .contact-form,
-body.dark-mode .details-text {
+body.dark-mode .details-text,
+body.dark-mode .details-grid { /* <-- AJOUTÉ : Fix pour la page de service */
     background-color: #1e1e1e !important;
     color: #e0e0e0 !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
 }
+
+/* 2. AJOUTÉ : Fix pour la petite boîte "Secteurs desservis" */
+body.dark-mode .territory-box {
+    background-color: #1e1e1e !important;
+}
+
+/* 3. AJOUTÉ : Fix pour le fond blanc des cases à cocher */
+body.dark-mode .checkbox-grid {
+    background-color: #2a2a2a !important;
+    border: 1px solid #555 !important;
+}
+
+/* 4. AJOUTÉ : Fix pour rendre les boutons EN/FR et Facebook visibles (en bleu néon) */
+body.dark-mode .lang-btn,
+body.dark-mode .btn-outline {
+    color: #00f0ff !important;
+    border: 1px solid #00f0ff !important;
+}
+
 body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
 body.dark-mode span {
     color: #00f0ff !important;
 }
-body.dark-mode p, body.dark-mode li {
+
+/* On ajoute les labels des cases à cocher ici pour qu'ils soient lisibles */
+body.dark-mode p, body.dark-mode li, 
+body.dark-mode .checkbox-grid label { /* <-- AJOUTÉ */
     color: #cccccc !important;
 }
+
 body.dark-mode footer {
     background-color: #0a0a0a !important;
     color: #888 !important;
