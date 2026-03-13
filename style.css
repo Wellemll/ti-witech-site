@@ -198,21 +198,26 @@ body.dark-mode .checkbox-grid {
     border: 1px solid #555 !important;
 }
 
-/* 3. Boutons EN/FR, Facebook ET Hamburger en bleu néon */
+/* 3. Boutons (EN/FR, Facebook, Hamburger) visibles en bleu néon */
 body.dark-mode .lang-btn,
 body.dark-mode .btn-outline,
+body.dark-mode #cta-fb,
 body.dark-mode .hamburger {
-    color: #00f0ff !important; /* Le texte et l'icône ☰ deviennent néon */
+    color: #00f0ff !important; /* Le texte et l'icône deviennent néon */
 }
 
-/* Les bordures ne s'appliquent qu'aux boutons (pas au hamburger) */
+/* On applique la bordure néon seulement aux boutons (pas au hamburger) */
 body.dark-mode .lang-btn,
-body.dark-mode .btn-outline {
+body.dark-mode .btn-outline,
+body.dark-mode #cta-fb {
     border: 1px solid #00f0ff !important;
     background-color: transparent !important;
 }
+
+/* L'effet de survol (hover) pour ces boutons */
 body.dark-mode .lang-btn:hover,
-body.dark-mode .btn-outline:hover {
+body.dark-mode .btn-outline:hover,
+body.dark-mode #cta-fb:hover {
     background-color: #00f0ff !important;
     color: #0a192f !important;
 }
