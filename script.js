@@ -350,4 +350,30 @@ window.addEventListener('DOMContentLoaded', (event) => {
             });
         });
     }
+    // --- 6. GESTION DU MODE SOMBRE (DARK MODE) ---
+// On vérifie la mémoire du navigateur au chargement
+let currentTheme = localStorage.getItem('siteTheme') || 'light';
+
+// Fonction qui applique les bonnes couleurs et la bonne icône
+function applyTheme(theme) {
+    const themeBtns = document.querySelectorAll('.theme-btn');
+    if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeBtns.forEach(btn => btn.innerText = '☀️'); // Devient un soleil
+    } else {
+        document.body.classList.remove('dark-mode');
+        themeBtns.forEach(btn => btn.innerText = '🌙'); // Devient une lune
+    }
+}
+
+// Ce qui se passe quand on clique sur le bouton
+function toggleTheme() {
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('siteTheme', currentTheme); // On sauvegarde
+    applyTheme(currentTheme);
+}
+
+// On applique le thème immédiatement dès que le script est lu
+applyTheme(currentTheme);
 });
+
