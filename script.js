@@ -350,6 +350,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             });
         });
     }
+
+    
     // --- 6. GESTION DU MODE SOMBRE (DARK MODE) ---
 // On vérifie la mémoire du navigateur au chargement
 let currentTheme = localStorage.getItem('siteTheme') || 'light';
@@ -376,4 +378,5 @@ function toggleTheme() {
 // On applique le thème immédiatement dès que le script est lu
 applyTheme(currentTheme);
 });
+
 
