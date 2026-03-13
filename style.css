@@ -112,7 +112,7 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 }
 
 
-/* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ --- */
+/* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ ET CORRIGÉ --- */
 .theme-btn {
     background: none;
     border: none;
@@ -123,38 +123,75 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 }
 .theme-btn:hover { transform: scale(1.1); }
 
+/* Fond général */
 body.dark-mode {
     background-color: #121212 !important;
     color: #e0e0e0 !important;
 }
+
 body.dark-mode header {
     background-color: #1a1a1a !important;
+    border-bottom: 1px solid #333;
 }
+
 body.dark-mode nav a {
     color: #e0e0e0 !important;
 }
-/* On cible toutes les cartes et formulaires pour les forcer en sombre */
+
+/* Forcer TOUTES les boîtes et sections qui étaient blanches à devenir sombres */
 body.dark-mode .service-card, 
 body.dark-mode .contact-info-cards div,
 body.dark-mode .contact-form,
-body.dark-mode .details-text {
+body.dark-mode .details-text,
+body.dark-mode .about-text,
+body.dark-mode .gallery-grid,
+body.dark-mode .action-section,
+body.dark-mode section {
     background-color: #1e1e1e !important;
     color: #e0e0e0 !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
+    border-color: #333 !important;
 }
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
-body.dark-mode span {
-    color: #00f0ff !important;
+
+/* On s'assure que les bannières Hero gardent leur image et ne deviennent pas gris uni */
+body.dark-mode .hero,
+body.dark-mode .service-hero {
+    background-color: transparent !important;
 }
-body.dark-mode p, body.dark-mode li {
-    color: #cccccc !important;
+
+/* Textes et Titres qui disparaissaient */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode label,
+body.dark-mode .checkbox-grid label,
+body.dark-mode .feature-list span {
+    color: #00f0ff !important; /* Bleu néon pour que ça flashe bien */
 }
-body.dark-mode footer {
-    background-color: #0a0a0a !important;
-    color: #888 !important;
+
+/* Paragraphes normaux */
+body.dark-mode p, 
+body.dark-mode li,
+body.dark-mode .service-card p {
+    color: #cccccc !important; /* Gris très clair pour bien lire */
 }
-body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
+
+/* Champs du formulaire */
+body.dark-mode input, 
+body.dark-mode select, 
+body.dark-mode textarea {
     background-color: #2a2a2a !important;
     color: #ffffff !important;
     border: 1px solid #555 !important;
+}
+
+/* Textes indicatifs dans les formulaires (Placeholders) */
+body.dark-mode input::placeholder, 
+body.dark-mode textarea::placeholder {
+    color: #888 !important;
+}
+
+/* Footer */
+body.dark-mode footer {
+    background-color: #0a0a0a !important;
+    color: #888 !important;
 }
