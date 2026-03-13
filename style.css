@@ -88,47 +88,70 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 .details-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
 .action-section { text-align: center; padding: 60px 5%; }
 
-/* --- RÉGLAGES SPÉCIFIQUES POUR CELLULAIRES --- */
+/* --- RÉGLAGES SPÉCIFIQUES POUR CELLULAIRES (MOBILE) --- */
 @media (max-width: 900px) {
-    /* 1. On force l'en-tête à prendre toute la largeur et à séparer les éléments */
+    /* 1. SÉCURITÉ GLOBALE : Empêcher la page de glisser de gauche à droite */
+    body {
+        overflow-x: hidden !important;
+        width: 100vw !important;
+    }
+
+    /* 2. EN-TÊTE (HEADER) : Empêcher le bouton EN d'être coupé */
     header {
         display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 10px 20px !important; 
+        justify-content: space-space-between !important;
+        padding: 10px 15px !important; /* Marges réduites */
         width: 100% !important;
         box-sizing: border-box !important;
     }
-
-    /* 2. On regroupe les boutons proprement à droite */
-    nav {
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    /* 3. On cache les textes du menu */
-    nav a {
-        display: none !important;
-    }
-
-    /* 4. On donne une taille raisonnable au logo pour ne pas casser la barre */
     .logo img {
-        max-height: 60px !important; /* Tu peux ajuster entre 50 et 75 selon ton goût */
-        width: auto !important;
+        max-width: 45vw !important; /* Le logo ne dépassera pas la moitié de l'écran */
+        height: auto !important;
+        max-height: 50px !important;
+    }
+    nav a { display: none !important; } /* On cache les textes du menu */
+    .theme-btn { margin-right: 10px !important; font-size: 18px !important; }
+    .lang-btn { margin-right: 0 !important; }
+
+    /* 3. FIX DU BOUTON FACEBOOK SOMBRE */
+    .btn-outline {
+        color: #00f0ff !important;
+        border-color: #00f0ff !important;
     }
 
-    /* 5. Ajustement des boutons */
-    .theme-btn {
-        font-size: 20px !important; 
-        margin-right: 15px !important;
+    /* 4. FORMULAIRE DE CONTACT : Empêcher de sortir de l'écran */
+    .contact-form {
+        padding: 20px 15px !important; /* Plus petit sur les côtés */
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
-    
-    .lang-btn {
-        padding: 6px 12px !important;
-        font-size: 14px !important;
+    /* Mettre Nom et Courriel l'un sous l'autre */
+    .contact-form div[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    /* Les champs de texte prennent exactement 100% de la boîte */
+    input, select, textarea {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    /* Les cases à cocher : 1 seule colonne au lieu de 3 */
+    .checkbox-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    /* 5. PAGE DE SERVICES (La boîte écrasée) */
+    .details-grid {
+        grid-template-columns: 1fr !important; /* Le texte sera AU-DESSUS de l'image */
+        gap: 20px !important;
+        padding: 20px !important;
+    }
+    .details-image img {
+        width: 100% !important; /* L'image prendra la largeur du téléphone */
+        height: auto !important;
     }
 }
-
 /* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ - CORRIGÉ --- */
 .theme-btn {
     background: none;
@@ -205,6 +228,7 @@ body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
     color: #ffffff !important;
     border: 1px solid #555 !important;
 }
+
 
 
 
