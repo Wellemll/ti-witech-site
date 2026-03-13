@@ -1,5 +1,5 @@
 // ==========================================
-// SCRIPT.JS - TI-WiTech (Version avec Imprimantes)
+// SCRIPT.JS - TI-WiTech (Version Finale Avec Expertise Imprimante Réseau)
 // ==========================================
 
 // --- 1. SÉCURITÉ LANGUE & URL ---
@@ -91,12 +91,12 @@ const translations = {
         "aud-feat-3-title": "Intégration Sans Fil", "aud-feat-3-desc": "Connectez facilement vos appareils mobiles à votre système de son pour diffuser Spotify, Apple Music ou vos balados.",
         "aud-action-title": "Besoin d'un technicien ?",
 
-        // Imprimante
-        pageImpTitle: "IMPRIMANTES & BUREAU", pageImpDesc: "Configuration et dépannage de vos imprimantes, numériseurs et postes de télétravail.", pageImpCta: "RÉSERVER POUR MON BUREAU",
+        // Imprimante (TEXTES MODIFIÉS ICI)
+        pageImpTitle: "IMPRIMANTES & BUREAU", pageImpDesc: "Installation complète, configuration réseau (Wi-Fi, IP fixe) et dépannage de vos imprimantes, numériseurs et postes de télétravail.", pageImpCta: "RÉSERVER POUR MON BUREAU",
         "imp-detail-title": "Un espace de travail fonctionnel", "imp-detail-text": "Ne laissez pas un problème de connexion ou de configuration ralentir votre productivité. Nous installons et réparons vos équipements de bureau pour un fonctionnement sans faille.",
-        "imp-feat-1-title": "Configuration Sans Fil", "imp-feat-1-desc": "Connexion de votre imprimante au réseau Wi-Fi pour imprimer facilement depuis vos ordinateurs, tablettes et téléphones.",
-        "imp-feat-2-title": "Dépannage & Erreurs", "imp-feat-2-desc": "Résolution des erreurs d'impression, numérisation (scanner) impossible et mise à jour des pilotes.",
-        "imp-feat-3-title": "Télétravail & Accessoires", "imp-feat-3-desc": "Installation de deux écrans, stations d'accueil (dock) et caméras web pour des réunions optimales.",
+        "imp-feat-1-title": "Installation Réseau & IP", "imp-feat-1-desc": "Configuration de votre imprimante sur le réseau, attribution d'adresses IP fixes (statiques) et partage avec tous vos appareils pour une impression fiable.",
+        "imp-feat-2-title": "Dépannage & Erreurs", "imp-feat-2-desc": "Résolution des erreurs d'impression, numérisation (scanner) impossible, bourrages papier et mise à jour des pilotes (drivers).",
+        "imp-feat-3-title": "Postes de Télétravail", "imp-feat-3-desc": "Installation de doubles écrans, stations d'accueil (docking stations) et configuration de caméras web.",
         "imp-action-title": "Besoin d'un technicien ?"
     },
     en: {
@@ -157,12 +157,12 @@ const translations = {
         "aud-feat-3-title": "Wireless Integration", "aud-feat-3-desc": "Easily connect your mobile devices to your sound system to stream Spotify, Apple Music, or your podcasts.",
         "aud-action-title": "Need a technician?",
 
-        // Imprimante
-        pageImpTitle: "PRINTERS & OFFICE", pageImpDesc: "Setup and troubleshooting for your printers, scanners, and remote work stations.", pageImpCta: "BOOK FOR MY OFFICE",
+        // Imprimante (ENGLISH TEXTS MODIFIED HERE)
+        pageImpTitle: "PRINTERS & OFFICE", pageImpDesc: "Complete installation, network configuration (Wi-Fi, static IP), and troubleshooting for your printers, scanners, and remote work stations.", pageImpCta: "BOOK FOR MY OFFICE",
         "imp-detail-title": "A functional workspace", "imp-detail-text": "Don't let a connection or setup issue slow down your productivity. We install and repair your office equipment for seamless operation.",
-        "imp-feat-1-title": "Wireless Setup", "imp-feat-1-desc": "Connecting your printer to the Wi-Fi network to easily print from your computers, tablets, and phones.",
-        "imp-feat-2-title": "Troubleshooting & Errors", "imp-feat-2-desc": "Resolving printing errors, scanning failures, and updating drivers.",
-        "imp-feat-3-title": "Remote Work & Accessories", "imp-feat-3-desc": "Setup of dual monitors, docking stations, and webcams for optimal meetings.",
+        "imp-feat-1-title": "Network & IP Installation", "imp-feat-1-desc": "Configuring your printer on the network, assigning static (fixed) IP addresses, and sharing with all your devices for reliable printing.",
+        "imp-feat-2-title": "Troubleshooting & Errors", "imp-feat-2-desc": "Resolving printing errors, scanning failures, paper jams, and updating drivers.",
+        "imp-feat-3-title": "Remote Work Stations", "imp-feat-3-desc": "Installation of dual monitors, docking stations, and webcam configuration.",
         "imp-action-title": "Need a technician?"
     }
 };
