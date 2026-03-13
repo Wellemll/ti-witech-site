@@ -88,95 +88,8 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 .details-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
 .action-section { text-align: center; padding: 60px 5%; }
 
-/* ========================================= */
-/* --- RÉGLAGES SPÉCIFIQUES POUR CELLULAIRES (MOBILE) --- */
-/* ========================================= */
-@media (max-width: 900px) {
 
-    /* --- 1. SÉCURITÉ GLOBALE : Empêcher le glissement latéral --- */
-    body {
-        overflow-x: hidden !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
-    }
-
-    /* --- 2. EN-TÊTE (HEADER) : Empêcher le bouton EN d'être coupé --- */
-    header {
-        display: flex !important;
-        justify-content: space-between !important;
-        padding: 5px 15px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-    .logo img {
-        height: 65px !important;
-        max-width: 45vw !important;
-    }
-    nav a { display: none !important; }
-    .theme-btn { font-size: 18px !important; margin-right: 10px !important; }
-    .lang-btn { margin-right: 0 !important; }
-
-    /* --- 3. FIX DU BOUTON FACEBOOK SOMBRE --- */
-    .btn-outline {
-        color: #00f0ff !important;
-        border-color: #00f0ff !important;
-    }
-
-    /* --- 4. FIX DES CARTES CONTACT (Téléphone et Email) --- */
-    /* On force les deux cartes à s'empiler l'une sous l'autre */
-    .contact-info-cards { /* Remplace par ta classe de conteneur, ex: .flex-container */
-        flex-direction: column !important; /* Stack verticalement */
-        gap: 15px !important;
-    }
-    /* Les cartes prennent toute la largeur */
-    .contact-card, .contact-info-cards div {
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-    /* Empêche ton numéro de téléphone de se briser sur 4 lignes */
-    .contact-card span, .contact-card a {
-        white-space: nowrap !important; /* Force sur une seule ligne */
-        display: block !important;
-        width: 100% !important;
-    }
-
-    /* --- 5. FIX DU FORMULAIRE DE CONTACT --- */
-    .contact-form {
-        padding: 15px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-    }
-    /* Les paires de champs (ex: Nom/Courriel, Marque/Année) s'empilent */
-    .contact-form div[style*="display: flex"], /* Cible les flexbox inline */
-    .contact-form .flex-container { /* Ou ta classe générique */
-        flex-direction: column !important;
-        gap: 10px !important;
-    }
-    /* Tous les champs de texte prennent 100% de largeur */
-    input, select, textarea {
-        width: 100% !important;
-        box-sizing: border-box !important;
-        font-size: 16px !important; /* Empêche le zoom automatique sur iPhone */
-    }
-
-    /* --- 6. LE GROS FIX DES CASES À COCHER (Dernier problème) --- */
-    /* Ta grille rigide à 3 colonnes devient une seule liste verticalement */
-    .checkbox-grid {
-        grid-template-columns: 1fr !important; /* Stack tout en une colonne */
-        gap: 12px !important;
-        width: 100% !important;
-        margin-right: 0 !important; /* Enlève la marge folle qui poussait tout à droite */
-    }
-    /* S'assurer que le texte (label) à côté des cases est lisible */
-    .checkbox-grid label {
-        color: #cccccc !important;
-        flex: 1 !important;
-        text-align: left !important;
-        white-space: normal !important; /* Permet au texte de se briser sur plusieurs lignes */
-    }
-}
-
-/* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ - CORRIGÉ --- */
+/* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ --- */
 .theme-btn {
     background: none;
     border: none;
@@ -198,7 +111,7 @@ body.dark-mode nav a {
     color: #e0e0e0 !important;
 }
 
-/* 1. Fix pour toutes les cartes et boîtes de service */
+/* 1. Couleurs des boîtes et formulaires */
 body.dark-mode .service-card, 
 body.dark-mode .contact-info-cards div,
 body.dark-mode .contact-form,
@@ -210,22 +123,19 @@ body.dark-mode .territory-box {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8) !important;
 }
 
-/* 2. Fix pour le fond blanc des cases à cocher */
+/* 2. Fond des cases à cocher */
 body.dark-mode .checkbox-grid {
     background-color: #2a2a2a !important;
     border: 1px solid #555 !important;
 }
 
-/* 3. LE GROS FIX POUR LES BOUTONS INVISIBLES (Facebook, EN/FR) */
-/* On cible spécifiquement la bordure ET le texte pour les forcer en bleu néon */
+/* 3. Boutons EN/FR et Facebook visibles en bleu néon */
 body.dark-mode .lang-btn,
 body.dark-mode .btn-outline {
-    color: #00f0ff !important; /* Texte en bleu néon */
-    border: 1px solid #00f0ff !important; /* Bordure en bleu néon */
-    background-color: transparent !important; /* S'assure que le fond reste transparent */
+    color: #00f0ff !important;
+    border: 1px solid #00f0ff !important;
+    background-color: transparent !important;
 }
-
-/* Hover effect pour ces boutons en mode sombre (inverse les couleurs) */
 body.dark-mode .lang-btn:hover,
 body.dark-mode .btn-outline:hover {
     background-color: #00f0ff !important;
@@ -252,12 +162,3 @@ body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
     color: #ffffff !important;
     border: 1px solid #555 !important;
 }
-
-
-
-
-
-
-
-
-
