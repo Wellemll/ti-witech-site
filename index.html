@@ -14,17 +14,22 @@
             document.body.classList.add('dark-mode');
         }
     </script>
-    <header>
-        <a href="#" class="logo"><img src="logo.png" alt="TI-WiTech Logo"></a>
-<nav>
-    <a href="index.html#services" id="nav-services">Services</a>
-    <a href="index.html#about" id="nav-about">À propos</a>
-    <a href="index.html#galerie" id="nav-galerie">En action</a>
-    <a href="index.html#contact" id="nav-contact">Contact</a>
-    <button class="theme-btn" onclick="toggleTheme()">🌙</button>
-    <button class="lang-btn" onclick="toggleLang()">EN</button>
-</nav>
-    </header>
+  <header>
+    <a href="#" class="logo"><img src="logo.png" alt="TI-WiTech Logo"></a>
+    
+    <nav id="nav-menu">
+        <a href="index.html#services" id="nav-services">Services</a>
+        <a href="index.html#about" id="nav-about">À propos</a>
+        <a href="index.html#galerie" id="nav-galerie">En action</a>
+        <a href="index.html#contact" id="nav-contact">Contact</a>
+    </nav>
+
+    <div style="display: flex; align-items: center;">
+        <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+        <button class="lang-btn" onclick="toggleLang()">EN</button>
+        <button class="hamburger" id="hamburger-btn">☰</button>
+    </div>
+</header>
 
     <section class="hero">
         <h1 id="hero-title">SOUTIEN INFORMATIQUE<br>À DOMICILE</h1>
