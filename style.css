@@ -90,33 +90,44 @@ footer a { color: #00f0ff; text-decoration: none; font-weight: 600; }
 
 /* --- RÉGLAGES SPÉCIFIQUES POUR CELLULAIRES --- */
 @media (max-width: 900px) {
-    /* 1. On amincit la barre foncée au maximum */
-nav a {
+    /* 1. On force l'en-tête à prendre toute la largeur et à séparer les éléments */
+    header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 20px !important; 
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 2. On regroupe les boutons proprement à droite */
+    nav {
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* 3. On cache les textes du menu */
+    nav a {
         display: none !important;
     }
-   
-    header {
-        padding: 5px 15px !important; 
-    }
-    
-    /* 2. On rapetisse le logo pour libérer de la place */
+
+    /* 4. On donne une taille raisonnable au logo pour ne pas casser la barre */
     .logo img {
-        height: 40px !important; /* Tu peux baisser à 40px si tu le veux encore plus petit */
+        max-height: 60px !important; /* Tu peux ajuster entre 50 et 75 selon ton goût */
+        width: auto !important;
     }
-    
-    /* 3. On rapetisse légèrement la lune/soleil */
+
+    /* 5. Ajustement des boutons */
     .theme-btn {
-        font-size: 16px !important; 
-        margin-right: 10px !important;
+        font-size: 20px !important; 
+        margin-right: 15px !important;
     }
     
-    /* 4. On rapetisse le bouton EN/FR */
     .lang-btn {
-        padding: 4px 10px !important;
-        font-size: 12px !important;
+        padding: 6px 12px !important;
+        font-size: 14px !important;
     }
 }
-
 
 /* --- 12. MODE SOMBRE (DARK MODE) BLINDÉ - CORRIGÉ --- */
 .theme-btn {
@@ -194,6 +205,7 @@ body.dark-mode input, body.dark-mode select, body.dark-mode textarea {
     color: #ffffff !important;
     border: 1px solid #555 !important;
 }
+
 
 
 
